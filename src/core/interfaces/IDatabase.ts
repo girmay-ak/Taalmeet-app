@@ -124,33 +124,62 @@ export interface IQueryBuilder {
 }
 
 /**
+ * Authentication result
+ */
+export interface AuthResult {
+  user: any | null;
+  session: any | null;
+  error: any | null;
+}
+
+/**
  * Authentication provider interface
  */
 export interface IAuthProvider {
   /**
    * Sign up new user
    */
-  signUp(email: string, password: string, metadata?: Record<string, any>): Promise<DatabaseResult<any>>;
+  signUp(email: string, password: string, metadata?: Record<string, any>): Promise<AuthResult>;
 
   /**
    * Sign in user
    */
-  signIn(email: string, password: string): Promise<DatabaseResult<any>>;
+  signIn(email: string, password: string): Promise<AuthResult>;
+
+  /**
+   * Sign in with OAuth provider
+   */
+  signInWithOAuth?(provider: 'google' | 'apple' | 'facebook'): Promise<AuthResult>;
 
   /**
    * Sign out current user
    */
-  signOut(): Promise<DatabaseResult<void>>;
+  signOut(): Promise<void>;
 
   /**
    * Get current user
    */
-  getUser(): Promise<DatabaseResult<any>>;
+  getUser(): Promise<any | null>;
 
   /**
    * Get current session
    */
-  getSession(): Promise<DatabaseResult<any>>;
+  getSession(): Promise<any | null>;
+
+  /**
+   * Request password reset
+   */
+  resetPassword?(email: string): Promise<{ error: any | null }>;
+
+  /**
+   * Update user password
+   */
+  updatePassword?(newPassword: string): Promise<{ error: any | null }>;
+
+  /**
+   * Refresh session token
+   */
+  refreshSession?(): Promise<{ session: any | null; error: any | null }>;
 
   /**
    * Listen to auth state changes
@@ -165,12 +194,12 @@ export interface IStorageProvider {
   /**
    * Upload file
    */
-  upload(bucket: string, path: string, file: File | Blob): Promise<DatabaseResult<any>>;
+  upload(bucket: string, path: string, file: any): Promise<string>;
 
   /**
    * Download file
    */
-  download(bucket: string, path: string): Promise<DatabaseResult<Blob>>;
+  download(bucket: string, path: string): Promise<Blob>;
 
   /**
    * Get public URL
@@ -180,7 +209,12 @@ export interface IStorageProvider {
   /**
    * Delete file
    */
-  remove(bucket: string, path: string): Promise<DatabaseResult<void>>;
+  delete(bucket: string, path: string): Promise<void>;
+
+  /**
+   * Create signed URL for private file (optional)
+   */
+  createSignedUrl?(bucket: string, path: string, expiresIn?: number): Promise<string>;
 }
 
 /**
