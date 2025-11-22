@@ -21,7 +21,6 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: './tsconfig.json',
   },
   env: {
     'react-native/react-native': true,
@@ -58,7 +57,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-non-null-assertion': 'warn',
-    '@typescript-eslint/prefer-const': 'error',
+    'prefer-const': 'error',
     '@typescript-eslint/no-var-requires': 'error',
 
     // React
