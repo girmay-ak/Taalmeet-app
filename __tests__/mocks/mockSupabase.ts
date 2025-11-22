@@ -1,9 +1,9 @@
 /**
  * Mock Supabase client for testing
- * 
+ *
  * Provides a fully mocked Supabase client with all methods.
  * Use this in tests to avoid hitting real database.
- * 
+ *
  * @module __tests__/mocks/mockSupabase
  */
 
@@ -11,7 +11,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 
 /**
  * Creates a mock Supabase client
- * 
+ *
  * @returns Mocked Supabase client
  */
 export const createMockSupabaseClient = (): Partial<SupabaseClient> => ({
@@ -116,4 +116,3 @@ export const mockSupabaseResponse = {
     statusText: 'Bad Request',
   }),
 };
-

@@ -1,17 +1,12 @@
 /**
  * Unit tests for Validation Utilities
- * 
+ *
  * Tests validation functions in isolation.
- * 
+ *
  * @module __tests__/unit/utils/validation.test
  */
 
-import {
-  isValidEmail,
-  isValidLanguageCode,
-  isNotEmpty,
-  isInRange,
-} from '@shared/utils/validation';
+import { isValidEmail, isValidLanguageCode, isNotEmpty, isInRange } from '@shared/utils/validation';
 
 describe('Validation Utilities', () => {
   describe('isValidEmail', () => {
@@ -74,4 +69,3 @@ describe('Validation Utilities', () => {
     });
   });
 });
-

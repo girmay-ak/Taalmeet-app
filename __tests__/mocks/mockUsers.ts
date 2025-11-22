@@ -1,8 +1,8 @@
 /**
  * Mock user utilities for testing
- * 
+ *
  * Provides helper functions to create mock users with various configurations.
- * 
+ *
  * @module __tests__/mocks/mockUsers
  */
 
@@ -10,7 +10,7 @@ import { User } from '@core/entities/User';
 
 /**
  * Creates a mock user with default values
- * 
+ *
  * @param overrides - Properties to override
  * @returns Mock user object
  */
@@ -62,7 +62,7 @@ export const createMockOnlineUser = (overrides: Partial<User> = {}): User =>
 
 /**
  * Creates multiple mock users
- * 
+ *
  * @param count - Number of users to create
  * @returns Array of mock users
  */
@@ -75,4 +75,3 @@ export const createMockUsers = (count: number): User[] => {
     })
   );
 };
-

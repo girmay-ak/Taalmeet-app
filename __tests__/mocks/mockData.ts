@@ -1,8 +1,8 @@
 /**
  * Mock data for testing
- * 
+ *
  * Provides mock data structures matching the application's data models.
- * 
+ *
  * @module __tests__/mocks/mockData
  */
 
@@ -97,10 +97,7 @@ export const mockSession = {
   date: '2024-12-01',
   time: '18:00',
   duration: 60,
-  attendees: [
-    'https://example.com/avatar1.jpg',
-    'https://example.com/avatar2.jpg',
-  ],
+  attendees: ['https://example.com/avatar1.jpg', 'https://example.com/avatar2.jpg'],
   totalAttendees: 2,
   maxAttendees: 10,
   joinedPercentage: 20,
@@ -139,4 +136,3 @@ export const mockMessage = {
   isRead: false,
   translatedText: null,
 };
-

@@ -1,8 +1,8 @@
 /**
  * Unit tests for CreateUser UseCase
- * 
+ *
  * Tests the CreateUser use case in isolation with mocked dependencies.
- * 
+ *
  * @module __tests__/unit/usecases/createUser.test
  */
 
@@ -162,4 +162,3 @@ describe('CreateUserUseCase', () => {
     });
   });
 });
-

@@ -1,12 +1,12 @@
 /**
  * Integration tests for Authentication Flow
- * 
+ *
  * Tests the complete authentication flow including:
  * - User signup
  * - Profile creation
  * - Email verification
  * - Login
- * 
+ *
  * @module __tests__/integration/auth-flow.test
  */
 
@@ -76,17 +76,10 @@ describe('Authentication Flow Integration', () => {
       };
 
       mockFrom.mockReturnValue(mockProfileQuery);
-      mockProfileQuery.insert.mockResolvedValue(
-        mockSupabaseResponse.success(profileData)
-      );
-      mockProfileQuery.single.mockResolvedValue(
-        mockSupabaseResponse.success(profileData)
-      );
+      mockProfileQuery.insert.mockResolvedValue(mockSupabaseResponse.success(profileData));
+      mockProfileQuery.single.mockResolvedValue(mockSupabaseResponse.success(profileData));
 
-      const profileResult = await mockFrom('profiles')
-        .insert(profileData)
-        .select()
-        .single();
+      const profileResult = await mockFrom('profiles').insert(profileData).select().single();
 
       expect(profileResult.error).toBeNull();
       expect(profileResult.data).toEqual(profileData);
@@ -105,9 +98,7 @@ describe('Authentication Flow Integration', () => {
 
     it('should handle signup failure gracefully', async () => {
       // Arrange
-      mockAuth.signUp.mockResolvedValue(
-        mockSupabaseResponse.error('Email already exists')
-      );
+      mockAuth.signUp.mockResolvedValue(mockSupabaseResponse.error('Email already exists'));
 
       // Act
       const result = await mockAuth.signUp({
@@ -164,9 +155,7 @@ describe('Authentication Flow Integration', () => {
       };
 
       mockFrom.mockReturnValue(mockProfileQuery);
-      mockProfileQuery.single.mockResolvedValue(
-        mockSupabaseResponse.success(mockProfile)
-      );
+      mockProfileQuery.single.mockResolvedValue(mockSupabaseResponse.success(mockProfile));
 
       const profileResult = await mockFrom('profiles')
         .select('*')
@@ -192,4 +181,3 @@ describe('Authentication Flow Integration', () => {
     });
   });
 });
-

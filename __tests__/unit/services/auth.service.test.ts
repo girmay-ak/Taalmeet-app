@@ -1,9 +1,9 @@
 /**
  * Unit tests for Authentication Service
- * 
+ *
  * Tests the authentication service in isolation with mocked dependencies.
  * Covers signup, login, logout, and session management.
- * 
+ *
  * @module __tests__/unit/services/auth.service.test
  */
 
@@ -193,4 +193,3 @@ describe('AuthService', () => {
     });
   });
 });
-

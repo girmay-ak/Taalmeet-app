@@ -1,8 +1,8 @@
 /**
  * Global test setup
- * 
+ *
  * Runs before all tests. Sets up mocks and test environment.
- * 
+ *
  * @module __tests__/setup
  */
 
@@ -88,7 +88,7 @@ jest.mock('react-native-gesture-handler', () => {
     BaseButton: View,
     BorderlessButton: View,
     FlatList: View,
-    gestureHandlerRootHOC: jest.fn((component) => component),
+    gestureHandlerRootHOC: jest.fn(component => component),
     Directions: {},
   };
 });
@@ -211,4 +211,3 @@ global.console = {
   warn: jest.fn(),
   error: jest.fn(),
 };
-
