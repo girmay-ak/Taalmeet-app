@@ -1,8 +1,8 @@
 /**
  * Map screen component
- * 
+ *
  * Displays partners on a map with filters and location features.
- * 
+ *
  * @module presentation/screens/MapScreen
  */
 
@@ -63,22 +63,34 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
   // Apply filters
   const filteredPartners = mockPartners.filter(partner => {
     if (partner.distance > filters.maxDistance) return false;
-    if (filters.languages.length > 0 && !filters.languages.includes(partner.teaching.language)) return false;
+    if (filters.languages.length > 0 && !filters.languages.includes(partner.teaching.language))
+      return false;
     if (filters.availability === 'now' && !partner.availableNow) return false;
     if (filters.minMatchScore > 0 && partner.matchScore < filters.minMatchScore) return false;
-    if (filters.meetingType === 'in-person' && partner.availability && !partner.availability.preferences?.includes('in-person')) return false;
-    if (filters.meetingType === 'virtual' && partner.availability && !partner.availability.preferences?.includes('video')) return false;
+    if (
+      filters.meetingType === 'in-person' &&
+      partner.availability &&
+      !partner.availability.preferences?.includes('in-person')
+    )
+      return false;
+    if (
+      filters.meetingType === 'virtual' &&
+      partner.availability &&
+      !partner.availability.preferences?.includes('video')
+    )
+      return false;
     return true;
   });
 
   const nearbyPartners = filteredPartners.filter(p => p.distance < 5);
   const selected = selectedPartner ? mockPartners.find(p => p.id === selectedPartner) : null;
 
-  const hasActiveFilters = filters.languages.length > 0 || 
-                          filters.maxDistance < 50 || 
-                          filters.availability !== 'all' || 
-                          filters.minMatchScore > 0 || 
-                          filters.meetingType !== 'all';
+  const hasActiveFilters =
+    filters.languages.length > 0 ||
+    filters.maxDistance < 50 ||
+    filters.availability !== 'all' ||
+    filters.minMatchScore > 0 ||
+    filters.meetingType !== 'all';
 
   const resetFilters = () => {
     setFilters({
@@ -221,20 +233,17 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
               <Text style={styles.locationText}>Den Haag</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => setShowFilters(true)}
-              style={styles.filterButton}
-            >
+            <TouchableOpacity onPress={() => setShowFilters(true)} style={styles.filterButton}>
               <Ionicons name="options" size={20} color={COLORS.background} />
               {hasActiveFilters && (
                 <View style={styles.filterBadge}>
                   <Text style={styles.filterBadgeText}>
                     {String(
                       filters.languages.length +
-                      (filters.maxDistance < 50 ? 1 : 0) +
-                      (filters.availability !== 'all' ? 1 : 0) +
-                      (filters.minMatchScore > 0 ? 1 : 0) +
-                      (filters.meetingType !== 'all' ? 1 : 0)
+                        (filters.maxDistance < 50 ? 1 : 0) +
+                        (filters.availability !== 'all' ? 1 : 0) +
+                        (filters.minMatchScore > 0 ? 1 : 0) +
+                        (filters.meetingType !== 'all' ? 1 : 0)
                     )}
                   </Text>
                 </View>
@@ -248,12 +257,22 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
             style={styles.mapViewButton}
           >
             <Ionicons
-              name={mapView === 'default' ? 'globe-outline' : mapView === 'satellite' ? 'map-outline' : 'cube-outline'}
+              name={
+                mapView === 'default'
+                  ? 'globe-outline'
+                  : mapView === 'satellite'
+                    ? 'map-outline'
+                    : 'cube-outline'
+              }
               size={16}
               color={COLORS.primary}
             />
             <Text style={styles.mapViewText}>
-              {mapView === 'default' ? 'Default View' : mapView === 'satellite' ? 'Satellite' : '3D View'}
+              {mapView === 'default'
+                ? 'Default View'
+                : mapView === 'satellite'
+                  ? 'Satellite'
+                  : '3D View'}
             </Text>
             <Ionicons name="chevron-down" size={16} color={COLORS.textPrimary} />
           </TouchableOpacity>
@@ -270,29 +289,24 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
               onPress={() => setSelectedPartner(partner.id)}
               style={[
                 styles.markerContainer,
-                { 
-                  left: `${leftPercent}%`, 
+                {
+                  left: `${leftPercent}%`,
                   top: `${topPercent}%`,
                 },
               ]}
             >
-              {partner.availableNow && (
-                <View style={styles.pulseRing} />
-              )}
-              <View style={[
-                styles.markerPin,
-                selectedPartner === partner.id && styles.markerPinSelected,
-              ]}>
-                <Image
-                  source={{ uri: partner.avatar }}
-                  style={styles.markerAvatar}
-                />
+              {partner.availableNow && <View style={styles.pulseRing} />}
+              <View
+                style={[
+                  styles.markerPin,
+                  selectedPartner === partner.id && styles.markerPinSelected,
+                ]}
+              >
+                <Image source={{ uri: partner.avatar }} style={styles.markerAvatar} />
                 <View style={styles.flagBadge}>
                   <Text style={styles.flagText}>{partner.teaching.flag}</Text>
                 </View>
-                {partner.isOnline && (
-                  <View style={styles.onlineDot} />
-                )}
+                {partner.isOnline && <View style={styles.onlineDot} />}
               </View>
               <View style={styles.distanceLabel}>
                 <Text style={styles.distanceText}>{partner.distance} km</Text>
@@ -308,9 +322,7 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
             style={[
               styles.radarRing,
               {
-                transform: [
-                  { scale: radarAnim1 },
-                ],
+                transform: [{ scale: radarAnim1 }],
                 opacity: radarAnim1.interpolate({
                   inputRange: [1, 2.5],
                   outputRange: [0.6, 0],
@@ -322,9 +334,7 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
             style={[
               styles.radarRing,
               {
-                transform: [
-                  { scale: radarAnim2 },
-                ],
+                transform: [{ scale: radarAnim2 }],
                 opacity: radarAnim2.interpolate({
                   inputRange: [1, 2.5],
                   outputRange: [0.6, 0],
@@ -336,9 +346,7 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
             style={[
               styles.radarRing,
               {
-                transform: [
-                  { scale: radarAnim3 },
-                ],
+                transform: [{ scale: radarAnim3 }],
                 opacity: radarAnim3.interpolate({
                   inputRange: [1, 2.5],
                   outputRange: [0.6, 0],
@@ -346,7 +354,7 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
               },
             ]}
           />
-          
+
           {/* Rotating Beam */}
           <Animated.View
             style={[
@@ -386,20 +394,14 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
 
       {/* Bottom Sheet */}
       <Animated.View style={[styles.bottomSheet, { height: sheetHeightAnim }]}>
-        <TouchableOpacity
-          onPress={() => setIsExpanded(!isExpanded)}
-          style={styles.sheetHandle}
-        >
+        <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)} style={styles.sheetHandle}>
           <View style={styles.handleBar} />
         </TouchableOpacity>
 
         <ScrollView style={styles.sheetContent} showsVerticalScrollIndicator={false}>
           {selected ? (
             <View style={styles.selectedCard}>
-              <Image
-                source={{ uri: selected.avatar }}
-                style={styles.selectedAvatar}
-              />
+              <Image source={{ uri: selected.avatar }} style={styles.selectedAvatar} />
               <View style={styles.selectedInfo}>
                 <Text style={styles.selectedName}>
                   {selected.name}, {selected.age}
@@ -441,7 +443,7 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
 
           {isExpanded && (
             <View style={styles.partnerList}>
-              {nearbyPartners.map((partner) => (
+              {nearbyPartners.map(partner => (
                 <TouchableOpacity
                   key={partner.id}
                   onPress={() => {
@@ -451,13 +453,8 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
                   style={styles.partnerListItem}
                 >
                   <View style={styles.partnerListAvatar}>
-                    <Image
-                      source={{ uri: partner.avatar }}
-                      style={styles.partnerListAvatarImage}
-                    />
-                    {partner.isOnline && (
-                      <View style={styles.partnerListOnlineDot} />
-                    )}
+                    <Image source={{ uri: partner.avatar }} style={styles.partnerListAvatarImage} />
+                    {partner.isOnline && <View style={styles.partnerListOnlineDot} />}
                   </View>
                   <View style={styles.partnerListInfo}>
                     <Text style={styles.partnerListName}>
@@ -569,7 +566,11 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
                           filters.availability === option && styles.availabilityTextActive,
                         ]}
                       >
-                        {option === 'all' ? 'All' : option === 'now' ? 'Available Now' : 'This Week'}
+                        {option === 'all'
+                          ? 'All'
+                          : option === 'now'
+                            ? 'Available Now'
+                            : 'This Week'}
                       </Text>
                     </TouchableOpacity>
                   ))}
@@ -581,10 +582,7 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
               <TouchableOpacity
                 onPress={resetFilters}
                 disabled={!hasActiveFilters}
-                style={[
-                  styles.resetButton,
-                  !hasActiveFilters && styles.resetButtonDisabled,
-                ]}
+                style={[styles.resetButton, !hasActiveFilters && styles.resetButtonDisabled]}
               >
                 <Text
                   style={[
@@ -595,17 +593,12 @@ export const MapScreen: React.FC<MapScreenProps> = ({ onPartnerClick }) => {
                   Reset All
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setShowFilters(false)}
-                style={styles.applyButton}
-              >
+              <TouchableOpacity onPress={() => setShowFilters(false)} style={styles.applyButton}>
                 <LinearGradient
                   colors={[COLORS.primary, COLORS.primaryLight]}
                   style={styles.applyButtonGradient}
                 >
-                  <Text style={styles.applyButtonText}>
-                    Show {filteredPartners.length} Results
-                  </Text>
+                  <Text style={styles.applyButtonText}>Show {filteredPartners.length} Results</Text>
                 </LinearGradient>
               </TouchableOpacity>
             </View>
@@ -1146,4 +1139,3 @@ const styles = StyleSheet.create({
 });
 
 export default MapScreen;
-

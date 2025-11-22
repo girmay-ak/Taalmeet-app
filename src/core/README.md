@@ -30,6 +30,7 @@ Domain entities represent the core business objects:
 - `Match`: Represents a language exchange match between two users
 
 Entities contain:
+
 - Business rules and validation
 - Domain-specific methods
 - No framework dependencies
@@ -42,6 +43,7 @@ Use cases orchestrate business operations:
 - `FindMatchesUseCase`: Finds compatible language exchange partners
 
 Use cases:
+
 - Coordinate between entities and repositories
 - Implement business workflows
 - Handle business-level error cases
@@ -82,4 +84,3 @@ const mockUserRepository: IUserRepository = {
 const useCase = new CreateUserUseCase(mockUserRepository);
 // Test business logic without database or network calls
 ```
-

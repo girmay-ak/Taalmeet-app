@@ -1,8 +1,8 @@
 /**
  * Chat screen component
- * 
+ *
  * Individual chat conversation with messages, translation, and input.
- * 
+ *
  * @module presentation/screens/ChatScreen
  */
 
@@ -40,13 +40,10 @@ interface ChatScreenProps {
   onBack: () => void;
 }
 
-export const ChatScreen: React.FC<ChatScreenProps> = ({
-  conversationId,
-  onBack,
-}) => {
+export const ChatScreen: React.FC<ChatScreenProps> = ({ conversationId, onBack }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>(
-    mockMessages.map((msg) => ({
+    mockMessages.map(msg => ({
       ...msg,
       showTranslation: false,
       detectedLanguage: msg.isSent ? 'en' : 'fr',
@@ -56,32 +53,30 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
   const scrollViewRef = useRef<ScrollView>(null);
 
   // Get conversation and partner
-  const conversation = mockConversations.find((c) => c.id === conversationId);
-  const partner = mockPartners.find((p) => p.id === conversation?.partnerId) || mockPartners[1];
+  const conversation = mockConversations.find(c => c.id === conversationId);
+  const partner = mockPartners.find(p => p.id === conversation?.partnerId) || mockPartners[1];
 
   // Mock translation function
   const translateMessage = (text: string, fromLang: string, toLang: string): string => {
     const translations: Record<string, string> = {
-      "Hey! How's your French practice going?": "Salut ! Comment se passe ta pratique du français ?",
-      "Bonjour! Ça va très bien, merci! 🇫🇷": "Hello! It's going very well, thank you! 🇫🇷",
-      "Great! Want to have a conversation session this weekend?": "Super ! Tu veux avoir une session de conversation ce week-end ?",
-      "Oui! Saturday at 2pm works for me": "Yes! Saturday at 2pm works for me",
-      "Perfect! See you then 😊": "Parfait ! À samedi 😊",
+      "Hey! How's your French practice going?":
+        'Salut ! Comment se passe ta pratique du français ?',
+      'Bonjour! Ça va très bien, merci! 🇫🇷': "Hello! It's going very well, thank you! 🇫🇷",
+      'Great! Want to have a conversation session this weekend?':
+        'Super ! Tu veux avoir une session de conversation ce week-end ?',
+      'Oui! Saturday at 2pm works for me': 'Yes! Saturday at 2pm works for me',
+      'Perfect! See you then 😊': 'Parfait ! À samedi 😊',
     };
     return translations[text] || `[Translated: ${text}]`;
   };
 
   const handleTranslate = (messageId: string) => {
     setMessages(
-      messages.map((msg) => {
+      messages.map(msg => {
         if (msg.id === messageId) {
           if (!msg.translated) {
             const targetLang = msg.isSent ? 'fr' : 'en';
-            msg.translated = translateMessage(
-              msg.text,
-              msg.detectedLanguage || 'auto',
-              targetLang
-            );
+            msg.translated = translateMessage(msg.text, msg.detectedLanguage || 'auto', targetLang);
           }
           return { ...msg, showTranslation: !msg.showTranslation };
         }
@@ -179,9 +174,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
               msg.isSent ? styles.messageWrapperSent : styles.messageWrapperReceived,
             ]}
           >
-            {!msg.isSent && (
-              <Image source={{ uri: partner.avatar }} style={styles.messageAvatar} />
-            )}
+            {!msg.isSent && <Image source={{ uri: partner.avatar }} style={styles.messageAvatar} />}
 
             <View style={styles.messageContent}>
               <View
@@ -190,12 +183,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
                   msg.isSent ? styles.messageBubbleSent : styles.messageBubbleReceived,
                 ]}
               >
-                <Text
-                  style={[
-                    styles.messageText,
-                    msg.isSent && styles.messageTextSent,
-                  ]}
-                >
+                <Text style={[styles.messageText, msg.isSent && styles.messageTextSent]}>
                   {msg.text}
                 </Text>
 
@@ -208,19 +196,13 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
                         color={msg.isSent ? 'rgba(255, 255, 255, 0.6)' : COLORS.textMuted}
                       />
                       <Text
-                        style={[
-                          styles.translationLabel,
-                          msg.isSent && styles.translationLabelSent,
-                        ]}
+                        style={[styles.translationLabel, msg.isSent && styles.translationLabelSent]}
                       >
                         Translation:
                       </Text>
                     </View>
                     <Text
-                      style={[
-                        styles.translationText,
-                        msg.isSent && styles.translationTextSent,
-                      ]}
+                      style={[styles.translationText, msg.isSent && styles.translationTextSent]}
                     >
                       {msg.translated}
                     </Text>
@@ -284,10 +266,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
           <TouchableOpacity
             onPress={handleSend}
             disabled={!message.trim()}
-            style={[
-              styles.sendButton,
-              !message.trim() && styles.sendButtonDisabled,
-            ]}
+            style={[styles.sendButton, !message.trim() && styles.sendButtonDisabled]}
           >
             {message.trim() ? (
               <LinearGradient
@@ -301,7 +280,6 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
             )}
           </TouchableOpacity>
         </View>
-
       </SafeAreaView>
     </KeyboardAvoidingView>
   );
@@ -554,4 +532,3 @@ const styles = StyleSheet.create({
 });
 
 export default ChatScreen;
-

@@ -1,8 +1,8 @@
 /**
  * Signup flow component
- * 
+ *
  * Multi-step signup process with onboarding.
- * 
+ *
  * @module presentation/screens/signup/SignupFlow
  */
 
@@ -92,10 +92,7 @@ export const SignupFlow: React.FC<SignupFlowProps> = ({
   return (
     <View style={styles.container}>
       {currentStep === 'onboarding' && (
-        <OnboardingScreens
-          onComplete={handleOnboardingComplete}
-          onSkip={handleOnboardingSkip}
-        />
+        <OnboardingScreens onComplete={handleOnboardingComplete} onSkip={handleOnboardingSkip} />
       )}
 
       {currentStep === 'step1' && (
@@ -114,9 +111,7 @@ export const SignupFlow: React.FC<SignupFlowProps> = ({
         <SignupStep4 onNext={handleStep4Complete} onBack={handleBackFromStep4} />
       )}
 
-      {currentStep === 'success' && (
-        <SuccessScreen onComplete={onComplete} />
-      )}
+      {currentStep === 'success' && <SuccessScreen onComplete={onComplete} />}
     </View>
   );
 };
@@ -128,4 +123,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignupFlow;
-

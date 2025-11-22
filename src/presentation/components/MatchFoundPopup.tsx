@@ -1,22 +1,14 @@
 /**
  * Match Found Popup component
- * 
+ *
  * Celebration popup shown when a language exchange match is found.
  * Displays both users' profiles, match details, and action buttons.
- * 
+ *
  * @module presentation/components/MatchFoundPopup
  */
 
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Modal,
-  TouchableOpacity,
-  Image,
-  Dimensions,
-} from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, {
@@ -128,12 +120,7 @@ export const MatchFoundPopup: React.FC<MatchFoundPopupProps> = ({
   if (!partner) return null;
 
   return (
-    <Modal
-      visible={!!partner}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
-    >
+    <Modal visible={!!partner} transparent animationType="fade" onRequestClose={onClose}>
       <View style={styles.overlay}>
         {/* Confetti */}
         <Confetti active={true} duration={5000} />
@@ -157,7 +144,8 @@ export const MatchFoundPopup: React.FC<MatchFoundPopupProps> = ({
             </Animated.View>
             <Text style={styles.title}>Match Found!</Text>
             <Text style={styles.subtitle}>
-              Someone nearby wants to practice {partner.learning?.language || partner.languages?.learning || 'languages'}
+              Someone nearby wants to practice{' '}
+              {partner.learning?.language || partner.languages?.learning || 'languages'}
             </Text>
           </View>
 
@@ -213,9 +201,7 @@ export const MatchFoundPopup: React.FC<MatchFoundPopupProps> = ({
               <Image source={{ uri: partner.avatar }} style={styles.profileImage} />
               <View style={styles.profileNameBadgeContainer}>
                 <View style={styles.profileNameBadge}>
-                  <Text style={styles.profileNameText}>
-                    {partner.name.split(' ')[0]}
-                  </Text>
+                  <Text style={styles.profileNameText}>{partner.name.split(' ')[0]}</Text>
                 </View>
               </View>
               <View style={[styles.languageFlag, styles.languageFlagRight]}>
@@ -234,7 +220,8 @@ export const MatchFoundPopup: React.FC<MatchFoundPopupProps> = ({
               <View style={styles.detailContent}>
                 <Text style={styles.detailLabel}>Distance</Text>
                 <Text style={styles.detailValue}>
-                  {String(partner.distance)} km away{partner.location ? ` • ${partner.location}` : ''}
+                  {String(partner.distance)} km away
+                  {partner.location ? ` • ${partner.location}` : ''}
                 </Text>
               </View>
             </View>
@@ -247,7 +234,8 @@ export const MatchFoundPopup: React.FC<MatchFoundPopupProps> = ({
               <View style={styles.detailContent}>
                 <Text style={styles.detailLabel}>Languages</Text>
                 <Text style={styles.detailValue}>
-                  Learning {partner.learning?.language || partner.languages?.learning || 'N/A'} • Speaks {partner.teaching?.language || partner.languages?.native || 'N/A'}
+                  Learning {partner.learning?.language || partner.languages?.learning || 'N/A'} •
+                  Speaks {partner.teaching?.language || partner.languages?.native || 'N/A'}
                 </Text>
               </View>
             </View>
@@ -259,9 +247,7 @@ export const MatchFoundPopup: React.FC<MatchFoundPopupProps> = ({
               </View>
               <View style={styles.detailContent}>
                 <Text style={styles.detailLabel}>Match Score</Text>
-                <Text style={styles.detailValue}>
-                  {String(partner.matchScore)}% compatible
-                </Text>
+                <Text style={styles.detailValue}>{String(partner.matchScore)}% compatible</Text>
               </View>
             </View>
           </View>
@@ -517,4 +503,3 @@ const styles = StyleSheet.create({
 });
 
 export default MatchFoundPopup;
-

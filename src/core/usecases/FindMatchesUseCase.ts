@@ -1,10 +1,10 @@
 /**
  * Find matches use case
- * 
+ *
  * Implements the business logic for finding potential language exchange matches.
  * This use case applies matching algorithms and business rules to find
  * compatible users.
- * 
+ *
  * @module core/usecases/FindMatchesUseCase
  */
 
@@ -36,15 +36,15 @@ export interface FindMatchesResult {
 
 /**
  * Find matches use case
- * 
+ *
  * Finds potential language exchange partners for a user based on:
  * - Language compatibility (user can teach what other wants to learn)
  * - Reciprocal learning (other can teach what user wants to learn)
  * - Existing matches (optionally exclude already matched users)
- * 
+ *
  * This use case implements the Strategy pattern for matching algorithms,
  * allowing different matching strategies to be used interchangeably.
- * 
+ *
  * @example
  * const useCase = new FindMatchesUseCase(userRepository, matchRepository);
  * const result = await useCase.execute({
@@ -52,7 +52,7 @@ export interface FindMatchesResult {
  *   limit: 10,
  *   excludeExistingMatches: true,
  * });
- * 
+ *
  * result.matches.forEach(({ user, compatibilityScore }) => {
  *   console.log(`Match: ${user.displayName}, Score: ${compatibilityScore}`);
  * });
@@ -60,7 +60,7 @@ export interface FindMatchesResult {
 export class FindMatchesUseCase {
   /**
    * Creates a new instance of FindMatchesUseCase
-   * 
+   *
    * @param userRepository - Repository for user data operations
    * @param matchRepository - Repository for match data operations
    */
@@ -71,14 +71,14 @@ export class FindMatchesUseCase {
 
   /**
    * Executes the match finding use case
-   * 
+   *
    * This method:
    * 1. Retrieves the requesting user
    * 2. Finds potential matches based on language compatibility
    * 3. Calculates compatibility scores
    * 4. Filters out existing matches if requested
    * 5. Returns ranked matches
-   * 
+   *
    * @param input - Match finding input parameters
    * @returns Result containing matched users with compatibility scores
    * @throws {Error} If user not found or repository operations fail
@@ -133,16 +133,13 @@ export class FindMatchesUseCase {
 
   /**
    * Finds potential matches based on language compatibility
-   * 
+   *
    * @param user - User to find matches for
    * @param excludeUserIds - Set of user IDs to exclude
    * @returns Array of potential matching users
    * @private
    */
-  private async findPotentialMatches(
-    user: User,
-    excludeUserIds: Set<string>
-  ): Promise<User[]> {
+  private async findPotentialMatches(user: User, excludeUserIds: Set<string>): Promise<User[]> {
     // Find users who are learning languages that this user can teach
     const usersLearningMyLanguages = await this.userRepository.findByCriteria({
       learningLanguages: user.nativeLanguages,
@@ -162,9 +159,7 @@ export class FindMatchesUseCase {
       }
 
       // Check if potential user can teach any language this user wants to learn
-      const canTeachMe = potentialUser.nativeLanguages.some(lang =>
-        user.isLearning(lang)
-      );
+      const canTeachMe = potentialUser.nativeLanguages.some(lang => user.isLearning(lang));
 
       return canTeachMe;
     });
@@ -174,12 +169,12 @@ export class FindMatchesUseCase {
 
   /**
    * Calculates compatibility score between two users
-   * 
+   *
    * The score is based on:
    * - Number of languages they can exchange
    * - Proficiency levels alignment
    * - Reciprocal teaching potential
-   * 
+   *
    * @param user1 - First user
    * @param user2 - Second user
    * @returns Compatibility score (0-100)
@@ -189,15 +184,11 @@ export class FindMatchesUseCase {
     let score = 0;
 
     // Count languages user1 can teach that user2 wants to learn
-    const languagesUser1CanTeach = user1.nativeLanguages.filter(lang =>
-      user2.isLearning(lang)
-    );
+    const languagesUser1CanTeach = user1.nativeLanguages.filter(lang => user2.isLearning(lang));
     score += languagesUser1CanTeach.length * 30;
 
     // Count languages user2 can teach that user1 wants to learn
-    const languagesUser2CanTeach = user2.nativeLanguages.filter(lang =>
-      user1.isLearning(lang)
-    );
+    const languagesUser2CanTeach = user2.nativeLanguages.filter(lang => user1.isLearning(lang));
     score += languagesUser2CanTeach.length * 30;
 
     // Bonus for multiple language exchanges
@@ -211,7 +202,7 @@ export class FindMatchesUseCase {
 
   /**
    * Creates a match entity for two users
-   * 
+   *
    * @param user1 - First user
    * @param user2 - Second user
    * @returns Match entity (not yet persisted)
@@ -234,4 +225,3 @@ export class FindMatchesUseCase {
     );
   }
 }
-

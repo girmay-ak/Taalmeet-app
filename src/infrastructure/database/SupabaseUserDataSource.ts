@@ -1,9 +1,9 @@
 /**
  * Supabase user data source implementation
- * 
+ *
  * Concrete implementation of IUserDataSource using Supabase.
  * This class handles direct database operations for user data.
- * 
+ *
  * @module infrastructure/database/SupabaseUserDataSource
  */
 
@@ -13,11 +13,11 @@ import { getSupabaseClient } from './supabaseClient';
 
 /**
  * Supabase user data source
- * 
+ *
  * Implements user data operations using Supabase as the backend.
  * This class is responsible for translating between application
  * data models and Supabase database queries.
- * 
+ *
  * @example
  * const dataSource = new SupabaseUserDataSource();
  * const user = await dataSource.getById('user-123');
@@ -30,11 +30,7 @@ export class SupabaseUserDataSource implements IUserDataSource {
    */
   async getById(id: string): Promise<UserModel | null> {
     const client = getSupabaseClient();
-    const { data, error } = await client
-      .from(this.tableName)
-      .select('*')
-      .eq('id', id)
-      .single();
+    const { data, error } = await client.from(this.tableName).select('*').eq('id', id).single();
 
     if (error) {
       if (error.code === 'PGRST116') {
@@ -111,10 +107,7 @@ export class SupabaseUserDataSource implements IUserDataSource {
    */
   async delete(id: string): Promise<boolean> {
     const client = getSupabaseClient();
-    const { error } = await client
-      .from(this.tableName)
-      .delete()
-      .eq('id', id);
+    const { error } = await client.from(this.tableName).delete().eq('id', id);
 
     if (error) {
       throw new Error(`Failed to delete user: ${error.message}`);
@@ -164,7 +157,7 @@ export class SupabaseUserDataSource implements IUserDataSource {
 
   /**
    * Maps database row to UserModel
-   * 
+   *
    * @param row - Database row from Supabase
    * @returns UserModel instance
    * @private
@@ -185,7 +178,7 @@ export class SupabaseUserDataSource implements IUserDataSource {
 
   /**
    * Maps UserModel to database format
-   * 
+   *
    * @param user - UserModel instance
    * @returns Database row format
    * @private
@@ -203,4 +196,3 @@ export class SupabaseUserDataSource implements IUserDataSource {
     };
   }
 }
-

@@ -1,8 +1,8 @@
 /**
  * Conversation card component
- * 
+ *
  * Displays a conversation preview in the messages list.
- * 
+ *
  * @module presentation/components/ConversationCard
  */
 
@@ -29,25 +29,13 @@ interface ConversationCardProps {
   onClick?: () => void;
 }
 
-export const ConversationCard: React.FC<ConversationCardProps> = ({
-  conversation,
-  onClick,
-}) => {
+export const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onClick }) => {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={onClick}
-      activeOpacity={0.7}
-    >
+    <TouchableOpacity style={styles.container} onPress={onClick} activeOpacity={0.7}>
       {/* Avatar */}
       <View style={styles.avatarContainer}>
-        <Image
-          source={{ uri: conversation.partnerAvatar }}
-          style={styles.avatar}
-        />
-        {conversation.isOnline && (
-          <View style={styles.onlineIndicator} />
-        )}
+        <Image source={{ uri: conversation.partnerAvatar }} style={styles.avatar} />
+        {conversation.isOnline && <View style={styles.onlineIndicator} />}
       </View>
 
       {/* Content */}
@@ -57,19 +45,14 @@ export const ConversationCard: React.FC<ConversationCardProps> = ({
             <Text style={styles.name} numberOfLines={1}>
               {conversation.partnerName}
             </Text>
-            {conversation.isPinned && (
-              <Ionicons name="pin" size={14} color={COLORS.secondary} />
-            )}
+            {conversation.isPinned && <Ionicons name="pin" size={14} color={COLORS.secondary} />}
           </View>
           <Text style={styles.timestamp}>{conversation.timestamp}</Text>
         </View>
 
         <View style={styles.messageRow}>
           <Text
-            style={[
-              styles.lastMessage,
-              conversation.unreadCount > 0 && styles.lastMessageUnread,
-            ]}
+            style={[styles.lastMessage, conversation.unreadCount > 0 && styles.lastMessageUnread]}
             numberOfLines={1}
           >
             {conversation.lastMessage}
@@ -174,4 +157,3 @@ const styles = StyleSheet.create({
 });
 
 export default ConversationCard;
-

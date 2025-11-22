@@ -1,15 +1,15 @@
 /**
  * Language constants
- * 
+ *
  * Contains ISO 639-1 language codes and their display names
  * used throughout the application.
- * 
+ *
  * @module shared/constants/languages
  */
 
 /**
  * Supported languages with their codes and display names
- * 
+ *
  * This list can be extended as the app supports more languages.
  * Language codes follow ISO 639-1 standard.
  */
@@ -44,7 +44,7 @@ export type LanguageCode = keyof typeof SUPPORTED_LANGUAGES;
 
 /**
  * Gets the display name for a language code
- * 
+ *
  * @param code - ISO 639-1 language code
  * @returns Display name or the code itself if not found
  * @example
@@ -56,10 +56,9 @@ export const getLanguageName = (code: string): string => {
 
 /**
  * Gets all supported language codes
- * 
+ *
  * @returns Array of language codes
  */
 export const getSupportedLanguageCodes = (): string[] => {
   return Object.keys(SUPPORTED_LANGUAGES);
 };
-

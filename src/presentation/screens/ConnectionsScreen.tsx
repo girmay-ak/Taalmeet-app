@@ -1,8 +1,8 @@
 /**
  * Connections Screen component
- * 
+ *
  * Manage connections, requests, and suggested partners.
- * 
+ *
  * @module presentation/screens/ConnectionsScreen
  */
 
@@ -27,10 +27,10 @@ interface ConnectionsScreenProps {
   onPartnerClick: (partnerId: string) => void;
 }
 
-export const ConnectionsScreen: React.FC<ConnectionsScreenProps> = ({
-  onPartnerClick,
-}) => {
-  const [activeTab, setActiveTab] = useState<'connections' | 'requests' | 'suggested'>('connections');
+export const ConnectionsScreen: React.FC<ConnectionsScreenProps> = ({ onPartnerClick }) => {
+  const [activeTab, setActiveTab] = useState<'connections' | 'requests' | 'suggested'>(
+    'connections'
+  );
   const [searchQuery, setSearchQuery] = useState('');
 
   // Mock data
@@ -57,7 +57,7 @@ export const ConnectionsScreen: React.FC<ConnectionsScreenProps> = ({
     }
   };
 
-  const filteredData = getCurrentData().filter((partner) =>
+  const filteredData = getCurrentData().filter(partner =>
     partner.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -82,35 +82,19 @@ export const ConnectionsScreen: React.FC<ConnectionsScreenProps> = ({
 
         {/* Tabs */}
         <View style={styles.tabs}>
-          {tabs.map((tab) => (
+          {tabs.map(tab => (
             <TouchableOpacity
               key={tab.id}
               onPress={() => setActiveTab(tab.id as any)}
-              style={[
-                styles.tab,
-                activeTab === tab.id && styles.tabActive,
-              ]}
+              style={[styles.tab, activeTab === tab.id && styles.tabActive]}
             >
-              <Text
-                style={[
-                  styles.tabText,
-                  activeTab === tab.id && styles.tabTextActive,
-                ]}
-              >
+              <Text style={[styles.tabText, activeTab === tab.id && styles.tabTextActive]}>
                 {tab.label}
               </Text>
               {tab.count > 0 && (
-                <View
-                  style={[
-                    styles.tabBadge,
-                    activeTab === tab.id && styles.tabBadgeActive,
-                  ]}
-                >
+                <View style={[styles.tabBadge, activeTab === tab.id && styles.tabBadgeActive]}>
                   <Text
-                    style={[
-                      styles.tabBadgeText,
-                      activeTab === tab.id && styles.tabBadgeTextActive,
-                    ]}
+                    style={[styles.tabBadgeText, activeTab === tab.id && styles.tabBadgeTextActive]}
                   >
                     {String(tab.count)}
                   </Text>
@@ -129,9 +113,7 @@ export const ConnectionsScreen: React.FC<ConnectionsScreenProps> = ({
               <Ionicons name="people-outline" size={48} color={COLORS.textMuted} />
             </View>
             <Text style={styles.emptyTitle}>No {activeTab} yet</Text>
-            <Text style={styles.emptySubtitle}>
-              Start connecting with language partners
-            </Text>
+            <Text style={styles.emptySubtitle}>Start connecting with language partners</Text>
             <TouchableOpacity style={styles.emptyButton}>
               <LinearGradient
                 colors={[COLORS.primary, COLORS.primaryLight]}
@@ -143,7 +125,7 @@ export const ConnectionsScreen: React.FC<ConnectionsScreenProps> = ({
           </View>
         ) : (
           <View style={styles.list}>
-            {filteredData.map((partner) => (
+            {filteredData.map(partner => (
               <View key={partner.id} style={styles.partnerCard}>
                 <TouchableOpacity
                   onPress={() => onPartnerClick(partner.id)}
@@ -160,16 +142,12 @@ export const ConnectionsScreen: React.FC<ConnectionsScreenProps> = ({
                       </Text>
                       {activeTab === 'connections' && (
                         <View style={styles.matchBadge}>
-                          <Text style={styles.matchBadgeText}>
-                            {String(partner.matchScore)}%
-                          </Text>
+                          <Text style={styles.matchBadgeText}>{String(partner.matchScore)}%</Text>
                         </View>
                       )}
                     </View>
                     <View style={styles.partnerMeta}>
-                      <Text style={styles.partnerMetaText}>
-                        {String(partner.distance)}km away
-                      </Text>
+                      <Text style={styles.partnerMetaText}>{String(partner.distance)}km away</Text>
                       <Text style={styles.partnerMetaDot}>•</Text>
                       <Text style={styles.partnerMetaText}>{partner.lastActive}</Text>
                     </View>
@@ -558,4 +536,3 @@ const styles = StyleSheet.create({
 });
 
 export default ConnectionsScreen;
-

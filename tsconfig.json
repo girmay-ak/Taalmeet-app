@@ -1,27 +1,45 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["es2019", "es2020"],
+    "jsx": "react-native",
     "strict": true,
-    "baseUrl": ".",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
     "paths": {
-      "@core/*": ["src/core/*"],
-      "@data/*": ["src/data/*"],
-      "@presentation/*": ["src/presentation/*"],
-      "@infrastructure/*": ["src/infrastructure/*"],
-      "@shared/*": ["src/shared/*"],
-      "@config/*": ["src/config/*"]
+      "@/*": ["*"],
+      "@core/*": ["core/*"],
+      "@data/*": ["data/*"],
+      "@presentation/*": ["presentation/*"],
+      "@infrastructure/*": ["infrastructure/*"],
+      "@shared/*": ["shared/*"],
+      "@config/*": ["config/*"]
     }
   },
   "include": [
     "src/**/*",
     "index.js",
-    "App.tsx"
+    "App.tsx",
+    "__tests__/**/*"
   ],
   "exclude": [
     "node_modules",
     "babel.config.js",
     "metro.config.js",
-    "jest.config.js"
+    "jest.config.js",
+    "**/*.spec.ts"
   ]
 }
 

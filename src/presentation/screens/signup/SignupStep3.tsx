@@ -1,19 +1,13 @@
 /**
  * Signup step 3 component
- * 
+ *
  * Location selection.
- * 
+ *
  * @module presentation/screens/signup/SignupStep3
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from '../../components/Button';
@@ -50,7 +44,7 @@ export const SignupStep3: React.FC<SignupStep3Props> = ({ onNext, onBack }) => {
 
   const handleSubmit = () => {
     if (canProceed) {
-      const selectedCountry = COUNTRIES.find((c) => c.code === country);
+      const selectedCountry = COUNTRIES.find(c => c.code === country);
       onNext({
         city,
         country: selectedCountry?.name || 'Netherlands',
@@ -95,7 +89,7 @@ export const SignupStep3: React.FC<SignupStep3Props> = ({ onNext, onBack }) => {
           <View style={styles.countrySection}>
             <Text style={styles.countryLabel}>Country</Text>
             <View style={styles.countryGrid}>
-              {COUNTRIES.map((countryItem) => (
+              {COUNTRIES.map(countryItem => (
                 <TouchableOpacity
                   key={countryItem.code}
                   onPress={() => setCountry(countryItem.code)}
@@ -249,4 +243,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignupStep3;
-

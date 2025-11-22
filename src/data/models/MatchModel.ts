@@ -1,8 +1,8 @@
 /**
  * Match data model (DTO)
- * 
+ *
  * Represents the match data structure as it exists in the database.
- * 
+ *
  * @module data/models/MatchModel
  */
 
@@ -19,4 +19,3 @@ export interface MatchModel {
   created_at: string;
   updated_at: string;
 }
-

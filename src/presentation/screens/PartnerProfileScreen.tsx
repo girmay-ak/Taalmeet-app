@@ -1,8 +1,8 @@
 /**
  * Partner profile screen component
- * 
+ *
  * Displays detailed partner profile with stats, languages, interests, and actions.
- * 
+ *
  * @module presentation/screens/PartnerProfileScreen
  */
 
@@ -67,20 +67,12 @@ export const PartnerProfileScreen: React.FC<PartnerProfileScreenProps> = ({
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Profile Header */}
-        <LinearGradient
-          colors={[COLORS.card, COLORS.background]}
-          style={styles.profileHeader}
-        >
+        <LinearGradient colors={[COLORS.card, COLORS.background]} style={styles.profileHeader}>
           <View style={styles.profileContent}>
             {/* Avatar */}
             <View style={styles.avatarContainer}>
-              <Image
-                source={{ uri: partner.avatar }}
-                style={styles.avatar}
-              />
-              {partner.isOnline && (
-                <View style={styles.onlineIndicator} />
-              )}
+              <Image source={{ uri: partner.avatar }} style={styles.avatar} />
+              {partner.isOnline && <View style={styles.onlineIndicator} />}
             </View>
 
             {/* Name & Badges */}
@@ -91,9 +83,7 @@ export const PartnerProfileScreen: React.FC<PartnerProfileScreenProps> = ({
               {partner.verified && (
                 <Ionicons name="checkmark-circle" size={24} color={COLORS.secondary} />
               )}
-              {partner.premium && (
-                <Ionicons name="diamond" size={24} color={COLORS.warning} />
-              )}
+              {partner.premium && <Ionicons name="diamond" size={24} color={COLORS.warning} />}
             </View>
 
             {/* Location & Status */}
@@ -125,19 +115,14 @@ export const PartnerProfileScreen: React.FC<PartnerProfileScreenProps> = ({
                 <Text style={styles.statLabel}>Exchanges</Text>
               </View>
               <View style={styles.statItem}>
-                <Text style={[styles.statValue, styles.matchValue]}>
-                  {partner.matchScore}%
-                </Text>
+                <Text style={[styles.statValue, styles.matchValue]}>{partner.matchScore}%</Text>
                 <Text style={styles.statLabel}>Match</Text>
               </View>
             </View>
 
             {/* Action Buttons */}
             <View style={styles.actions}>
-              <TouchableOpacity
-                onPress={onMessage}
-                style={styles.chatButton}
-              >
+              <TouchableOpacity onPress={onMessage} style={styles.chatButton}>
                 <LinearGradient
                   colors={[COLORS.primary, COLORS.primaryLight]}
                   style={styles.chatButtonGradient}
@@ -462,4 +447,3 @@ const styles = StyleSheet.create({
 });
 
 export default PartnerProfileScreen;
-

@@ -1,10 +1,10 @@
 /**
  * User entity
- * 
+ *
  * Represents a user in the domain model. This is a pure business entity
  * with no framework dependencies. It contains only business logic and
  * validation rules.
- * 
+ *
  * @module core/entities/User
  */
 
@@ -20,10 +20,10 @@ export enum LanguageProficiency {
 
 /**
  * User entity representing a language exchange participant
- * 
+ *
  * This is a domain entity that encapsulates user-related business logic.
  * It has no knowledge of databases, APIs, or UI frameworks.
- * 
+ *
  * @example
  * const user = new User({
  *   id: '123',
@@ -32,7 +32,7 @@ export enum LanguageProficiency {
  *   nativeLanguages: ['en'],
  *   learningLanguages: [{ code: 'es', proficiency: LanguageProficiency.BEGINNER }],
  * });
- * 
+ *
  * if (user.canTeach('en')) {
  *   // User can teach English
  * }
@@ -57,10 +57,10 @@ export class User {
 
   /**
    * Validates user entity business rules
-   * 
+   *
    * Ensures the user has at least one native language and one learning language,
    * which are core requirements for a language exchange platform.
-   * 
+   *
    * @throws {Error} If user data violates business rules
    * @private
    */
@@ -88,9 +88,9 @@ export class User {
 
   /**
    * Checks if the user can teach a specific language
-   * 
+   *
    * A user can teach a language if it's in their native languages list.
-   * 
+   *
    * @param languageCode - ISO 639-1 language code (e.g., 'en', 'es')
    * @returns True if user can teach the language
    * @example
@@ -104,7 +104,7 @@ export class User {
 
   /**
    * Checks if the user is learning a specific language
-   * 
+   *
    * @param languageCode - ISO 639-1 language code
    * @returns True if user is learning the language
    */
@@ -116,7 +116,7 @@ export class User {
 
   /**
    * Gets the proficiency level for a learning language
-   * 
+   *
    * @param languageCode - ISO 639-1 language code
    * @returns Proficiency level or undefined if not learning the language
    */
@@ -129,7 +129,7 @@ export class User {
 
   /**
    * Validates email format
-   * 
+   *
    * @param email - Email address to validate
    * @returns True if email format is valid
    * @private
@@ -139,4 +139,3 @@ export class User {
     return emailRegex.test(email);
   }
 }
-

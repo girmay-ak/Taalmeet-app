@@ -5,6 +5,7 @@ The **presentation layer** contains all UI-related code. This includes React Nat
 ## Purpose
 
 The presentation layer is responsible for:
+
 - Rendering the user interface
 - Handling user interactions
 - Managing UI state
@@ -36,6 +37,7 @@ Screens are top-level components that represent full app screens:
 - `MatchesScreen`: Language exchange matches screen (to be implemented)
 
 Screens:
+
 - Compose multiple components
 - Handle navigation
 - Use hooks to connect to business logic
@@ -48,6 +50,7 @@ Components are reusable UI elements:
 - More components to be added (Card, Input, etc.)
 
 Components:
+
 - Are framework-specific (React Native)
 - Follow design system
 - Are highly reusable
@@ -61,6 +64,7 @@ Navigation configuration sets up app navigation:
 - Stack and tab navigators
 
 Navigation:
+
 - Uses React Navigation
 - Defines app structure
 - Handles deep linking (to be implemented)
@@ -73,6 +77,7 @@ Custom hooks connect UI to business logic:
 - `useMatches`: Match state and operations (to be implemented)
 
 Hooks:
+
 - Encapsulate use case calls
 - Manage loading/error states
 - Provide clean API for components
@@ -94,13 +99,14 @@ const { user, loading, createUser } = useUser(createUserUseCase);
 ## State Management
 
 The presentation layer manages:
+
 - **UI State**: Loading indicators, form inputs, etc.
 - **Business State**: Delegated to use cases and hooks
 
 ## Testing
 
 Presentation layer can be tested with:
+
 - React Native Testing Library
 - Component snapshots
 - Hook testing utilities
-

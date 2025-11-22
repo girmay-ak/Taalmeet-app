@@ -1,15 +1,23 @@
 /**
  * Button component
- * 
+ *
  * Reusable button component with consistent styling.
  * This component follows the design system and can be customized
  * with different variants and sizes.
- * 
+ *
  * @module presentation/components/Button
  */
 
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ActivityIndicator, ViewStyle, TextStyle, View } from 'react-native';
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  ViewStyle,
+  TextStyle,
+  View,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, TYPOGRAPHY, FONT_WEIGHT, SPACING } from '@shared/constants/theme';
@@ -30,47 +38,47 @@ export type ButtonSize = 'small' | 'medium' | 'large';
 export interface ButtonProps {
   /** Button text */
   title: string;
-  
+
   /** Click handler */
   onPress: () => void;
-  
+
   /** Button variant */
   variant?: ButtonVariant;
-  
+
   /** Button size */
   size?: ButtonSize;
-  
+
   /** Whether button is disabled */
   disabled?: boolean;
-  
+
   /** Whether button is in loading state */
   loading?: boolean;
-  
+
   /** Custom styles */
   style?: ViewStyle;
-  
+
   /** Custom text styles */
   textStyle?: TextStyle;
-  
+
   /** Icon name (Ionicons) or ReactNode */
   icon?: keyof typeof Ionicons.glyphMap | React.ReactNode;
-  
+
   /** Icon position */
   iconPosition?: 'left' | 'right';
-  
+
   /** Icon color */
   iconColor?: string;
-  
+
   /** Icon size */
   iconSize?: number;
 }
 
 /**
  * Reusable button component
- * 
+ *
  * Provides a consistent button UI across the application.
  * Supports different variants, sizes, and states (loading, disabled).
- * 
+ *
  * @param props - Button component props
  * @returns Button component
  * @example
@@ -113,9 +121,10 @@ export const Button: React.FC<ButtonProps> = ({
   // Render icon
   const renderIcon = () => {
     if (!icon) return null;
-    
+
     if (typeof icon === 'string') {
-      const color = iconColor || (variant === 'primary' || variant === 'gradient' ? '#FFFFFF' : COLORS.primary);
+      const color =
+        iconColor || (variant === 'primary' || variant === 'gradient' ? '#FFFFFF' : COLORS.primary);
       return (
         <Ionicons
           name={icon}
@@ -125,14 +134,16 @@ export const Button: React.FC<ButtonProps> = ({
         />
       );
     }
-    
+
     return <View style={iconPosition === 'left' ? styles.iconLeft : styles.iconRight}>{icon}</View>;
   };
 
   const content = (
     <>
       {loading ? (
-        <ActivityIndicator color={variant === 'primary' || variant === 'gradient' ? '#fff' : COLORS.primary} />
+        <ActivityIndicator
+          color={variant === 'primary' || variant === 'gradient' ? '#fff' : COLORS.primary}
+        />
       ) : (
         <View style={styles.content}>
           {icon && iconPosition === 'left' && renderIcon()}
@@ -152,7 +163,11 @@ export const Button: React.FC<ButtonProps> = ({
         style={buttonStyle}
       >
         <LinearGradient
-          colors={variant === 'gradient' ? [COLORS.primary, COLORS.secondary] : [COLORS.primary, COLORS.primaryLight]}
+          colors={
+            variant === 'gradient'
+              ? [COLORS.primary, COLORS.secondary]
+              : [COLORS.primary, COLORS.primaryLight]
+          }
           style={[styles.gradient, styles[`button_${size}`]]}
         >
           {content}
@@ -163,10 +178,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <TouchableOpacity
-      style={[
-        buttonStyle,
-        styles[`button_${variant}`],
-      ]}
+      style={[buttonStyle, styles[`button_${variant}`]]}
       onPress={onPress}
       disabled={disabled || loading}
       activeOpacity={0.7}
@@ -261,4 +273,3 @@ const styles = StyleSheet.create({
 });
 
 export default Button;
-

@@ -5,6 +5,7 @@ The **infrastructure layer** contains implementations of external services and f
 ## Purpose
 
 The infrastructure layer provides:
+
 - External service integrations (Supabase, push notifications, etc.)
 - Framework-specific implementations
 - Shared service instances (singletons)
@@ -35,6 +36,7 @@ Database infrastructure includes:
 - `SupabaseUserDataSource`: Supabase-specific data source implementation
 
 Database:
+
 - Manages database connections
 - Provides client instances
 - Handles connection configuration
@@ -77,6 +79,7 @@ const dataSource = new SupabaseUserDataSource();
 ## Configuration
 
 Infrastructure services are configured using:
+
 - Environment variables
 - App configuration
 - Service-specific settings
@@ -84,7 +87,7 @@ Infrastructure services are configured using:
 ## Testing
 
 Infrastructure can be tested with:
+
 - Mock services
 - Test configurations
 - Integration tests with test databases
-

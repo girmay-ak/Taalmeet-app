@@ -1,8 +1,8 @@
 /**
  * Interests Editor Modal component
- * 
+ *
  * Modal for editing user interests.
- * 
+ *
  * @module presentation/components/modals/InterestsEditorModal
  */
 
@@ -67,7 +67,7 @@ export const InterestsEditorModal: React.FC<InterestsEditorModalProps> = ({
 
   const toggleInterest = (interest: string) => {
     if (selectedInterests.includes(interest)) {
-      setSelectedInterests(selectedInterests.filter((i) => i !== interest));
+      setSelectedInterests(selectedInterests.filter(i => i !== interest));
     } else if (selectedInterests.length < 10) {
       setSelectedInterests([...selectedInterests, interest]);
     }
@@ -90,18 +90,9 @@ export const InterestsEditorModal: React.FC<InterestsEditorModalProps> = ({
   };
 
   return (
-    <Modal
-      visible={isOpen}
-      transparent
-      animationType="slide"
-      onRequestClose={onClose}
-    >
+    <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
-        <TouchableOpacity
-          style={styles.backdrop}
-          activeOpacity={1}
-          onPress={onClose}
-        />
+        <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
         <View style={styles.container}>
           <View style={styles.header}>
             <View style={styles.headerContent}>
@@ -150,16 +141,13 @@ export const InterestsEditorModal: React.FC<InterestsEditorModalProps> = ({
             {/* Interests Grid */}
             <Text style={styles.sectionTitle}>Select Interests</Text>
             <View style={styles.interestsGrid}>
-              {availableInterests.map((interest) => {
+              {availableInterests.map(interest => {
                 const isSelected = selectedInterests.includes(interest);
                 return (
                   <TouchableOpacity
                     key={interest}
                     onPress={() => toggleInterest(interest)}
-                    style={[
-                      styles.interestChip,
-                      isSelected && styles.interestChipSelected,
-                    ]}
+                    style={[styles.interestChip, isSelected && styles.interestChipSelected]}
                     disabled={!isSelected && selectedInterests.length >= 10}
                   >
                     {isSelected && (
@@ -170,12 +158,7 @@ export const InterestsEditorModal: React.FC<InterestsEditorModalProps> = ({
                         style={styles.checkIcon}
                       />
                     )}
-                    <Text
-                      style={[
-                        styles.interestText,
-                        isSelected && styles.interestTextSelected,
-                      ]}
-                    >
+                    <Text style={[styles.interestText, isSelected && styles.interestTextSelected]}>
                       {interest}
                     </Text>
                   </TouchableOpacity>
@@ -185,12 +168,7 @@ export const InterestsEditorModal: React.FC<InterestsEditorModalProps> = ({
           </ScrollView>
 
           <View style={styles.footer}>
-            <Button
-              title="Save Interests"
-              onPress={handleSave}
-              variant="primary"
-              size="large"
-            />
+            <Button title="Save Interests" onPress={handleSave} variant="primary" size="large" />
           </View>
         </View>
       </View>
@@ -316,4 +294,3 @@ const styles = StyleSheet.create({
 });
 
 export default InterestsEditorModal;
-

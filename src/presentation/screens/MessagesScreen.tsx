@@ -1,20 +1,13 @@
 /**
  * Messages screen component
- * 
+ *
  * Displays list of conversations with search and filtering.
- * 
+ *
  * @module presentation/screens/MessagesScreen
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -28,9 +21,7 @@ interface MessagesScreenProps {
 
 type Tab = 'all' | 'unread' | 'archived';
 
-export const MessagesScreen: React.FC<MessagesScreenProps> = ({
-  onConversationClick,
-}) => {
+export const MessagesScreen: React.FC<MessagesScreenProps> = ({ onConversationClick }) => {
   const [activeTab, setActiveTab] = useState<Tab>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -39,17 +30,19 @@ export const MessagesScreen: React.FC<MessagesScreenProps> = ({
     {
       id: 'unread' as Tab,
       label: 'Unread',
-      count: mockConversations.filter((c) => c.unreadCount > 0).length,
+      count: mockConversations.filter(c => c.unreadCount > 0).length,
     },
     { id: 'archived' as Tab, label: 'Archived', count: 0 },
   ];
 
-  const filteredConversations = mockConversations.filter((conv) => {
+  const filteredConversations = mockConversations.filter(conv => {
     if (activeTab === 'unread') return conv.unreadCount > 0;
     if (activeTab === 'archived') return false;
     if (searchQuery) {
-      return conv.partnerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             conv.lastMessage.toLowerCase().includes(searchQuery.toLowerCase());
+      return (
+        conv.partnerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        conv.lastMessage.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
     return true;
   });
@@ -83,14 +76,11 @@ export const MessagesScreen: React.FC<MessagesScreenProps> = ({
 
         {/* Tabs */}
         <View style={styles.tabs}>
-          {tabs.map((tab) => (
+          {tabs.map(tab => (
             <TouchableOpacity
               key={tab.id}
               onPress={() => setActiveTab(tab.id)}
-              style={[
-                styles.tab,
-                activeTab === tab.id && styles.tabActive,
-              ]}
+              style={[styles.tab, activeTab === tab.id && styles.tabActive]}
             >
               {activeTab === tab.id ? (
                 <LinearGradient
@@ -123,7 +113,7 @@ export const MessagesScreen: React.FC<MessagesScreenProps> = ({
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {filteredConversations.length > 0 ? (
           <View style={styles.conversationsList}>
-            {filteredConversations.map((conversation) => (
+            {filteredConversations.map(conversation => (
               <ConversationCard
                 key={conversation.id}
                 conversation={conversation}
@@ -322,4 +312,3 @@ const styles = StyleSheet.create({
 });
 
 export default MessagesScreen;
-

@@ -1,20 +1,13 @@
 /**
  * Gamification Screen component
- * 
+ *
  * User progress, achievements, challenges, and leaderboard.
- * 
+ *
  * @module presentation/screens/GamificationScreen
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -282,7 +275,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
   const filteredAchievements =
     selectedCategory === 'all'
       ? achievements
-      : achievements.filter((a) => a.category === selectedCategory);
+      : achievements.filter(a => a.category === selectedCategory);
 
   const handleClaimReward = (challengeId: string) => {
     setClaimedChallenge(challengeId);
@@ -317,16 +310,10 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
               <Text style={styles.xpText}>{userStats.nextLevelXP.toLocaleString()} XP</Text>
             </View>
             <View style={styles.progressBar}>
-              <Animated.View
-                style={[
-                  styles.progressBarFill,
-                  { width: `${levelProgress}%` },
-                ]}
-              />
+              <Animated.View style={[styles.progressBarFill, { width: `${levelProgress}%` }]} />
             </View>
             <Text style={styles.xpToNext}>
-              {userStats.nextLevelXP - userStats.currentXP} XP to Level{' '}
-              {userStats.level + 1}
+              {userStats.nextLevelXP - userStats.currentXP} XP to Level {userStats.level + 1}
             </Text>
           </View>
         </LinearGradient>
@@ -334,10 +321,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
 
       {/* Streak Card */}
       <View style={styles.streakCard}>
-        <LinearGradient
-          colors={['#FF6B35', '#F7931E', '#FFB800']}
-          style={styles.streakGradient}
-        >
+        <LinearGradient colors={['#FF6B35', '#F7931E', '#FFB800']} style={styles.streakGradient}>
           <View style={styles.streakHeader}>
             <View>
               <Text style={styles.streakLabel}>Current Streak</Text>
@@ -352,9 +336,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
           <View style={styles.streakFooter}>
             <View>
               <Text style={styles.streakSubLabel}>Longest Streak</Text>
-              <Text style={styles.streakSubValue}>
-                {String(userStats.longestStreak)} days 🎖️
-              </Text>
+              <Text style={styles.streakSubValue}>{String(userStats.longestStreak)} days 🎖️</Text>
             </View>
             <View style={styles.streakSubRight}>
               <Text style={styles.streakSubLabel}>Keep it up!</Text>
@@ -392,11 +374,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
             colors: ['#F59E0B', '#D97706'],
           },
         ].map((stat, index) => (
-          <LinearGradient
-            key={stat.label}
-            colors={stat.colors}
-            style={styles.statCard}
-          >
+          <LinearGradient key={stat.label} colors={stat.colors} style={styles.statCard}>
             <Text style={styles.statIcon}>{stat.icon}</Text>
             <Text style={styles.statValue}>{stat.value}</Text>
             <Text style={styles.statLabel}>{stat.label}</Text>
@@ -417,9 +395,9 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
         </View>
         <View style={styles.recentList}>
           {achievements
-            .filter((a) => a.unlocked)
+            .filter(a => a.unlocked)
             .slice(0, 3)
-            .map((achievement) => (
+            .map(achievement => (
               <LinearGradient
                 key={achievement.id}
                 colors={rarityColors[achievement.rarity]}
@@ -428,9 +406,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
                 <Text style={styles.recentIcon}>{achievement.icon}</Text>
                 <View style={styles.recentContent}>
                   <Text style={styles.recentAchievementTitle}>{achievement.title}</Text>
-                  <Text style={styles.recentAchievementDesc}>
-                    {achievement.description}
-                  </Text>
+                  <Text style={styles.recentAchievementDesc}>{achievement.description}</Text>
                 </View>
                 <Ionicons name="checkmark-circle" size={20} color="#FFFFFF" />
               </LinearGradient>
@@ -449,14 +425,11 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
         style={styles.categoryScroll}
         contentContainerStyle={styles.categoryContainer}
       >
-        {categories.map((cat) => (
+        {categories.map(cat => (
           <TouchableOpacity
             key={cat.id}
             onPress={() => setSelectedCategory(cat.id)}
-            style={[
-              styles.categoryChip,
-              selectedCategory === cat.id && styles.categoryChipActive,
-            ]}
+            style={[styles.categoryChip, selectedCategory === cat.id && styles.categoryChipActive]}
           >
             <Text style={styles.categoryIcon}>{cat.icon}</Text>
             <Text
@@ -480,24 +453,16 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
           </Text>
         </View>
         <View style={styles.progressBar}>
-          <Animated.View
-            style={[
-              styles.progressBarFill,
-              { width: `${achievementProgress}%` },
-            ]}
-          />
+          <Animated.View style={[styles.progressBarFill, { width: `${achievementProgress}%` }]} />
         </View>
       </View>
 
       {/* Achievements List */}
       <View style={styles.achievementsList}>
-        {filteredAchievements.map((achievement) => (
+        {filteredAchievements.map(achievement => (
           <View
             key={achievement.id}
-            style={[
-              styles.achievementCard,
-              !achievement.unlocked && styles.achievementCardLocked,
-            ]}
+            style={[styles.achievementCard, !achievement.unlocked && styles.achievementCardLocked]}
           >
             {achievement.unlocked ? (
               <LinearGradient
@@ -515,14 +480,10 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
                     <View style={styles.achievementHeader}>
                       <Text style={styles.achievementTitle}>{achievement.title}</Text>
                       <View style={styles.rarityBadge}>
-                        <Text style={styles.rarityText}>
-                          {achievement.rarity.toUpperCase()}
-                        </Text>
+                        <Text style={styles.rarityText}>{achievement.rarity.toUpperCase()}</Text>
                       </View>
                     </View>
-                    <Text style={styles.achievementDescription}>
-                      {achievement.description}
-                    </Text>
+                    <Text style={styles.achievementDescription}>{achievement.description}</Text>
                     <View style={styles.rewardRow}>
                       <Ionicons name="gift" size={16} color="#FFFFFF" />
                       <Text style={styles.rewardText}>{achievement.reward}</Text>
@@ -539,18 +500,14 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
                 </View>
                 <View style={styles.achievementInfo}>
                   <View style={styles.achievementHeader}>
-                    <Text style={styles.achievementTitleLocked}>
-                      {achievement.title}
-                    </Text>
+                    <Text style={styles.achievementTitleLocked}>{achievement.title}</Text>
                     <View style={styles.rarityBadgeLocked}>
                       <Text style={styles.rarityTextLocked}>
                         {achievement.rarity.toUpperCase()}
                       </Text>
                     </View>
                   </View>
-                  <Text style={styles.achievementDescriptionLocked}>
-                    {achievement.description}
-                  </Text>
+                  <Text style={styles.achievementDescriptionLocked}>{achievement.description}</Text>
                   <View style={styles.progressSection}>
                     <View style={styles.progressRow}>
                       <Text style={styles.progressText}>
@@ -594,10 +551,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
     <View style={styles.tabContent}>
       {/* Timer Header */}
       <View style={styles.timerCard}>
-        <LinearGradient
-          colors={[COLORS.primary, COLORS.secondary]}
-          style={styles.timerGradient}
-        >
+        <LinearGradient colors={[COLORS.primary, COLORS.secondary]} style={styles.timerGradient}>
           <View style={styles.timerContent}>
             <View>
               <Text style={styles.timerLabel}>Daily Challenges Reset In</Text>
@@ -610,7 +564,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
 
       {/* Challenges List */}
       <View style={styles.challengesList}>
-        {dailyChallenges.map((challenge) => {
+        {dailyChallenges.map(challenge => {
           const isCompleted = challenge.progress >= challenge.total;
           const isClaimed = claimedChallenge === challenge.id;
 
@@ -627,9 +581,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
                 <View style={styles.challengeHeader}>
                   <View style={styles.challengeTitleSection}>
                     <Text style={styles.challengeTitle}>{challenge.title}</Text>
-                    <Text style={styles.challengeDescription}>
-                      {challenge.description}
-                    </Text>
+                    <Text style={styles.challengeDescription}>{challenge.description}</Text>
                   </View>
                   <Text style={styles.challengeExpires}>{challenge.expiresIn}</Text>
                 </View>
@@ -665,9 +617,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
                       style={styles.claimButtonGradient}
                     >
                       <Ionicons name="gift" size={20} color="#FFFFFF" />
-                      <Text style={styles.claimButtonText}>
-                        Claim {challenge.reward}
-                      </Text>
+                      <Text style={styles.claimButtonText}>Claim {challenge.reward}</Text>
                     </LinearGradient>
                   </TouchableOpacity>
                 )}
@@ -682,9 +632,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
                 {!isCompleted && (
                   <View style={styles.rewardInfo}>
                     <Ionicons name="flash" size={16} color={COLORS.warning} />
-                    <Text style={styles.rewardInfoText}>
-                      Reward: {challenge.reward}
-                    </Text>
+                    <Text style={styles.rewardInfoText}>Reward: {challenge.reward}</Text>
                   </View>
                 )}
               </View>
@@ -695,10 +643,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
 
       {/* Weekly Challenges Teaser */}
       <View style={styles.weeklyCard}>
-        <LinearGradient
-          colors={['#A855F7', '#7E22CE']}
-          style={styles.weeklyGradient}
-        >
+        <LinearGradient colors={['#A855F7', '#7E22CE']} style={styles.weeklyGradient}>
           <Ionicons name="medal" size={32} color="#FFFFFF" />
           <View style={styles.weeklyContent}>
             <Text style={styles.weeklyTitle}>Weekly Challenges</Text>
@@ -716,7 +661,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
     <View style={styles.tabContent}>
       {/* Time Filter */}
       <View style={styles.timeFilter}>
-        {['Today', 'This Week', 'All Time'].map((period) => (
+        {['Today', 'This Week', 'All Time'].map(period => (
           <TouchableOpacity
             key={period}
             style={[
@@ -725,10 +670,7 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
             ]}
           >
             <Text
-              style={[
-                styles.timeFilterText,
-                period === 'This Week' && styles.timeFilterTextActive,
-              ]}
+              style={[styles.timeFilterText, period === 'This Week' && styles.timeFilterTextActive]}
             >
               {period}
             </Text>
@@ -740,19 +682,12 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
       <View style={styles.podium}>
         {/* 2nd Place */}
         <View style={styles.podiumItem}>
-          <Image
-            source={{ uri: leaderboard[1].avatar }}
-            style={styles.podiumAvatar}
-          />
+          <Image source={{ uri: leaderboard[1].avatar }} style={styles.podiumAvatar} />
           <View style={styles.podiumRank}>
             <Text style={styles.podiumRankText}>2</Text>
           </View>
-          <Text style={styles.podiumName}>
-            {leaderboard[1].name.split(' ')[0]}
-          </Text>
-          <Text style={styles.podiumPoints}>
-            {leaderboard[1].points.toLocaleString()}
-          </Text>
+          <Text style={styles.podiumName}>{leaderboard[1].name.split(' ')[0]}</Text>
+          <Text style={styles.podiumPoints}>{leaderboard[1].points.toLocaleString()}</Text>
           <View style={styles.podiumBase}>
             <Text style={styles.podiumBadge}>{leaderboard[1].badge}</Text>
           </View>
@@ -760,19 +695,12 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
 
         {/* 1st Place */}
         <View style={[styles.podiumItem, styles.podiumItemFirst]}>
-          <Image
-            source={{ uri: leaderboard[0].avatar }}
-            style={styles.podiumAvatarFirst}
-          />
+          <Image source={{ uri: leaderboard[0].avatar }} style={styles.podiumAvatarFirst} />
           <View style={styles.podiumRankFirst}>
             <Text style={styles.podiumRankTextFirst}>1</Text>
           </View>
-          <Text style={styles.podiumNameFirst}>
-            {leaderboard[0].name.split(' ')[0]}
-          </Text>
-          <Text style={styles.podiumPointsFirst}>
-            {leaderboard[0].points.toLocaleString()}
-          </Text>
+          <Text style={styles.podiumNameFirst}>{leaderboard[0].name.split(' ')[0]}</Text>
+          <Text style={styles.podiumPointsFirst}>{leaderboard[0].points.toLocaleString()}</Text>
           <View style={styles.podiumBaseFirst}>
             <Text style={styles.podiumBadgeFirst}>{leaderboard[0].badge}</Text>
           </View>
@@ -780,19 +708,12 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
 
         {/* 3rd Place */}
         <View style={styles.podiumItem}>
-          <Image
-            source={{ uri: leaderboard[2].avatar }}
-            style={styles.podiumAvatar}
-          />
+          <Image source={{ uri: leaderboard[2].avatar }} style={styles.podiumAvatar} />
           <View style={styles.podiumRank}>
             <Text style={styles.podiumRankText}>3</Text>
           </View>
-          <Text style={styles.podiumName}>
-            {leaderboard[2].name.split(' ')[0]}
-          </Text>
-          <Text style={styles.podiumPoints}>
-            {leaderboard[2].points.toLocaleString()}
-          </Text>
+          <Text style={styles.podiumName}>{leaderboard[2].name.split(' ')[0]}</Text>
+          <Text style={styles.podiumPoints}>{leaderboard[2].points.toLocaleString()}</Text>
           <View style={styles.podiumBase}>
             <Text style={styles.podiumBadge}>{leaderboard[2].badge}</Text>
           </View>
@@ -801,23 +722,15 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
 
       {/* Your Rank Card */}
       <View style={styles.yourRankCard}>
-        <LinearGradient
-          colors={[COLORS.primary, COLORS.secondary]}
-          style={styles.yourRankGradient}
-        >
-          <Image
-            source={{ uri: leaderboard[3].avatar }}
-            style={styles.yourRankAvatar}
-          />
+        <LinearGradient colors={[COLORS.primary, COLORS.secondary]} style={styles.yourRankGradient}>
+          <Image source={{ uri: leaderboard[3].avatar }} style={styles.yourRankAvatar} />
           <View style={styles.yourRankInfo}>
             <Text style={styles.yourRankLabel}>Your Rank</Text>
             <Text style={styles.yourRankValue}>#{leaderboard[3].rank}</Text>
           </View>
           <View style={styles.yourRankPoints}>
             <Text style={styles.yourRankLabel}>Total XP</Text>
-            <Text style={styles.yourRankValue}>
-              {leaderboard[3].points.toLocaleString()}
-            </Text>
+            <Text style={styles.yourRankValue}>{leaderboard[3].points.toLocaleString()}</Text>
           </View>
         </LinearGradient>
       </View>
@@ -825,23 +738,16 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
       {/* Full Leaderboard */}
       <View style={styles.fullLeaderboard}>
         <Text style={styles.leaderboardTitle}>Top Language Learners</Text>
-        {leaderboard.map((user) => (
+        {leaderboard.map(user => (
           <View
             key={user.id}
-            style={[
-              styles.leaderboardItem,
-              user.id === '4' && styles.leaderboardItemYou,
-            ]}
+            style={[styles.leaderboardItem, user.id === '4' && styles.leaderboardItemYou]}
           >
-            <Text style={styles.leaderboardRank}>
-              {user.badge || `#${user.rank}`}
-            </Text>
+            <Text style={styles.leaderboardRank}>{user.badge || `#${user.rank}`}</Text>
             <Image source={{ uri: user.avatar }} style={styles.leaderboardAvatar} />
             <View style={styles.leaderboardInfo}>
               <Text style={styles.leaderboardName}>{user.name}</Text>
-              <Text style={styles.leaderboardPoints}>
-                {user.points.toLocaleString()} XP
-              </Text>
+              <Text style={styles.leaderboardPoints}>{user.points.toLocaleString()} XP</Text>
             </View>
             {user.badge && <Text style={styles.leaderboardBadge}>{user.badge}</Text>}
           </View>
@@ -868,26 +774,18 @@ export const GamificationScreen: React.FC<GamificationScreenProps> = ({ onBack }
           style={styles.tabsScroll}
           contentContainerStyle={styles.tabsContainer}
         >
-          {tabs.map((tab) => (
+          {tabs.map(tab => (
             <TouchableOpacity
               key={tab.id}
               onPress={() => setActiveTab(tab.id as TabType)}
-              style={[
-                styles.tab,
-                activeTab === tab.id && styles.tabActive,
-              ]}
+              style={[styles.tab, activeTab === tab.id && styles.tabActive]}
             >
               <Ionicons
                 name={tab.icon as any}
                 size={16}
                 color={activeTab === tab.id ? '#FFFFFF' : COLORS.textMuted}
               />
-              <Text
-                style={[
-                  styles.tabText,
-                  activeTab === tab.id && styles.tabTextActive,
-                ]}
-              >
+              <Text style={[styles.tabText, activeTab === tab.id && styles.tabTextActive]}>
                 {tab.label}
               </Text>
             </TouchableOpacity>
@@ -1690,4 +1588,3 @@ const styles = StyleSheet.create({
 });
 
 export default GamificationScreen;
-

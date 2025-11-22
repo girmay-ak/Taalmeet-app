@@ -1,8 +1,8 @@
 /**
  * Edit Profile Modal component
- * 
+ *
  * Modal for editing user profile information.
- * 
+ *
  * @module presentation/components/modals/EditProfileModal
  */
 
@@ -63,18 +63,9 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   };
 
   return (
-    <Modal
-      visible={isOpen}
-      transparent
-      animationType="slide"
-      onRequestClose={onClose}
-    >
+    <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
-        <TouchableOpacity
-          style={styles.backdrop}
-          activeOpacity={1}
-          onPress={onClose}
-        />
+        <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
         <View style={styles.container}>
           <View style={styles.header}>
             <Text style={styles.headerTitle}>Edit Profile</Text>
@@ -152,12 +143,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
           </ScrollView>
 
           <View style={styles.footer}>
-            <Button
-              title="Save Changes"
-              onPress={handleSave}
-              variant="primary"
-              size="large"
-            />
+            <Button title="Save Changes" onPress={handleSave} variant="primary" size="large" />
           </View>
         </View>
       </View>
@@ -285,4 +271,3 @@ const styles = StyleSheet.create({
 });
 
 export default EditProfileModal;
-

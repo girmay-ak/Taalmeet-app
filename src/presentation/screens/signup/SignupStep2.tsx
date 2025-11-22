@@ -1,20 +1,13 @@
 /**
  * Signup step 2 component
- * 
+ *
  * Language selection (teaching and learning).
- * 
+ *
  * @module presentation/screens/signup/SignupStep2
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -60,13 +53,13 @@ export const SignupStep2: React.FC<SignupStep2Props> = ({ onNext, onBack }) => {
   const [teachingLanguage, setTeachingLanguage] = useState<Language | null>(null);
   const [teachingLevel, setTeachingLevel] = useState('native');
 
-  const filteredLanguages = LANGUAGES.filter((lang) =>
+  const filteredLanguages = LANGUAGES.filter(lang =>
     lang.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const toggleLearning = (lang: Language) => {
-    if (learningLanguages.find((l) => l.code === lang.code)) {
-      setLearningLanguages(learningLanguages.filter((l) => l.code !== lang.code));
+    if (learningLanguages.find(l => l.code === lang.code)) {
+      setLearningLanguages(learningLanguages.filter(l => l.code !== lang.code));
     } else {
       setLearningLanguages([...learningLanguages, lang]);
     }
@@ -106,16 +99,13 @@ export const SignupStep2: React.FC<SignupStep2Props> = ({ onNext, onBack }) => {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>I want to learn</Text>
             <View style={styles.languageGrid}>
-              {filteredLanguages.map((lang) => {
-                const isSelected = learningLanguages.find((l) => l.code === lang.code);
+              {filteredLanguages.map(lang => {
+                const isSelected = learningLanguages.find(l => l.code === lang.code);
                 return (
                   <TouchableOpacity
                     key={lang.code}
                     onPress={() => toggleLearning(lang)}
-                    style={[
-                      styles.languageCard,
-                      isSelected && styles.languageCardSelected,
-                    ]}
+                    style={[styles.languageCard, isSelected && styles.languageCardSelected]}
                   >
                     {isSelected && (
                       <View style={styles.selectedBadge}>
@@ -123,12 +113,7 @@ export const SignupStep2: React.FC<SignupStep2Props> = ({ onNext, onBack }) => {
                       </View>
                     )}
                     <Text style={styles.languageFlag}>{lang.flag}</Text>
-                    <Text
-                      style={[
-                        styles.languageName,
-                        isSelected && styles.languageNameSelected,
-                      ]}
-                    >
+                    <Text style={[styles.languageName, isSelected && styles.languageNameSelected]}>
                       {lang.name}
                     </Text>
                   </TouchableOpacity>
@@ -141,16 +126,13 @@ export const SignupStep2: React.FC<SignupStep2Props> = ({ onNext, onBack }) => {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>I can teach</Text>
             <View style={styles.languageGrid}>
-              {filteredLanguages.map((lang) => {
+              {filteredLanguages.map(lang => {
                 const isSelected = teachingLanguage?.code === lang.code;
                 return (
                   <TouchableOpacity
                     key={lang.code}
                     onPress={() => setTeachingLanguage(lang)}
-                    style={[
-                      styles.languageCard,
-                      isSelected && styles.languageCardSelected,
-                    ]}
+                    style={[styles.languageCard, isSelected && styles.languageCardSelected]}
                   >
                     {isSelected && (
                       <View style={styles.selectedBadge}>
@@ -158,12 +140,7 @@ export const SignupStep2: React.FC<SignupStep2Props> = ({ onNext, onBack }) => {
                       </View>
                     )}
                     <Text style={styles.languageFlag}>{lang.flag}</Text>
-                    <Text
-                      style={[
-                        styles.languageName,
-                        isSelected && styles.languageNameSelected,
-                      ]}
-                    >
+                    <Text style={[styles.languageName, isSelected && styles.languageNameSelected]}>
                       {lang.name}
                     </Text>
                   </TouchableOpacity>
@@ -175,7 +152,7 @@ export const SignupStep2: React.FC<SignupStep2Props> = ({ onNext, onBack }) => {
               <View style={styles.levelSection}>
                 <Text style={styles.levelTitle}>Your level in {teachingLanguage.name}</Text>
                 <View style={styles.levelGrid}>
-                  {LEVELS.map((level) => (
+                  {LEVELS.map(level => (
                     <TouchableOpacity
                       key={level.id}
                       onPress={() => setTeachingLevel(level.id)}
@@ -341,4 +318,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignupStep2;
-

@@ -1,10 +1,10 @@
 /**
  * User React hook
- * 
+ *
  * Custom React hook for managing user state and operations.
  * This hook connects the presentation layer to the business logic
  * through use cases.
- * 
+ *
  * @module presentation/hooks/useUser
  */
 
@@ -25,15 +25,15 @@ interface UseUserReturn {
 
 /**
  * Custom hook for user operations
- * 
+ *
  * Provides user state management and operations like creating a user.
  * This hook abstracts the use case layer from React components.
- * 
+ *
  * @param createUserUseCase - Create user use case instance
  * @returns User state and operations
  * @example
  * const { user, loading, createUser } = useUser(createUserUseCase);
- * 
+ *
  * await createUser({
  *   email: 'user@example.com',
  *   displayName: 'John Doe',
@@ -48,7 +48,7 @@ export const useUser = (createUserUseCase: CreateUserUseCase): UseUserReturn => 
 
   /**
    * Creates a new user
-   * 
+   *
    * @param input - User creation input
    */
   const createUser = useCallback(
@@ -87,4 +87,3 @@ export const useUser = (createUserUseCase: CreateUserUseCase): UseUserReturn => 
     clearError,
   };
 };
-

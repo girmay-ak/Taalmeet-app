@@ -1,20 +1,13 @@
 /**
  * Settings Screen component
- * 
+ *
  * App settings including notifications, appearance, account, and about.
- * 
+ *
  * @module presentation/screens/SettingsScreen
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Switch,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -211,10 +204,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>ACCOUNT</Text>
           <View style={styles.sectionCard}>
-            <TouchableOpacity
-              onPress={onNavigateToChangePassword}
-              style={styles.settingItem}
-            >
+            <TouchableOpacity onPress={onNavigateToChangePassword} style={styles.settingItem}>
               <View style={styles.settingLeft}>
                 <View style={[styles.settingIcon, { backgroundColor: `${COLORS.secondary}20` }]}>
                   <Ionicons name="lock-closed-outline" size={20} color={COLORS.secondary} />
@@ -227,10 +217,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               <Ionicons name="chevron-forward" size={20} color={COLORS.textMuted} />
             </TouchableOpacity>
             <View style={styles.divider} />
-            <TouchableOpacity
-              onPress={onNavigateToLanguageSelection}
-              style={styles.settingItem}
-            >
+            <TouchableOpacity onPress={onNavigateToLanguageSelection} style={styles.settingItem}>
               <View style={styles.settingLeft}>
                 <View style={[styles.settingIcon, { backgroundColor: `${COLORS.primary}20` }]}>
                   <Ionicons name="language-outline" size={20} color={COLORS.primary} />
@@ -243,10 +230,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
               <Ionicons name="chevron-forward" size={20} color={COLORS.textMuted} />
             </TouchableOpacity>
             <View style={styles.divider} />
-            <TouchableOpacity
-              onPress={onNavigateToBlockedUsers}
-              style={styles.settingItem}
-            >
+            <TouchableOpacity onPress={onNavigateToBlockedUsers} style={styles.settingItem}>
               <View style={styles.settingLeft}>
                 <View style={[styles.settingIcon, { backgroundColor: `${COLORS.tertiary}20` }]}>
                   <Ionicons name="eye-off-outline" size={20} color={COLORS.tertiary} />
@@ -423,4 +407,3 @@ const styles = StyleSheet.create({
 });
 
 export default SettingsScreen;
-

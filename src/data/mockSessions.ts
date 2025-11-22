@@ -61,7 +61,8 @@ export const mockSessions: LanguageSession[] = [
   {
     id: '1',
     title: 'Coffee & Spanish Conversation',
-    description: 'Join us for a relaxed Spanish conversation over coffee. All levels welcome! We\'ll discuss topics like travel, culture, and daily life while improving your speaking skills.',
+    description:
+      "Join us for a relaxed Spanish conversation over coffee. All levels welcome! We'll discuss topics like travel, culture, and daily life while improving your speaking skills.",
     language: 'Spanish',
     languageFlag: '🇪🇸',
     level: 'intermediate',
@@ -71,7 +72,7 @@ export const mockSessions: LanguageSession[] = [
     attendees: [
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150'
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
     ],
     totalAttendees: 15,
     maxAttendees: 20,
@@ -84,29 +85,33 @@ export const mockSessions: LanguageSession[] = [
       address: 'Papestraat 32',
       city: 'Den Haag',
       coordinates: { lat: 52.0705, lng: 4.3007 },
-      photos: ['https://images.unsplash.com/photo-1593536488177-1eb3c2d4e3d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYWZlJTIwaW50ZXJpb3IlMjBjb3p5fGVufDF8fHx8MTc2MzYwMTY0OXww&ixlib=rb-4.1.0&q=80&w=1080'],
-      amenities: ['WiFi', 'Quiet Area', 'Outdoor Seating']
+      photos: [
+        'https://images.unsplash.com/photo-1593536488177-1eb3c2d4e3d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYWZlJTIwaW50ZXJpb3IlMjBjb3p5fGVufDF8fHx8MTc2MzYwMTY0OXww&ixlib=rb-4.1.0&q=80&w=1080',
+      ],
+      amenities: ['WiFi', 'Quiet Area', 'Outdoor Seating'],
     },
     organizer: {
       id: 'biz_1',
       type: 'business',
       name: 'Coffee Lab Den Haag',
-      avatar: 'https://images.unsplash.com/photo-1561336635-c0e118ad72a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBzaG9wJTIwbG9nb3xlbnwxfHx8fDE3NjM2MjM0ODB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      avatar:
+        'https://images.unsplash.com/photo-1561336635-c0e118ad72a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBzaG9wJTIwbG9nb3xlbnwxfHx8fDE3NjM2MjM0ODB8MA&ixlib=rb-4.1.0&q=80&w=1080',
       businessType: 'cafe',
       rating: 4.8,
       totalEvents: 42,
-      verified: true
+      verified: true,
     },
     price: 0,
     currency: 'EUR',
     tags: ['conversation', 'beginners-friendly', 'coffee'],
     isUserJoined: false,
-    externalSource: 'internal'
+    externalSource: 'internal',
   },
   {
     id: '2',
     title: 'Spanish Language Walk',
-    description: 'Practice your Spanish while enjoying a scenic walk along Scheveningen Beach. Perfect for intermediate learners who want to practice in a natural setting.',
+    description:
+      'Practice your Spanish while enjoying a scenic walk along Scheveningen Beach. Perfect for intermediate learners who want to practice in a natural setting.',
     language: 'Spanish',
     languageFlag: '🇪🇸',
     level: 'intermediate',
@@ -115,7 +120,7 @@ export const mockSessions: LanguageSession[] = [
     duration: 60,
     attendees: [
       'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
     ],
     totalAttendees: 10,
     maxAttendees: 15,
@@ -131,18 +136,19 @@ export const mockSessions: LanguageSession[] = [
       hostingCount: 28,
       attendanceRate: 95,
       verified: true,
-      bio: 'Native Spanish speaker from Madrid. Love helping others learn!'
+      bio: 'Native Spanish speaker from Madrid. Love helping others learn!',
     },
     price: 0,
     currency: 'EUR',
     tags: ['outdoor', 'walking', 'nature'],
     isUserJoined: true,
-    externalSource: 'internal'
+    externalSource: 'internal',
   },
   {
     id: '3',
     title: 'Japanese Exchange Online',
-    description: 'Weekly virtual Japanese practice session. Share your learning journey, practice reading hiragana, and have casual conversations.',
+    description:
+      'Weekly virtual Japanese practice session. Share your learning journey, practice reading hiragana, and have casual conversations.',
     language: 'Japanese',
     languageFlag: '🇯🇵',
     level: 'beginner',
@@ -151,7 +157,7 @@ export const mockSessions: LanguageSession[] = [
     duration: 75,
     attendees: [
       'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150',
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150'
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150',
     ],
     totalAttendees: 10,
     maxAttendees: 12,
@@ -164,23 +170,25 @@ export const mockSessions: LanguageSession[] = [
       id: 'biz_2',
       type: 'business',
       name: 'Tokyo Language Academy',
-      avatar: 'https://images.unsplash.com/photo-1558443957-d056622df610?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5ndWFnZSUyMHNjaG9vbCUyMGNsYXNzcm9vbXxlbnwxfHx8fDE3NjM2NzgwNjl8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      avatar:
+        'https://images.unsplash.com/photo-1558443957-d056622df610?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5ndWFnZSUyMHNjaG9vbCUyMGNsYXNzcm9vbXxlbnwxfHx8fDE3NjM2NzgwNjl8MA&ixlib=rb-4.1.0&q=80&w=1080',
       businessType: 'language_school',
       rating: 4.9,
       totalEvents: 156,
-      verified: true
+      verified: true,
     },
     price: 0,
     currency: 'EUR',
     tags: ['online', 'beginners', 'hiragana'],
     isUserJoined: false,
     externalSource: 'evento',
-    externalId: 'evt_jp_001'
+    externalId: 'evt_jp_001',
   },
   {
     id: '4',
     title: 'Japanese Language Walk',
-    description: 'Explore Westbroekpark while practicing Japanese. Great for nature lovers and language enthusiasts!',
+    description:
+      'Explore Westbroekpark while practicing Japanese. Great for nature lovers and language enthusiasts!',
     language: 'Japanese',
     languageFlag: '🇯🇵',
     level: 'all',
@@ -190,7 +198,7 @@ export const mockSessions: LanguageSession[] = [
     attendees: [
       'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150',
       'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=150',
-      'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150'
+      'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150',
     ],
     totalAttendees: 11,
     maxAttendees: 15,
@@ -206,18 +214,19 @@ export const mockSessions: LanguageSession[] = [
       hostingCount: 15,
       attendanceRate: 92,
       verified: false,
-      bio: 'From Osaka, living in The Hague. Let\'s practice together!'
+      bio: "From Osaka, living in The Hague. Let's practice together!",
     },
     price: 0,
     currency: 'EUR',
     tags: ['outdoor', 'all-levels', 'nature'],
     isUserJoined: false,
-    externalSource: 'internal'
+    externalSource: 'internal',
   },
   {
     id: '5',
     title: 'French Café Conversation',
-    description: 'Immerse yourself in French culture and language at our cozy café. Discuss literature, cinema, and French cuisine.',
+    description:
+      'Immerse yourself in French culture and language at our cozy café. Discuss literature, cinema, and French cuisine.',
     language: 'French',
     languageFlag: '🇫🇷',
     level: 'intermediate',
@@ -226,7 +235,7 @@ export const mockSessions: LanguageSession[] = [
     duration: 90,
     attendees: [
       'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150',
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150'
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150',
     ],
     totalAttendees: 8,
     maxAttendees: 10,
@@ -240,7 +249,7 @@ export const mockSessions: LanguageSession[] = [
       city: 'Den Haag',
       coordinates: { lat: 52.0862, lng: 4.3121 },
       photos: ['https://images.unsplash.com/photo-1593536488177-1eb3c2d4e3d2?w=400'],
-      amenities: ['WiFi', 'French Pastries', 'Terrace']
+      amenities: ['WiFi', 'French Pastries', 'Terrace'],
     },
     organizer: {
       id: 'biz_3',
@@ -250,19 +259,20 @@ export const mockSessions: LanguageSession[] = [
       businessType: 'cafe',
       rating: 4.7,
       totalEvents: 38,
-      verified: true
+      verified: true,
     },
     price: 0,
     currency: 'EUR',
     tags: ['conversation', 'culture', 'coffee'],
     isUserJoined: false,
     externalSource: 'evento',
-    externalId: 'evt_fr_002'
+    externalId: 'evt_fr_002',
   },
   {
     id: '6',
     title: 'Dutch Conversation Practice',
-    description: 'Perfect for expats learning Dutch! Practice everyday conversations in a relaxed restaurant setting with local speakers.',
+    description:
+      'Perfect for expats learning Dutch! Practice everyday conversations in a relaxed restaurant setting with local speakers.',
     language: 'Dutch',
     languageFlag: '🇳🇱',
     level: 'beginner',
@@ -272,7 +282,7 @@ export const mockSessions: LanguageSession[] = [
     attendees: [
       'https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=150',
       'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=150',
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150'
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150',
     ],
     totalAttendees: 12,
     maxAttendees: 12,
@@ -286,7 +296,7 @@ export const mockSessions: LanguageSession[] = [
       city: 'Den Haag',
       coordinates: { lat: 52.0775, lng: 4.3125 },
       photos: ['https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400'],
-      amenities: ['Traditional Dutch Food', 'Central Location', 'Group Tables']
+      amenities: ['Traditional Dutch Food', 'Central Location', 'Group Tables'],
     },
     organizer: {
       id: 'biz_4',
@@ -296,18 +306,19 @@ export const mockSessions: LanguageSession[] = [
       businessType: 'restaurant',
       rating: 4.6,
       totalEvents: 24,
-      verified: true
+      verified: true,
     },
     price: 0,
     currency: 'EUR',
     tags: ['beginners', 'dutch-culture', 'food'],
     isUserJoined: true,
-    externalSource: 'internal'
+    externalSource: 'internal',
   },
   {
     id: '7',
     title: 'German Language Exchange',
-    description: 'Virtual German practice for intermediate learners. Focus on pronunciation and conversational fluency.',
+    description:
+      'Virtual German practice for intermediate learners. Focus on pronunciation and conversational fluency.',
     language: 'German',
     languageFlag: '🇩🇪',
     level: 'intermediate',
@@ -316,7 +327,7 @@ export const mockSessions: LanguageSession[] = [
     duration: 60,
     attendees: [
       'https://images.unsplash.com/photo-1590086782792-42dd2350140d?w=150',
-      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150'
+      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150',
     ],
     totalAttendees: 9,
     maxAttendees: 15,
@@ -333,18 +344,19 @@ export const mockSessions: LanguageSession[] = [
       hostingCount: 34,
       attendanceRate: 97,
       verified: true,
-      bio: 'German teacher with 10 years experience. Let\'s improve together!'
+      bio: "German teacher with 10 years experience. Let's improve together!",
     },
     price: 0,
     currency: 'EUR',
     tags: ['online', 'pronunciation', 'intermediate'],
     isUserJoined: false,
-    externalSource: 'internal'
+    externalSource: 'internal',
   },
   {
     id: '8',
     title: 'English Conversation Club',
-    description: 'Weekly English conversation club for non-native speakers. Discuss current events, practice business English, and make friends!',
+    description:
+      'Weekly English conversation club for non-native speakers. Discuss current events, practice business English, and make friends!',
     language: 'English',
     languageFlag: '🇬🇧',
     level: 'all',
@@ -354,7 +366,7 @@ export const mockSessions: LanguageSession[] = [
     attendees: [
       'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
       'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150',
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150'
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150',
     ],
     totalAttendees: 14,
     maxAttendees: 20,
@@ -368,7 +380,7 @@ export const mockSessions: LanguageSession[] = [
       city: 'Den Haag',
       coordinates: { lat: 52.0793, lng: 4.3158 },
       photos: ['https://images.unsplash.com/photo-1593536488177-1eb3c2d4e3d2?w=400'],
-      amenities: ['WiFi', 'Long Tables', 'Central Location']
+      amenities: ['WiFi', 'Long Tables', 'Central Location'],
     },
     organizer: {
       id: 'biz_5',
@@ -378,15 +390,23 @@ export const mockSessions: LanguageSession[] = [
       businessType: 'cafe',
       rating: 4.5,
       totalEvents: 67,
-      verified: true
+      verified: true,
     },
     price: 0,
     currency: 'EUR',
     tags: ['all-levels', 'business-english', 'networking'],
     isUserJoined: false,
     externalSource: 'evento',
-    externalId: 'evt_en_003'
-  }
+    externalId: 'evt_en_003',
+  },
 ];
 
-export const languageCategories = ['All', 'Spanish', 'Japanese', 'French', 'Dutch', 'German', 'English'];
+export const languageCategories = [
+  'All',
+  'Spanish',
+  'Japanese',
+  'French',
+  'Dutch',
+  'German',
+  'English',
+];

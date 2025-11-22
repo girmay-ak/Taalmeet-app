@@ -1,8 +1,8 @@
 /**
  * Partner card component
- * 
+ *
  * Displays a partner/user card with avatar, info, and actions.
- * 
+ *
  * @module presentation/components/PartnerCard
  */
 
@@ -37,21 +37,12 @@ interface PartnerCardProps {
 
 export const PartnerCard: React.FC<PartnerCardProps> = ({ partner, onClick }) => {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={onClick}
-      activeOpacity={0.8}
-    >
+    <TouchableOpacity style={styles.container} onPress={onClick} activeOpacity={0.8}>
       <View style={styles.content}>
         {/* Avatar */}
         <View style={styles.avatarContainer}>
-          <Image
-            source={{ uri: partner.avatar }}
-            style={styles.avatar}
-          />
-          {partner.isOnline && (
-            <View style={styles.onlineIndicator} />
-          )}
+          <Image source={{ uri: partner.avatar }} style={styles.avatar} />
+          {partner.isOnline && <View style={styles.onlineIndicator} />}
           {partner.verified && (
             <View style={styles.verifiedBadge}>
               <Ionicons name="checkmark" size={10} color="#FFFFFF" />
@@ -65,9 +56,7 @@ export const PartnerCard: React.FC<PartnerCardProps> = ({ partner, onClick }) =>
             <Text style={styles.name} numberOfLines={1}>
               {partner.name}
             </Text>
-            {partner.premium && (
-              <Ionicons name="diamond" size={16} color={COLORS.warning} />
-            )}
+            {partner.premium && <Ionicons name="diamond" size={16} color={COLORS.warning} />}
           </View>
 
           <View style={styles.languages}>
@@ -176,4 +165,3 @@ const styles = StyleSheet.create({
 });
 
 export default PartnerCard;
-

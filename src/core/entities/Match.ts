@@ -1,10 +1,10 @@
 /**
  * Match entity
- * 
+ *
  * Represents a language exchange match between two users.
  * This entity encapsulates the business logic for matching users
  * based on their language preferences.
- * 
+ *
  * @module core/entities/Match
  */
 
@@ -22,10 +22,10 @@ export enum MatchStatus {
 
 /**
  * Match entity representing a potential or confirmed language exchange partnership
- * 
+ *
  * A match occurs when two users can teach each other languages they want to learn.
  * This entity contains the business logic for match validation and status management.
- * 
+ *
  * @example
  * const match = new Match({
  *   id: 'match-123',
@@ -35,7 +35,7 @@ export enum MatchStatus {
  *   user2Teaches: 'es',
  *   status: MatchStatus.PENDING,
  * });
- * 
+ *
  * match.accept();
  * if (match.isActive()) {
  *   // Match is active and users can start exchanging
@@ -57,12 +57,12 @@ export class Match {
 
   /**
    * Validates match business rules
-   * 
+   *
    * Ensures that:
    * - Users are different
    * - Languages being taught are different
    * - Match follows the language exchange principle (user1 teaches what user2 learns)
-   * 
+   *
    * @throws {Error} If match data violates business rules
    * @private
    */
@@ -78,11 +78,11 @@ export class Match {
 
   /**
    * Checks if the match is valid for two users
-   * 
+   *
    * A valid match requires:
    * - User1 can teach a language that User2 wants to learn
    * - User2 can teach a language that User1 wants to learn
-   * 
+   *
    * @param user1 - First user
    * @param user2 - Second user
    * @returns True if users can form a valid match
@@ -92,22 +92,18 @@ export class Match {
    * }
    */
   static isValidMatch(user1: User, user2: User): boolean {
-    const user1CanTeachUser2 = user1.nativeLanguages.some(lang =>
-      user2.isLearning(lang)
-    );
-    const user2CanTeachUser1 = user2.nativeLanguages.some(lang =>
-      user1.isLearning(lang)
-    );
+    const user1CanTeachUser2 = user1.nativeLanguages.some(lang => user2.isLearning(lang));
+    const user2CanTeachUser1 = user2.nativeLanguages.some(lang => user1.isLearning(lang));
 
     return user1CanTeachUser2 && user2CanTeachUser1;
   }
 
   /**
    * Accepts the match
-   * 
+   *
    * Changes status to ACCEPTED and updates the timestamp.
    * Only pending matches can be accepted.
-   * 
+   *
    * @throws {Error} If match is not in pending status
    */
   accept(): void {
@@ -120,10 +116,10 @@ export class Match {
 
   /**
    * Rejects the match
-   * 
+   *
    * Changes status to REJECTED and updates the timestamp.
    * Only pending matches can be rejected.
-   * 
+   *
    * @throws {Error} If match is not in pending status
    */
   reject(): void {
@@ -136,14 +132,13 @@ export class Match {
 
   /**
    * Checks if the match is active
-   * 
+   *
    * An active match is one that has been accepted and can be used
    * for language exchange activities.
-   * 
+   *
    * @returns True if match is active
    */
   isActive(): boolean {
     return this.status === MatchStatus.ACCEPTED;
   }
 }
-

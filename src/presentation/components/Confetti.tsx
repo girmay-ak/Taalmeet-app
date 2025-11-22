@@ -1,9 +1,9 @@
 /**
  * Confetti animation component
- * 
+ *
  * Animated confetti particles falling from the top of the screen.
  * Used for celebration effects (e.g., verification success, achievements).
- * 
+ *
  * @module presentation/components/Confetti
  */
 
@@ -78,7 +78,7 @@ export const Confetti: React.FC<ConfettiProps> = ({ active, duration = 3000 }) =
 
   return (
     <View style={styles.container} pointerEvents="none">
-      {pieces.map((piece) => (
+      {pieces.map(piece => (
         <ConfettiPiece key={piece.id} piece={piece} />
       ))}
     </View>
@@ -113,7 +113,7 @@ const ConfettiPiece: React.FC<ConfettiPieceProps> = ({ piece }) => {
 
       const randomOffset1 = (Math.random() - 0.5) * 50;
       const randomOffset2 = (Math.random() - 0.5) * 50;
-      
+
       translateX.value = withSequence(
         withTiming(piece.x + randomOffset1, {
           duration: 1250,
@@ -175,4 +175,3 @@ const styles = StyleSheet.create({
 });
 
 export default Confetti;
-

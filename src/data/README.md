@@ -5,6 +5,7 @@ The **data layer** implements data access operations. It translates between doma
 ## Purpose
 
 The data layer is responsible for:
+
 - Implementing repository interfaces defined in the core layer
 - Mapping between domain entities and data models
 - Handling data source-specific operations (Supabase, REST APIs, etc.)
@@ -34,6 +35,7 @@ Repositories implement the interfaces defined in the core layer:
 - `MatchRepository`: Implements `IMatchRepository` (to be implemented)
 
 Repositories:
+
 - Use data sources to perform operations
 - Map between entities and models
 - Handle data layer errors
@@ -46,6 +48,7 @@ Data sources handle low-level data operations:
 - `SupabaseUserDataSource`: Supabase implementation
 
 Data sources:
+
 - Perform actual database/API calls
 - Work with data models (not domain entities)
 - Handle data source-specific logic
@@ -58,6 +61,7 @@ Data models (DTOs) represent data as stored in the database/API:
 - `MatchModel`: Database representation of a match (to be implemented)
 
 Models:
+
 - Match database schema
 - May differ from domain entities
 - Used for data transfer only
@@ -77,6 +81,7 @@ const user = await repository.findById('user-123');
 ## Mapping
 
 The data layer handles mapping between:
+
 - **Domain Entities** (core layer): Business objects with business logic
 - **Data Models** (data layer): Database/API representations
 
@@ -91,7 +96,7 @@ const entity = toEntity(userModel);
 ## Testing
 
 Data layer can be tested with:
+
 - Mock data sources
 - In-memory implementations
 - Test databases
-

@@ -1,21 +1,13 @@
 /**
  * Privacy & Safety Screen component
- * 
+ *
  * Manage privacy settings and safety features.
- * 
+ *
  * @module presentation/screens/PrivacySafetyScreen
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Switch,
-  Alert,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -98,9 +90,7 @@ export const PrivacySafetyScreen: React.FC<PrivacySafetyScreenProps> = ({
                 </View>
                 <View style={styles.settingText}>
                   <Text style={styles.settingLabel}>Show Online Status</Text>
-                  <Text style={styles.settingDescription}>
-                    Let others see when you're online
-                  </Text>
+                  <Text style={styles.settingDescription}>Let others see when you're online</Text>
                 </View>
               </View>
               <Switch
@@ -118,9 +108,7 @@ export const PrivacySafetyScreen: React.FC<PrivacySafetyScreenProps> = ({
                 </View>
                 <View style={styles.settingText}>
                   <Text style={styles.settingLabel}>Show Distance</Text>
-                  <Text style={styles.settingDescription}>
-                    Display your approximate distance
-                  </Text>
+                  <Text style={styles.settingDescription}>Display your approximate distance</Text>
                 </View>
               </View>
               <Switch
@@ -138,9 +126,7 @@ export const PrivacySafetyScreen: React.FC<PrivacySafetyScreenProps> = ({
                 </View>
                 <View style={styles.settingText}>
                   <Text style={styles.settingLabel}>Show Last Active</Text>
-                  <Text style={styles.settingDescription}>
-                    Display when you were last active
-                  </Text>
+                  <Text style={styles.settingDescription}>Display when you were last active</Text>
                 </View>
               </View>
               <Switch
@@ -164,9 +150,7 @@ export const PrivacySafetyScreen: React.FC<PrivacySafetyScreenProps> = ({
                 </View>
                 <View style={styles.settingText}>
                   <Text style={styles.settingLabel}>Read Receipts</Text>
-                  <Text style={styles.settingDescription}>
-                    Show when you've read messages
-                  </Text>
+                  <Text style={styles.settingDescription}>Show when you've read messages</Text>
                 </View>
               </View>
               <Switch
@@ -183,10 +167,7 @@ export const PrivacySafetyScreen: React.FC<PrivacySafetyScreenProps> = ({
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>SAFETY ACTIONS</Text>
           <View style={styles.sectionCard}>
-            <TouchableOpacity
-              onPress={onNavigateToBlockedUsers}
-              style={styles.settingItem}
-            >
+            <TouchableOpacity onPress={onNavigateToBlockedUsers} style={styles.settingItem}>
               <View style={styles.settingLeft}>
                 <View style={[styles.settingIcon, { backgroundColor: `${COLORS.error}20` }]}>
                   <Ionicons name="ban-outline" size={20} color={COLORS.error} />
@@ -199,19 +180,14 @@ export const PrivacySafetyScreen: React.FC<PrivacySafetyScreenProps> = ({
               <Ionicons name="chevron-forward" size={20} color={COLORS.textMuted} />
             </TouchableOpacity>
             <View style={styles.divider} />
-            <TouchableOpacity
-              onPress={onNavigateToReportIssue}
-              style={styles.settingItem}
-            >
+            <TouchableOpacity onPress={onNavigateToReportIssue} style={styles.settingItem}>
               <View style={styles.settingLeft}>
                 <View style={[styles.settingIcon, { backgroundColor: `${COLORS.warning}20` }]}>
                   <Ionicons name="alert-circle-outline" size={20} color={COLORS.warning} />
                 </View>
                 <View style={styles.settingText}>
                   <Text style={styles.settingLabel}>Report an Issue</Text>
-                  <Text style={styles.settingDescription}>
-                    Report inappropriate behavior
-                  </Text>
+                  <Text style={styles.settingDescription}>Report inappropriate behavior</Text>
                 </View>
               </View>
               <Ionicons name="chevron-forward" size={20} color={COLORS.textMuted} />
@@ -243,9 +219,7 @@ export const PrivacySafetyScreen: React.FC<PrivacySafetyScreenProps> = ({
                 </View>
                 <View style={styles.settingText}>
                   <Text style={[styles.settingLabel, styles.dangerText]}>Delete Account</Text>
-                  <Text style={styles.settingDescription}>
-                    Permanently delete your account
-                  </Text>
+                  <Text style={styles.settingDescription}>Permanently delete your account</Text>
                 </View>
               </View>
               <Ionicons name="chevron-forward" size={20} color={COLORS.textMuted} />
@@ -381,4 +355,3 @@ const styles = StyleSheet.create({
 });
 
 export default PrivacySafetyScreen;
-
