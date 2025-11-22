@@ -14,7 +14,7 @@ module.exports = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'react-native', 'react-hooks'],
+  plugins: ['@typescript-eslint', 'react', 'react-native', 'react-hooks', 'jest'],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
@@ -25,10 +25,25 @@ module.exports = {
   },
   env: {
     'react-native/react-native': true,
-    jest: true,
     node: true,
     es6: true,
   },
+  overrides: [
+    {
+      files: ['**/__tests__/**/*', '**/*.test.{ts,tsx}', '**/*.spec.{ts,tsx}'],
+      env: {
+        jest: true,
+      },
+      plugins: ['jest'],
+      rules: {
+        'jest/no-disabled-tests': 'warn',
+        'jest/no-focused-tests': 'error',
+        'jest/no-identical-title': 'error',
+        'jest/prefer-to-have-length': 'warn',
+        'jest/valid-expect': 'error',
+      },
+    },
+  ],
   rules: {
     // TypeScript
     '@typescript-eslint/no-unused-vars': [
