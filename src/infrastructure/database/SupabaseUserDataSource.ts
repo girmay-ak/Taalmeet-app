@@ -186,28 +186,27 @@ export class SupabaseUserDataSource implements IUserDataSource {
 
   /**
    * Map database row to UserModel
+   * 
+   * Note: This maps from the database schema to the UserModel DTO.
+   * The database has separate tables for languages, so we need to
+   * fetch them separately or use joins.
    */
   private mapToUserModel(data: any): UserModel {
     if (!data) {
       throw new Error('Cannot map null or undefined data to UserModel');
     }
 
+    // Map database fields to UserModel
+    // Note: languages are stored in user_languages table, not in users table
+    // For now, we'll use empty arrays. In production, you'd fetch languages separately
     return {
       id: data.id,
       email: data.email,
-      name: data.name,
-      age: data.age,
-      avatar_url: data.avatar_url,
-      bio: data.bio,
-      city: data.city,
-      country: data.country,
-      country_code: data.country_code,
-      verified: data.verified ?? false,
-      premium: data.premium ?? false,
-      online_status: data.online_status ?? 'offline',
-      last_active: data.last_active,
-      onboarding_completed: data.onboarding_completed ?? false,
-      profile_completion: data.profile_completion ?? 0,
+      display_name: data.name || data.display_name || '', // Support both field names
+      native_languages: data.native_languages || [], // TODO: Fetch from user_languages table
+      learning_languages: data.learning_languages || [], // TODO: Fetch from user_languages table
+      bio: data.bio || null,
+      avatar_url: data.avatar_url || null,
       created_at: data.created_at,
       updated_at: data.updated_at,
     };
@@ -215,24 +214,19 @@ export class SupabaseUserDataSource implements IUserDataSource {
 
   /**
    * Map UserModel to database row
+   * 
+   * Note: Languages are stored in user_languages table, not in users table.
+   * This method only maps user fields. Languages should be handled separately.
    */
   private mapFromUserModel(user: UserModel): any {
     return {
       id: user.id,
       email: user.email,
-      name: user.name,
-      age: user.age,
-      avatar_url: user.avatar_url,
+      name: user.display_name, // Map display_name to name in database
       bio: user.bio,
-      city: user.city,
-      country: user.country,
-      country_code: user.country_code,
-      verified: user.verified,
-      premium: user.premium,
-      online_status: user.online_status,
-      last_active: user.last_active,
-      onboarding_completed: user.onboarding_completed,
-      profile_completion: user.profile_completion,
+      avatar_url: user.avatar_url,
+      // Note: native_languages and learning_languages are not stored in users table
+      // They should be stored in user_languages table separately
     };
   }
 }
