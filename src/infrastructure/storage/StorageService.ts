@@ -1,10 +1,10 @@
 /**
  * Storage service
- * 
+ *
  * Abstracts local storage operations using AsyncStorage.
  * This service provides a clean interface for storing and retrieving
  * data locally on the device.
- * 
+ *
  * @module infrastructure/storage/StorageService
  */
 
@@ -12,13 +12,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * Storage service interface
- * 
+ *
  * Defines methods for local storage operations.
  */
 export interface IStorageService {
   /**
    * Stores a value with the given key
-   * 
+   *
    * @param key - Storage key
    * @param value - Value to store (will be JSON stringified)
    * @throws {Error} If storage operation fails
@@ -27,7 +27,7 @@ export interface IStorageService {
 
   /**
    * Retrieves a value by key
-   * 
+   *
    * @param key - Storage key
    * @returns Stored value or null if not found
    * @throws {Error} If storage operation fails
@@ -36,7 +36,7 @@ export interface IStorageService {
 
   /**
    * Removes a value by key
-   * 
+   *
    * @param key - Storage key
    * @throws {Error} If storage operation fails
    */
@@ -44,7 +44,7 @@ export interface IStorageService {
 
   /**
    * Clears all stored data
-   * 
+   *
    * @throws {Error} If storage operation fails
    */
   clear(): Promise<void>;
@@ -52,10 +52,10 @@ export interface IStorageService {
 
 /**
  * Storage service implementation using AsyncStorage
- * 
+ *
  * Provides persistent local storage for the application.
  * All values are automatically JSON stringified/parsed.
- * 
+ *
  * @example
  * const storage = new StorageService();
  * await storage.setItem('user', { id: '123', name: 'John' });
@@ -70,7 +70,9 @@ export class StorageService implements IStorageService {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem(key, jsonValue);
     } catch (error) {
-      throw new Error(`Failed to set storage item: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Failed to set storage item: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   }
 
@@ -82,7 +84,9 @@ export class StorageService implements IStorageService {
       const jsonValue = await AsyncStorage.getItem(key);
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (error) {
-      throw new Error(`Failed to get storage item: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Failed to get storage item: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   }
 
@@ -93,7 +97,9 @@ export class StorageService implements IStorageService {
     try {
       await AsyncStorage.removeItem(key);
     } catch (error) {
-      throw new Error(`Failed to remove storage item: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Failed to remove storage item: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   }
 
@@ -104,8 +110,9 @@ export class StorageService implements IStorageService {
     try {
       await AsyncStorage.clear();
     } catch (error) {
-      throw new Error(`Failed to clear storage: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Failed to clear storage: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   }
 }
-

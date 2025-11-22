@@ -5,6 +5,7 @@ The **shared layer** contains utilities, constants, types, and validators that a
 ## Purpose
 
 The shared layer provides:
+
 - Common utilities and helper functions
 - Shared TypeScript types and interfaces
 - Application constants
@@ -36,6 +37,7 @@ Application-wide constants:
 - More constants to be added (API endpoints, etc.)
 
 Constants:
+
 - Are immutable
 - Provide type safety
 - Centralize configuration values
@@ -49,6 +51,7 @@ Shared TypeScript types:
 - `ApiError`: API error response type
 
 Types:
+
 - Used across layers
 - Provide type safety
 - Document data structures
@@ -61,6 +64,7 @@ Utility functions:
 - More utilities to be added (formatting, etc.)
 
 Utils:
+
 - Are pure functions where possible
 - Have no side effects
 - Are well tested
@@ -75,6 +79,7 @@ Input validation functions:
 - `isInRange`: Number range validation
 
 Validators:
+
 - Return boolean results
 - Are framework-agnostic
 - Can be used in any layer
@@ -95,7 +100,7 @@ if (isValidEmail(email)) {
 ## Testing
 
 Shared utilities are:
+
 - Highly testable (pure functions)
 - Well covered by unit tests
 - Used in integration tests
-

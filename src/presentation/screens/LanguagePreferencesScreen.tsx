@@ -1,20 +1,13 @@
 /**
  * Language Preferences Screen component
- * 
+ *
  * Configure language discovery and matching preferences.
- * 
+ *
  * @module presentation/screens/LanguagePreferencesScreen
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Switch,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, TYPOGRAPHY, FONT_WEIGHT, SPACING, RADIUS } from '@shared/constants/theme';
@@ -23,9 +16,7 @@ interface LanguagePreferencesScreenProps {
   onBack: () => void;
 }
 
-export const LanguagePreferencesScreen: React.FC<LanguagePreferencesScreenProps> = ({
-  onBack,
-}) => {
+export const LanguagePreferencesScreen: React.FC<LanguagePreferencesScreenProps> = ({ onBack }) => {
   const [showOnlyMyLanguages, setShowOnlyMyLanguages] = useState(false);
   const [showNearby, setShowNearby] = useState(true);
   const [maxDistance, setMaxDistance] = useState(10);
@@ -44,7 +35,7 @@ export const LanguagePreferencesScreen: React.FC<LanguagePreferencesScreenProps>
   ];
 
   const toggleLevel = (levelId: string) => {
-    setPreferredLevels((prev) => ({
+    setPreferredLevels(prev => ({
       ...prev,
       [levelId]: !prev[levelId as keyof typeof prev],
     }));
@@ -74,9 +65,7 @@ export const LanguagePreferencesScreen: React.FC<LanguagePreferencesScreenProps>
                 </View>
                 <View style={styles.settingText}>
                   <Text style={styles.settingLabel}>Only My Languages</Text>
-                  <Text style={styles.settingDescription}>
-                    Show partners for my languages only
-                  </Text>
+                  <Text style={styles.settingDescription}>Show partners for my languages only</Text>
                 </View>
               </View>
               <Switch
@@ -125,12 +114,7 @@ export const LanguagePreferencesScreen: React.FC<LanguagePreferencesScreenProps>
               </View>
               <View style={styles.sliderContainer}>
                 <View style={styles.sliderTrack}>
-                  <View
-                    style={[
-                      styles.sliderFill,
-                      { width: `${(maxDistance / 50) * 100}%` },
-                    ]}
-                  />
+                  <View style={[styles.sliderFill, { width: `${(maxDistance / 50) * 100}%` }]} />
                 </View>
                 <View style={styles.sliderLabels}>
                   <Text style={styles.sliderLabel}>1km</Text>
@@ -139,7 +123,7 @@ export const LanguagePreferencesScreen: React.FC<LanguagePreferencesScreenProps>
                 </View>
               </View>
               <View style={styles.distanceButtons}>
-                {[5, 10, 20, 30, 50].map((distance) => (
+                {[5, 10, 20, 30, 50].map(distance => (
                   <TouchableOpacity
                     key={distance}
                     onPress={() => setMaxDistance(distance)}
@@ -172,7 +156,7 @@ export const LanguagePreferencesScreen: React.FC<LanguagePreferencesScreenProps>
                 Select which levels you'd like to practice with:
               </Text>
               <View style={styles.levelsList}>
-                {levels.map((level) => (
+                {levels.map(level => (
                   <TouchableOpacity
                     key={level.id}
                     onPress={() => toggleLevel(level.id)}
@@ -401,4 +385,3 @@ const styles = StyleSheet.create({
 });
 
 export default LanguagePreferencesScreen;
-

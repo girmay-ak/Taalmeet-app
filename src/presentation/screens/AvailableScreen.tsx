@@ -1,8 +1,8 @@
 /**
  * Available screen component
- * 
+ *
  * Manages user availability status, schedule, and preferences.
- * 
+ *
  * @module presentation/screens/AvailableScreen
  */
 
@@ -60,9 +60,9 @@ export const AvailableScreen: React.FC = () => {
 
   const [meetingTypes, setMeetingTypes] = useState({
     'in-person': true,
-    'video': true,
-    'voice': true,
-    'chat': true,
+    video: true,
+    voice: true,
+    chat: true,
   });
 
   const [notifications, setNotifications] = useState({
@@ -78,7 +78,7 @@ export const AvailableScreen: React.FC = () => {
   useEffect(() => {
     if (currentStatus === 'available' && timeLeft > 0) {
       const timer = setInterval(() => {
-        setTimeLeft((prev) => {
+        setTimeLeft(prev => {
           if (prev <= 1) {
             setCurrentStatus('offline');
             return 0;
@@ -91,11 +91,7 @@ export const AvailableScreen: React.FC = () => {
     }
   }, [currentStatus, timeLeft]);
 
-  const handleStatusChange = (
-    status: Status,
-    newDuration: number,
-    newPreferences: string[]
-  ) => {
+  const handleStatusChange = (status: Status, newDuration: number, newPreferences: string[]) => {
     setCurrentStatus(status);
     setDuration(newDuration);
     setTimeLeft(newDuration);
@@ -119,7 +115,7 @@ export const AvailableScreen: React.FC = () => {
   const handleRemoveTimeSlot = (day: string, slotId: string) => {
     setSchedule({
       ...schedule,
-      [day]: schedule[day].filter((slot) => slot.id !== slotId),
+      [day]: schedule[day].filter(slot => slot.id !== slotId),
     });
   };
 
@@ -146,7 +142,7 @@ export const AvailableScreen: React.FC = () => {
   };
 
   const extendTime = () => {
-    setTimeLeft((prev) => prev + 60);
+    setTimeLeft(prev => prev + 60);
   };
 
   const stopAvailability = () => {
@@ -163,9 +159,7 @@ export const AvailableScreen: React.FC = () => {
             <Text style={styles.saveButton}>Save</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.headerSubtitle}>
-          Let others know when you're free to meet
-        </Text>
+        <Text style={styles.headerSubtitle}>Let others know when you're free to meet</Text>
       </SafeAreaView>
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
@@ -181,10 +175,10 @@ export const AvailableScreen: React.FC = () => {
                       currentStatus === 'available'
                         ? `${COLORS.success}33`
                         : currentStatus === 'soon'
-                        ? `${COLORS.warning}33`
-                        : currentStatus === 'busy'
-                        ? `${COLORS.error}33`
-                        : `${COLORS.textMuted}33`,
+                          ? `${COLORS.warning}33`
+                          : currentStatus === 'busy'
+                            ? `${COLORS.error}33`
+                            : `${COLORS.textMuted}33`,
                   },
                 ]}
               >
@@ -195,26 +189,24 @@ export const AvailableScreen: React.FC = () => {
                     currentStatus === 'available'
                       ? COLORS.success
                       : currentStatus === 'soon'
-                      ? COLORS.warning
-                      : currentStatus === 'busy'
-                      ? COLORS.error
-                      : COLORS.textMuted
+                        ? COLORS.warning
+                        : currentStatus === 'busy'
+                          ? COLORS.error
+                          : COLORS.textMuted
                   }
                 />
               </View>
               <View>
                 <StatusIndicator status={currentStatus} showLabel size="medium" />
                 {currentStatus === 'available' && (
-                  <Text style={styles.timeLeftText}>
-                    Auto-off in: {formatTimeLeft(timeLeft)}
-                  </Text>
+                  <Text style={styles.timeLeftText}>Auto-off in: {formatTimeLeft(timeLeft)}</Text>
                 )}
               </View>
             </View>
             <View style={styles.statusRight}>
               <Switch
                 value={currentStatus !== 'offline'}
-                onValueChange={(value) => {
+                onValueChange={value => {
                   if (value) {
                     setShowBottomSheet(true);
                   } else {
@@ -237,10 +229,7 @@ export const AvailableScreen: React.FC = () => {
 
           {currentStatus === 'available' && (
             <View style={styles.actionButtons}>
-              <TouchableOpacity
-                onPress={extendTime}
-                style={styles.extendButton}
-              >
+              <TouchableOpacity onPress={extendTime} style={styles.extendButton}>
                 <LinearGradient
                   colors={[COLORS.primary, COLORS.primaryLight]}
                   style={styles.extendButtonGradient}
@@ -248,10 +237,7 @@ export const AvailableScreen: React.FC = () => {
                   <Text style={styles.extendButtonText}>Extend 1h</Text>
                 </LinearGradient>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={stopAvailability}
-                style={styles.stopButton}
-              >
+              <TouchableOpacity onPress={stopAvailability} style={styles.stopButton}>
                 <Text style={styles.stopButtonText}>Stop</Text>
               </TouchableOpacity>
             </View>
@@ -263,14 +249,12 @@ export const AvailableScreen: React.FC = () => {
           <View style={styles.scheduleHeader}>
             <View>
               <Text style={styles.scheduleTitle}>📅 Weekly Schedule</Text>
-              <Text style={styles.scheduleSubtitle}>
-                When are you usually free?
-              </Text>
+              <Text style={styles.scheduleSubtitle}>When are you usually free?</Text>
             </View>
           </View>
 
           <View style={styles.scheduleList}>
-            {days.map((day) => (
+            {days.map(day => (
               <View key={day} style={styles.dayCard}>
                 <View style={styles.dayHeader}>
                   <Text style={styles.dayName}>{day}</Text>
@@ -289,7 +273,7 @@ export const AvailableScreen: React.FC = () => {
                   <Text style={styles.noSlotsText}>No times set</Text>
                 ) : (
                   <View style={styles.slotsList}>
-                    {schedule[day].map((slot) => (
+                    {schedule[day].map(slot => (
                       <View key={slot.id} style={styles.slotItem}>
                         <Text style={styles.slotTime}>
                           {formatTime(slot.start)} - {formatTime(slot.end)}
@@ -319,7 +303,7 @@ export const AvailableScreen: React.FC = () => {
               { id: 'video', label: '📹 Video call', emoji: '📹' },
               { id: 'voice', label: '📞 Voice call', emoji: '📞' },
               { id: 'chat', label: '💬 Text chat', emoji: '💬' },
-            ].map((type) => (
+            ].map(type => (
               <TouchableOpacity
                 key={type.id}
                 onPress={() => toggleMeetingType(type.id)}
@@ -354,7 +338,7 @@ export const AvailableScreen: React.FC = () => {
               { id: 'nearby', label: 'Partners available nearby' },
               { id: 'messages', label: 'New messages' },
               { id: 'reminders', label: 'Meeting reminders' },
-            ].map((notif) => (
+            ].map(notif => (
               <TouchableOpacity
                 key={notif.id}
                 onPress={() => toggleNotification(notif.id)}
@@ -378,12 +362,10 @@ export const AvailableScreen: React.FC = () => {
             <View style={styles.infoContent}>
               <Text style={styles.infoEmoji}>✨</Text>
               <View style={styles.infoText}>
-                <Text style={styles.infoTitle}>
-                  You're visible to partners!
-                </Text>
+                <Text style={styles.infoTitle}>You're visible to partners!</Text>
                 <Text style={styles.infoDescription}>
-                  Language learners nearby can now see you're available and send
-                  you connection requests.
+                  Language learners nearby can now see you're available and send you connection
+                  requests.
                 </Text>
               </View>
             </View>
@@ -784,4 +766,3 @@ const styles = StyleSheet.create({
 });
 
 export default AvailableScreen;
-

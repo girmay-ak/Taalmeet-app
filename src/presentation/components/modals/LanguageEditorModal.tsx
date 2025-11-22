@@ -1,8 +1,8 @@
 /**
  * Language Editor Modal component
- * 
+ *
  * Modal for editing teaching or learning languages.
- * 
+ *
  * @module presentation/components/modals/LanguageEditorModal
  */
 
@@ -71,11 +71,11 @@ export const LanguageEditorModal: React.FC<LanguageEditorModalProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(
-    languages.find((l) => l.name === currentLanguage.language) || null
+    languages.find(l => l.name === currentLanguage.language) || null
   );
   const [selectedLevel, setSelectedLevel] = useState(currentLanguage.level);
 
-  const filteredLanguages = languages.filter((lang) =>
+  const filteredLanguages = languages.filter(lang =>
     lang.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -91,18 +91,9 @@ export const LanguageEditorModal: React.FC<LanguageEditorModalProps> = ({
   };
 
   return (
-    <Modal
-      visible={isOpen}
-      transparent
-      animationType="slide"
-      onRequestClose={onClose}
-    >
+    <Modal visible={isOpen} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
-        <TouchableOpacity
-          style={styles.backdrop}
-          activeOpacity={1}
-          onPress={onClose}
-        />
+        <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
         <View style={styles.container}>
           <View style={styles.header}>
             <Text style={styles.headerTitle}>
@@ -129,16 +120,13 @@ export const LanguageEditorModal: React.FC<LanguageEditorModalProps> = ({
             {/* Language Selection */}
             <Text style={styles.sectionTitle}>Select Language</Text>
             <View style={styles.languageGrid}>
-              {filteredLanguages.map((lang) => {
+              {filteredLanguages.map(lang => {
                 const isSelected = selectedLanguage?.code === lang.code;
                 return (
                   <TouchableOpacity
                     key={lang.code}
                     onPress={() => setSelectedLanguage(lang)}
-                    style={[
-                      styles.languageCard,
-                      isSelected && styles.languageCardSelected,
-                    ]}
+                    style={[styles.languageCard, isSelected && styles.languageCardSelected]}
                   >
                     {isSelected && (
                       <View style={styles.selectedBadge}>
@@ -146,12 +134,7 @@ export const LanguageEditorModal: React.FC<LanguageEditorModalProps> = ({
                       </View>
                     )}
                     <Text style={styles.languageFlag}>{lang.flag}</Text>
-                    <Text
-                      style={[
-                        styles.languageName,
-                        isSelected && styles.languageNameSelected,
-                      ]}
-                    >
+                    <Text style={[styles.languageName, isSelected && styles.languageNameSelected]}>
                       {lang.name}
                     </Text>
                   </TouchableOpacity>
@@ -164,7 +147,7 @@ export const LanguageEditorModal: React.FC<LanguageEditorModalProps> = ({
               <>
                 <Text style={styles.sectionTitle}>Your Level</Text>
                 <View style={styles.levelList}>
-                  {levels.map((level) => (
+                  {levels.map(level => (
                     <TouchableOpacity
                       key={level}
                       onPress={() => setSelectedLevel(level)}
@@ -347,4 +330,3 @@ const styles = StyleSheet.create({
 });
 
 export default LanguageEditorModal;
-

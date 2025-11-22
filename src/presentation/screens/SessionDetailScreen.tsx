@@ -1,8 +1,8 @@
 /**
  * Session Detail Screen component
- * 
+ *
  * Detailed view of a language exchange session.
- * 
+ *
  * @module presentation/screens/SessionDetailScreen
  */
 
@@ -28,10 +28,7 @@ interface SessionDetailScreenProps {
   onClose: () => void;
 }
 
-export const SessionDetailScreen: React.FC<SessionDetailScreenProps> = ({
-  session,
-  onClose,
-}) => {
+export const SessionDetailScreen: React.FC<SessionDetailScreenProps> = ({ session, onClose }) => {
   if (!session) return null;
 
   const getLevelColor = (level: string) => {
@@ -62,26 +59,14 @@ export const SessionDetailScreen: React.FC<SessionDetailScreenProps> = ({
   };
 
   return (
-    <Modal
-      visible={!!session}
-      transparent
-      animationType="slide"
-      onRequestClose={onClose}
-    >
+    <Modal visible={!!session} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.overlay}>
-        <TouchableOpacity
-          style={styles.backdrop}
-          activeOpacity={1}
-          onPress={onClose}
-        />
+        <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
         <View style={styles.container}>
           {/* Header Image/Banner */}
           <View style={styles.headerImage}>
             {session.venue?.photos?.[0] ? (
-              <Image
-                source={{ uri: session.venue.photos[0] }}
-                style={styles.headerImageContent}
-              />
+              <Image source={{ uri: session.venue.photos[0] }} style={styles.headerImageContent} />
             ) : (
               <View style={styles.headerImagePlaceholder}>
                 <Text style={styles.headerFlag}>{session.languageFlag}</Text>
@@ -114,17 +99,9 @@ export const SessionDetailScreen: React.FC<SessionDetailScreenProps> = ({
               <View style={styles.titleSection}>
                 <View style={styles.titleRow}>
                   <Text style={styles.languageFlag}>{session.languageFlag}</Text>
-                  <View
-                    style={[
-                      styles.levelBadge,
-                      { backgroundColor: levelStyle.bg },
-                    ]}
-                  >
-                    <Text
-                      style={[styles.levelText, { color: levelStyle.color }]}
-                    >
-                      {session.level.charAt(0).toUpperCase() +
-                        session.level.slice(1)}
+                  <View style={[styles.levelBadge, { backgroundColor: levelStyle.bg }]}>
+                    <Text style={[styles.levelText, { color: levelStyle.color }]}>
+                      {session.level.charAt(0).toUpperCase() + session.level.slice(1)}
                     </Text>
                   </View>
                   {session.isVirtual && (
@@ -201,9 +178,7 @@ export const SessionDetailScreen: React.FC<SessionDetailScreenProps> = ({
               {/* Organizer Card */}
               <View style={styles.organizerCard}>
                 <Text style={styles.organizerLabel}>
-                  {session.organizer.type === 'business'
-                    ? 'Organized by'
-                    : 'Hosted by'}
+                  {session.organizer.type === 'business' ? 'Organized by' : 'Hosted by'}
                 </Text>
                 <View style={styles.organizerContent}>
                   <Image
@@ -212,15 +187,9 @@ export const SessionDetailScreen: React.FC<SessionDetailScreenProps> = ({
                   />
                   <View style={styles.organizerInfo}>
                     <View style={styles.organizerNameRow}>
-                      <Text style={styles.organizerName}>
-                        {session.organizer.name}
-                      </Text>
+                      <Text style={styles.organizerName}>{session.organizer.name}</Text>
                       {session.organizer.verified && (
-                        <Ionicons
-                          name="checkmark-circle"
-                          size={16}
-                          color={COLORS.primary}
-                        />
+                        <Ionicons name="checkmark-circle" size={16} color={COLORS.primary} />
                       )}
                     </View>
                     {session.organizer.type === 'business' ? (
@@ -256,24 +225,17 @@ export const SessionDetailScreen: React.FC<SessionDetailScreenProps> = ({
                   <View style={styles.attendeesTitleRow}>
                     <Ionicons name="people" size={16} color={COLORS.secondary} />
                     <Text style={styles.attendeesTitle}>
-                      {String(session.totalAttendees)} / {String(session.maxAttendees)}{' '}
-                      Attendees
+                      {String(session.totalAttendees)} / {String(session.maxAttendees)} Attendees
                     </Text>
                   </View>
                   {spotsLeft > 0 && (
-                    <Text style={styles.spotsLeft}>
-                      {String(spotsLeft)} spots left
-                    </Text>
+                    <Text style={styles.spotsLeft}>{String(spotsLeft)} spots left</Text>
                   )}
                 </View>
 
                 <View style={styles.attendeesAvatars}>
                   {session.attendees.slice(0, 8).map((avatar, index) => (
-                    <Image
-                      key={index}
-                      source={{ uri: avatar }}
-                      style={styles.attendeeAvatar}
-                    />
+                    <Image key={index} source={{ uri: avatar }} style={styles.attendeeAvatar} />
                   ))}
                   {session.totalAttendees - session.attendees.length > 0 && (
                     <View style={styles.moreAttendees}>
@@ -777,4 +739,3 @@ const styles = StyleSheet.create({
 });
 
 export default SessionDetailScreen;
-

@@ -1,10 +1,10 @@
 /**
  * Match repository interface
- * 
+ *
  * Defines the contract for match data access operations.
  * This abstraction allows the core domain to remain independent of
  * the data persistence layer.
- * 
+ *
  * @module core/interfaces/repositories/IMatchRepository
  */
 
@@ -12,10 +12,10 @@ import { Match, MatchStatus } from '../../entities/Match';
 
 /**
  * Match repository interface
- * 
+ *
  * Abstracts all match-related data operations. Implementations can use
  * any data source (Supabase, Firebase, etc.) without affecting business logic.
- * 
+ *
  * @example
  * class SupabaseMatchRepository implements IMatchRepository {
  *   async create(match: Match): Promise<Match> {
@@ -26,7 +26,7 @@ import { Match, MatchStatus } from '../../entities/Match';
 export interface IMatchRepository {
   /**
    * Creates a new match
-   * 
+   *
    * @param match - Match entity to create
    * @returns Created match entity
    * @throws {Error} If match creation fails
@@ -38,7 +38,7 @@ export interface IMatchRepository {
 
   /**
    * Finds a match by ID
-   * 
+   *
    * @param id - Match unique identifier
    * @returns Match entity or null if not found
    * @throws {Error} If database operation fails
@@ -47,7 +47,7 @@ export interface IMatchRepository {
 
   /**
    * Finds matches for a specific user
-   * 
+   *
    * @param userId - User's unique identifier
    * @param status - Optional status filter
    * @returns Array of matches for the user
@@ -59,7 +59,7 @@ export interface IMatchRepository {
 
   /**
    * Finds a match between two specific users
-   * 
+   *
    * @param user1Id - First user's ID
    * @param user2Id - Second user's ID
    * @returns Match entity or null if not found
@@ -69,7 +69,7 @@ export interface IMatchRepository {
 
   /**
    * Updates an existing match
-   * 
+   *
    * @param match - Match entity with updated data
    * @returns Updated match entity
    * @throws {Error} If match not found or update fails
@@ -78,11 +78,10 @@ export interface IMatchRepository {
 
   /**
    * Deletes a match by ID
-   * 
+   *
    * @param id - Match unique identifier
    * @returns True if deletion was successful
    * @throws {Error} If match not found or deletion fails
    */
   delete(id: string): Promise<boolean>;
 }
-

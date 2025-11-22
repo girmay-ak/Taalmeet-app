@@ -1,8 +1,8 @@
 /**
  * Session card component
- * 
+ *
  * Displays a language exchange session card.
- * 
+ *
  * @module presentation/components/SessionCard
  */
 
@@ -43,18 +43,16 @@ export const SessionCard: React.FC<SessionCardProps> = ({ session, onClick }) =>
   const remainingAttendees = session.maxAttendees - session.totalAttendees;
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={onClick}
-      activeOpacity={0.8}
-    >
+    <TouchableOpacity style={styles.container} onPress={onClick} activeOpacity={0.8}>
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <Text style={styles.title} numberOfLines={1}>
             {session.title}
           </Text>
-          <Text style={styles.date}>{session.date} • {session.time}</Text>
+          <Text style={styles.date}>
+            {session.date} • {session.time}
+          </Text>
         </View>
         <View style={styles.headerRight}>
           <Text style={styles.percentage}>{String(session.joinedPercentage)}%</Text>
@@ -215,4 +213,3 @@ const styles = StyleSheet.create({
 });
 
 export default SessionCard;
-

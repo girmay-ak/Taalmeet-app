@@ -1,20 +1,13 @@
 /**
  * Signup step 1 component
- * 
+ *
  * Account creation with name, email, and password.
- * 
+ *
  * @module presentation/screens/signup/SignupStep1
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -154,22 +147,10 @@ export const SignupStep1: React.FC<SignupStep1Props> = ({ onNext, onBack }) => {
               <View style={styles.checks}>
                 {checks.map((check, index) => (
                   <View key={index} style={styles.checkItem}>
-                    <View
-                      style={[
-                        styles.checkCircle,
-                        check.valid && styles.checkCircleValid,
-                      ]}
-                    >
-                      {check.valid && (
-                        <Ionicons name="checkmark" size={12} color="#FFFFFF" />
-                      )}
+                    <View style={[styles.checkCircle, check.valid && styles.checkCircleValid]}>
+                      {check.valid && <Ionicons name="checkmark" size={12} color="#FFFFFF" />}
                     </View>
-                    <Text
-                      style={[
-                        styles.checkText,
-                        check.valid && styles.checkTextValid,
-                      ]}
-                    >
+                    <Text style={[styles.checkText, check.valid && styles.checkTextValid]}>
                       {check.label}
                     </Text>
                   </View>
@@ -340,4 +321,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignupStep1;
-

@@ -1,8 +1,8 @@
 /**
  * Discover screen component
- * 
+ *
  * Main discovery screen showing language exchange sessions and nearby partners.
- * 
+ *
  * @module presentation/screens/DiscoverScreen
  */
 
@@ -37,11 +37,12 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({
   const [selectedLanguage, setSelectedLanguage] = useState('All');
   const [showMatchPopup, setShowMatchPopup] = useState(false);
   const [matchedPartner, setMatchedPartner] = useState<any>(null);
-  
+
   const onlineNearby = mockPartners.filter(p => p.isOnline && p.distance < 2);
-  const filteredSessions = selectedLanguage === 'All' 
-    ? mockSessions 
-    : mockSessions.filter(s => s.language === selectedLanguage);
+  const filteredSessions =
+    selectedLanguage === 'All'
+      ? mockSessions
+      : mockSessions.filter(s => s.language === selectedLanguage);
 
   const languageCategories = ['All', 'Spanish', 'French', 'Japanese', 'Dutch', 'English'];
 
@@ -108,20 +109,14 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({
           style={styles.filterContainer}
           contentContainerStyle={styles.filterContent}
         >
-          {languageCategories.map((lang) => (
+          {languageCategories.map(lang => (
             <TouchableOpacity
               key={lang}
               onPress={() => setSelectedLanguage(lang)}
-              style={[
-                styles.filterPill,
-                selectedLanguage === lang && styles.filterPillActive,
-              ]}
+              style={[styles.filterPill, selectedLanguage === lang && styles.filterPillActive]}
             >
               <Text
-                style={[
-                  styles.filterText,
-                  selectedLanguage === lang && styles.filterTextActive,
-                ]}
+                style={[styles.filterText, selectedLanguage === lang && styles.filterTextActive]}
               >
                 {lang}
               </Text>
@@ -143,17 +138,14 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({
             style={styles.partnersScroll}
             contentContainerStyle={styles.partnersContent}
           >
-            {onlineNearby.map((partner) => (
+            {onlineNearby.map(partner => (
               <TouchableOpacity
                 key={partner.id}
                 onPress={() => onPartnerClick(partner.id)}
                 style={styles.partnerMini}
               >
                 <View style={styles.partnerAvatarContainer}>
-                  <Image
-                    source={{ uri: partner.avatar }}
-                    style={styles.partnerAvatar}
-                  />
+                  <Image source={{ uri: partner.avatar }} style={styles.partnerAvatar} />
                   <View style={styles.onlineDot} />
                 </View>
                 <Text style={styles.partnerName} numberOfLines={1}>
@@ -170,7 +162,7 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({
           <Text style={styles.sectionTitle}>
             {selectedLanguage === 'All' ? 'All Sessions' : `${selectedLanguage} Sessions`}
           </Text>
-          {filteredSessions.map((session) => (
+          {filteredSessions.map(session => (
             <SessionCard
               key={session.id}
               session={session}
@@ -189,13 +181,13 @@ export const DiscoverScreen: React.FC<DiscoverScreenProps> = ({
           setShowMatchPopup(false);
           setMatchedPartner(null);
         }}
-        onNavigateToChat={(partnerId) => {
+        onNavigateToChat={partnerId => {
           setShowMatchPopup(false);
           if (onNavigateToChat) {
             onNavigateToChat(partnerId);
           }
         }}
-        onNavigateToProfile={(partnerId) => {
+        onNavigateToProfile={partnerId => {
           setShowMatchPopup(false);
           onPartnerClick(partnerId);
         }}
@@ -376,4 +368,3 @@ const styles = StyleSheet.create({
 });
 
 export default DiscoverScreen;
-

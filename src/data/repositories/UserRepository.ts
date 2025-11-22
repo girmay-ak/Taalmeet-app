@@ -1,10 +1,10 @@
 /**
  * User repository implementation
- * 
+ *
  * Concrete implementation of IUserRepository using Supabase.
  * This class handles the mapping between domain entities and data models,
  * and performs actual database operations.
- * 
+ *
  * @module data/repositories/UserRepository
  */
 
@@ -16,11 +16,11 @@ import { IUserDataSource } from '../datasources/IUserDataSource';
 
 /**
  * User repository implementation
- * 
+ *
  * Implements the Repository pattern to abstract data access.
  * This implementation uses Supabase, but the interface allows
  * switching to any other data source without changing business logic.
- * 
+ *
  * @example
  * const dataSource = new SupabaseUserDataSource(supabaseClient);
  * const repository = new UserRepository(dataSource);
@@ -29,7 +29,7 @@ import { IUserDataSource } from '../datasources/IUserDataSource';
 export class UserRepository implements IUserRepository {
   /**
    * Creates a new instance of UserRepository
-   * 
+   *
    * @param dataSource - Data source for user operations
    */
   constructor(private readonly dataSource: IUserDataSource) {}
@@ -90,10 +90,10 @@ export class UserRepository implements IUserRepository {
 
   /**
    * Converts data model to domain entity
-   * 
+   *
    * This mapping function transforms the database representation
    * into the domain entity, maintaining separation of concerns.
-   * 
+   *
    * @param model - User data model
    * @returns User domain entity
    * @private
@@ -117,10 +117,10 @@ export class UserRepository implements IUserRepository {
 
   /**
    * Converts domain entity to data model
-   * 
+   *
    * This mapping function transforms the domain entity
    * into the database representation.
-   * 
+   *
    * @param entity - User domain entity
    * @returns User data model
    * @private
@@ -142,4 +142,3 @@ export class UserRepository implements IUserRepository {
     };
   }
 }
-

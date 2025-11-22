@@ -1,9 +1,9 @@
 /**
  * Application navigation configuration
- * 
+ *
  * Sets up the main navigation structure for the app using React Navigation.
  * This file configures the navigation stack and tab navigation.
- * 
+ *
  * @module presentation/navigation/AppNavigator
  */
 
@@ -41,10 +41,10 @@ const Tab = createBottomTabNavigator();
 
 /**
  * Main tab navigator
- * 
+ *
  * Defines the bottom tab navigation structure.
  * This is a placeholder that will be populated with actual screens.
- * 
+ *
  * @returns Tab navigator component
  */
 const MainTabs = ({ navigation, onLogout }: any) => {
@@ -69,15 +69,9 @@ const MainTabs = ({ navigation, onLogout }: any) => {
         />
       )}
       {currentTab === 'messages' && (
-        <MessagesScreen
-          onConversationClick={handleConversationClick}
-        />
+        <MessagesScreen onConversationClick={handleConversationClick} />
       )}
-      {currentTab === 'map' && (
-        <MapScreen
-          onPartnerClick={handlePartnerClick}
-        />
-      )}
+      {currentTab === 'map' && <MapScreen onPartnerClick={handlePartnerClick} />}
       {currentTab === 'available' && <AvailableScreen />}
       {currentTab === 'profile' && (
         <ProfileScreen
@@ -113,11 +107,11 @@ const MainTabs = ({ navigation, onLogout }: any) => {
 
 /**
  * Root navigator component
- * 
+ *
  * This is the main navigation container for the app.
  * It wraps all navigation and provides navigation context.
  * Handles splash screen and authentication flow.
- * 
+ *
  * @returns Navigation container with stack navigator
  * @example
  * <AppNavigator />
@@ -159,17 +153,9 @@ export const AppNavigator: React.FC = () => {
       ) : (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Main">
-            {(props) => (
-              <MainTabs
-                {...props}
-                onLogout={() => setIsAuthenticated(false)}
-              />
-            )}
+            {props => <MainTabs {...props} onLogout={() => setIsAuthenticated(false)} />}
           </Stack.Screen>
-          <Stack.Screen
-            name="PartnerProfile"
-            options={{ presentation: 'card' }}
-          >
+          <Stack.Screen name="PartnerProfile" options={{ presentation: 'card' }}>
             {({ route, navigation }: any) => (
               <PartnerProfileScreen
                 partnerId={route.params?.partnerId || '1'}
@@ -181,10 +167,7 @@ export const AppNavigator: React.FC = () => {
               />
             )}
           </Stack.Screen>
-          <Stack.Screen
-            name="Chat"
-            options={{ presentation: 'card', headerShown: false }}
-          >
+          <Stack.Screen name="Chat" options={{ presentation: 'card', headerShown: false }}>
             {({ route, navigation }: any) => (
               <ChatScreen
                 conversationId={route.params?.conversationId || '1'}
@@ -192,13 +175,8 @@ export const AppNavigator: React.FC = () => {
               />
             )}
           </Stack.Screen>
-          <Stack.Screen
-            name="Gamification"
-            options={{ presentation: 'card', headerShown: false }}
-          >
-            {({ navigation }: any) => (
-              <GamificationScreen onBack={() => navigation.goBack()} />
-            )}
+          <Stack.Screen name="Gamification" options={{ presentation: 'card', headerShown: false }}>
+            {({ navigation }: any) => <GamificationScreen onBack={() => navigation.goBack()} />}
           </Stack.Screen>
           <Stack.Screen
             name="VerificationCode"
@@ -219,13 +197,10 @@ export const AppNavigator: React.FC = () => {
               />
             )}
           </Stack.Screen>
-          <Stack.Screen
-            name="Connections"
-            options={{ presentation: 'card', headerShown: false }}
-          >
+          <Stack.Screen name="Connections" options={{ presentation: 'card', headerShown: false }}>
             {({ navigation }: any) => (
               <ConnectionsScreen
-                onPartnerClick={(partnerId) => {
+                onPartnerClick={partnerId => {
                   navigation.navigate('PartnerProfile', { partnerId });
                 }}
               />
@@ -242,10 +217,7 @@ export const AppNavigator: React.FC = () => {
               />
             )}
           </Stack.Screen>
-          <Stack.Screen
-            name="Settings"
-            options={{ presentation: 'card', headerShown: false }}
-          >
+          <Stack.Screen name="Settings" options={{ presentation: 'card', headerShown: false }}>
             {({ navigation }: any) => (
               <SettingsScreen
                 onBack={() => navigation.goBack()}
@@ -269,10 +241,7 @@ export const AppNavigator: React.FC = () => {
               <LanguagePreferencesScreen onBack={() => navigation.goBack()} />
             )}
           </Stack.Screen>
-          <Stack.Screen
-            name="PrivacySafety"
-            options={{ presentation: 'card', headerShown: false }}
-          >
+          <Stack.Screen name="PrivacySafety" options={{ presentation: 'card', headerShown: false }}>
             {({ navigation }: any) => (
               <PrivacySafetyScreen
                 onBack={() => navigation.goBack()}
@@ -285,13 +254,8 @@ export const AppNavigator: React.FC = () => {
               />
             )}
           </Stack.Screen>
-          <Stack.Screen
-            name="HelpSupport"
-            options={{ presentation: 'card', headerShown: false }}
-          >
-            {({ navigation }: any) => (
-              <HelpSupportScreen onBack={() => navigation.goBack()} />
-            )}
+          <Stack.Screen name="HelpSupport" options={{ presentation: 'card', headerShown: false }}>
+            {({ navigation }: any) => <HelpSupportScreen onBack={() => navigation.goBack()} />}
           </Stack.Screen>
           <Stack.Screen
             name="ProfileVerification"
@@ -312,4 +276,3 @@ export const AppNavigator: React.FC = () => {
     </NavigationContainer>
   );
 };
-

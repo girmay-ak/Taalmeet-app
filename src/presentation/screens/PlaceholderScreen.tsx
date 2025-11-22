@@ -1,8 +1,8 @@
 /**
  * Placeholder screen component
- * 
+ *
  * Template for creating new screens.
- * 
+ *
  * @module presentation/screens/PlaceholderScreen
  */
 
@@ -11,9 +11,9 @@ import { View, Text, StyleSheet } from 'react-native';
 
 /**
  * Placeholder screen component
- * 
+ *
  * Replace this with your actual screen implementation.
- * 
+ *
  * @returns Placeholder screen component
  */
 export const PlaceholderScreen: React.FC = () => {
@@ -36,4 +36,3 @@ const styles = StyleSheet.create({
 });
 
 export default PlaceholderScreen;
-

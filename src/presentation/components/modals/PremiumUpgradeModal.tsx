@@ -1,20 +1,13 @@
 /**
  * Premium Upgrade Modal component
- * 
+ *
  * Modal for upgrading to premium subscription.
- * 
+ *
  * @module presentation/components/modals/PremiumUpgradeModal
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Modal,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, TYPOGRAPHY, FONT_WEIGHT, SPACING, RADIUS } from '@shared/constants/theme';
@@ -66,28 +59,16 @@ export const PremiumUpgradeModal: React.FC<PremiumUpgradeModalProps> = ({
   };
 
   return (
-    <Modal
-      visible={isOpen}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
-    >
+    <Modal visible={isOpen} transparent animationType="fade" onRequestClose={onClose}>
       <View style={styles.overlay}>
-        <TouchableOpacity
-          style={styles.backdrop}
-          activeOpacity={1}
-          onPress={onClose}
-        />
+        <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
         <View style={styles.container}>
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
             <Ionicons name="close" size={24} color="#FFFFFF" />
           </TouchableOpacity>
 
           {/* Header with Gradient */}
-          <LinearGradient
-            colors={['#E91E8C', '#C71976', '#9B1560']}
-            style={styles.header}
-          >
+          <LinearGradient colors={['#E91E8C', '#C71976', '#9B1560']} style={styles.header}>
             <View style={styles.iconContainer}>
               <Ionicons name="sparkles" size={32} color="#FFFFFF" />
             </View>
@@ -101,14 +82,11 @@ export const PremiumUpgradeModal: React.FC<PremiumUpgradeModalProps> = ({
             {/* Plan Selection */}
             <View style={styles.planSection}>
               <View style={styles.planGrid}>
-                {plans.map((plan) => (
+                {plans.map(plan => (
                   <TouchableOpacity
                     key={plan.id}
                     onPress={() => setSelectedPlan(plan.id)}
-                    style={[
-                      styles.planCard,
-                      selectedPlan === plan.id && styles.planCardSelected,
-                    ]}
+                    style={[styles.planCard, selectedPlan === plan.id && styles.planCardSelected]}
                   >
                     {plan.popular && (
                       <View style={styles.popularBadge}>
@@ -120,9 +98,7 @@ export const PremiumUpgradeModal: React.FC<PremiumUpgradeModalProps> = ({
                       <Text style={styles.price}>${plan.price}</Text>
                       <Text style={styles.period}>{plan.period}</Text>
                     </View>
-                    {plan.savings && (
-                      <Text style={styles.savings}>{plan.savings}</Text>
-                    )}
+                    {plan.savings && <Text style={styles.savings}>{plan.savings}</Text>}
                   </TouchableOpacity>
                 ))}
               </View>
@@ -133,17 +109,8 @@ export const PremiumUpgradeModal: React.FC<PremiumUpgradeModalProps> = ({
               <Text style={styles.featuresTitle}>Premium Features</Text>
               {features.map((feature, index) => (
                 <View key={index} style={styles.featureItem}>
-                  <View
-                    style={[
-                      styles.featureIcon,
-                      { backgroundColor: `${feature.color}20` },
-                    ]}
-                  >
-                    <Ionicons
-                      name={feature.icon as any}
-                      size={20}
-                      color={feature.color}
-                    />
+                  <View style={[styles.featureIcon, { backgroundColor: `${feature.color}20` }]}>
+                    <Ionicons name={feature.icon as any} size={20} color={feature.color} />
                   </View>
                   <Text style={styles.featureText}>{feature.text}</Text>
                 </View>
@@ -335,4 +302,3 @@ const styles = StyleSheet.create({
 });
 
 export default PremiumUpgradeModal;
-

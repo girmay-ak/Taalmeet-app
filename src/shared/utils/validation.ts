@@ -1,15 +1,15 @@
 /**
  * Validation utilities
- * 
+ *
  * Provides reusable validation functions for common data types
  * and formats used throughout the application.
- * 
+ *
  * @module shared/utils/validation
  */
 
 /**
  * Validates an email address format
- * 
+ *
  * @param email - Email address to validate
  * @returns True if email format is valid
  * @example
@@ -24,7 +24,7 @@ export const isValidEmail = (email: string): boolean => {
 
 /**
  * Validates a language code (ISO 639-1)
- * 
+ *
  * @param code - Language code to validate
  * @returns True if language code is valid
  * @example
@@ -39,7 +39,7 @@ export const isValidLanguageCode = (code: string): boolean => {
 
 /**
  * Validates that a string is not empty or only whitespace
- * 
+ *
  * @param value - String to validate
  * @returns True if string has content
  */
@@ -49,7 +49,7 @@ export const isNotEmpty = (value: string): boolean => {
 
 /**
  * Validates that a value is within a specified range
- * 
+ *
  * @param value - Value to validate
  * @param min - Minimum value (inclusive)
  * @param max - Maximum value (inclusive)
@@ -58,4 +58,3 @@ export const isNotEmpty = (value: string): boolean => {
 export const isInRange = (value: number, min: number, max: number): boolean => {
   return value >= min && value <= max;
 };
-

@@ -1,8 +1,8 @@
 /**
  * Match repository implementation
- * 
+ *
  * Concrete implementation of IMatchRepository using Supabase.
- * 
+ *
  * @module data/repositories/MatchRepository
  */
 
@@ -14,7 +14,7 @@ import { MatchModel } from '../models/MatchModel';
 
 /**
  * Match repository implementation
- * 
+ *
  * @example
  * const dataSource = new SupabaseMatchDataSource(supabaseClient);
  * const repository = new MatchRepository(dataSource);
@@ -54,4 +54,3 @@ export class MatchRepository implements IMatchRepository {
     throw new Error('Not implemented');
   }
 }
-

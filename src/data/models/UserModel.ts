@@ -1,19 +1,19 @@
 /**
  * User data model (DTO)
- * 
+ *
  * Represents the user data structure as it exists in the database.
  * This is separate from the domain entity to maintain separation between
  * data layer and domain layer.
- * 
+ *
  * @module data/models/UserModel
  */
 
 /**
  * User data model for database operations
- * 
+ *
  * This DTO (Data Transfer Object) represents how user data is stored
  * in the database. It's mapped to/from the domain User entity.
- * 
+ *
  * @example
  * const userModel: UserModel = {
  *   id: '123',
@@ -41,4 +41,3 @@ export interface UserModel {
   created_at: string;
   updated_at: string;
 }
-

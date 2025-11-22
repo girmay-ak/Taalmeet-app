@@ -1,9 +1,9 @@
 /**
  * Input component
- * 
+ *
  * Reusable text input with icon support.
  * Matches the Figma design with dark theme styling.
- * 
+ *
  * @module presentation/components/Input
  */
 
@@ -22,25 +22,25 @@ import { COLORS, TYPOGRAPHY, FONT_WEIGHT, RADIUS, SPACING } from '@shared/consta
 export interface InputProps extends TextInputProps {
   /** Input label */
   label?: string;
-  
+
   /** Left icon component */
   leftIcon?: React.ReactNode;
-  
+
   /** Right icon component (e.g., password visibility toggle) */
   rightIcon?: React.ReactNode;
-  
+
   /** Error message */
   error?: string;
-  
+
   /** Custom container style */
   containerStyle?: ViewStyle;
 }
 
 /**
  * Input component
- * 
+ *
  * Provides a styled text input with optional icons and error handling.
- * 
+ *
  * @param props - Input component props
  * @returns Input component
  * @example
@@ -64,10 +64,10 @@ export const Input: React.FC<InputProps> = ({
   return (
     <View style={[styles.container, containerStyle]}>
       {label && <Text style={styles.label}>{label}</Text>}
-      
+
       <View style={[styles.inputContainer, error && styles.inputContainerError]}>
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
-        
+
         <TextInput
           style={[
             styles.input,
@@ -78,10 +78,10 @@ export const Input: React.FC<InputProps> = ({
           placeholderTextColor={COLORS.textMuted}
           {...textInputProps}
         />
-        
+
         {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
       </View>
-      
+
       {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
@@ -136,4 +136,3 @@ const styles = StyleSheet.create({
 });
 
 export default Input;
-

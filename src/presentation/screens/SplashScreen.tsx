@@ -1,9 +1,9 @@
 /**
  * Splash screen component
- * 
+ *
  * First screen shown when app launches.
  * Matches the Figma design with animated logo and flowing waves background.
- * 
+ *
  * @module presentation/screens/SplashScreen
  */
 
@@ -21,10 +21,10 @@ interface SplashScreenProps {
 
 /**
  * Splash screen component
- * 
+ *
  * Displays animated logo and app branding.
  * Automatically transitions to login screen after 2.5 seconds.
- * 
+ *
  * @param props - Splash screen props
  * @returns Splash screen component
  */
@@ -224,4 +224,3 @@ const styles = StyleSheet.create({
 });
 
 export default SplashScreen;
-

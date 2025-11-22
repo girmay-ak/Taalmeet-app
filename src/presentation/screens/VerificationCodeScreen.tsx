@@ -1,8 +1,8 @@
 /**
  * Verification Code Screen component
- * 
+ *
  * Screen for entering verification code sent via email or phone.
- * 
+ *
  * @module presentation/screens/VerificationCodeScreen
  */
 
@@ -78,7 +78,7 @@ export const VerificationCodeScreen: React.FC<VerificationCodeScreenProps> = ({
     }
 
     // Auto-submit when all fields filled
-    if (newCode.every((digit) => digit !== '') && index === 5) {
+    if (newCode.every(digit => digit !== '') && index === 5) {
       handleVerify(newCode.join(''));
     }
   };
@@ -174,8 +174,8 @@ export const VerificationCodeScreen: React.FC<VerificationCodeScreenProps> = ({
                 verificationType === 'email'
                   ? 'mail'
                   : verificationType === 'phone'
-                  ? 'call'
-                  : 'shield-checkmark'
+                    ? 'call'
+                    : 'shield-checkmark'
               }
               size={40}
               color="#FFFFFF"
@@ -186,9 +186,7 @@ export const VerificationCodeScreen: React.FC<VerificationCodeScreenProps> = ({
         {/* Title */}
         <View style={styles.titleSection}>
           <Text style={styles.title}>{getPurposeText()}</Text>
-          <Text style={styles.subtitle}>
-            We've sent a 6-digit verification code to
-          </Text>
+          <Text style={styles.subtitle}>We've sent a 6-digit verification code to</Text>
           <Text style={styles.contactInfo}>{maskedContact}</Text>
         </View>
 
@@ -198,17 +196,15 @@ export const VerificationCodeScreen: React.FC<VerificationCodeScreenProps> = ({
             {code.map((digit, index) => (
               <TextInput
                 key={index}
-                ref={(ref) => (inputRefs.current[index] = ref)}
+                ref={ref => (inputRefs.current[index] = ref)}
                 style={[
                   styles.codeInput,
                   error && styles.codeInputError,
                   digit && !error && styles.codeInputFilled,
                 ]}
                 value={digit}
-                onChangeText={(value) => handleChange(index, value)}
-                onKeyPress={({ nativeEvent }) =>
-                  handleKeyPress(index, nativeEvent.key)
-                }
+                onChangeText={value => handleChange(index, value)}
+                onKeyPress={({ nativeEvent }) => handleKeyPress(index, nativeEvent.key)}
                 keyboardType="number-pad"
                 maxLength={1}
                 editable={!loading}
@@ -218,9 +214,7 @@ export const VerificationCodeScreen: React.FC<VerificationCodeScreenProps> = ({
           </View>
 
           {/* Error Message */}
-          {error && (
-            <Text style={styles.errorText}>{error}</Text>
-          )}
+          {error && <Text style={styles.errorText}>{error}</Text>}
         </View>
 
         {/* Resend Code */}
@@ -231,15 +225,8 @@ export const VerificationCodeScreen: React.FC<VerificationCodeScreenProps> = ({
             disabled={resendTimer > 0}
             style={styles.resendButton}
           >
-            <Text
-              style={[
-                styles.resendText,
-                resendTimer > 0 && styles.resendTextDisabled,
-              ]}
-            >
-              {resendTimer > 0
-                ? `Resend code in ${resendTimer}s`
-                : 'Resend Code'}
+            <Text style={[styles.resendText, resendTimer > 0 && styles.resendTextDisabled]}>
+              {resendTimer > 0 ? `Resend code in ${resendTimer}s` : 'Resend Code'}
             </Text>
           </TouchableOpacity>
         </View>
@@ -426,4 +413,3 @@ const styles = StyleSheet.create({
 });
 
 export default VerificationCodeScreen;
-

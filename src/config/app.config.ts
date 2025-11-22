@@ -1,9 +1,9 @@
 /**
  * Application configuration
- * 
+ *
  * Centralized app configuration including API endpoints,
  * feature flags, pagination, cache, and map settings.
- * 
+ *
  * @module config/app.config
  */
 
@@ -28,8 +28,8 @@ export const apiConfig = {
    */
   headers: {
     'Content-Type': 'application/json',
-    'apikey': env.SUPABASE_ANON_KEY,
-    'Authorization': `Bearer ${env.SUPABASE_ANON_KEY}`,
+    apikey: env.SUPABASE_ANON_KEY,
+    Authorization: `Bearer ${env.SUPABASE_ANON_KEY}`,
   },
 
   /**

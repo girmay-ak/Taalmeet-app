@@ -1,8 +1,8 @@
 /**
  * Signup step 4 component
- * 
+ *
  * Profile completion with bio, interests, and avatar.
- * 
+ *
  * @module presentation/screens/signup/SignupStep4
  */
 
@@ -53,12 +53,11 @@ export const SignupStep4: React.FC<SignupStep4Props> = ({ onNext, onBack }) => {
   const [avatar, setAvatar] = useState<string | null>(null);
 
   const MAX_BIO_LENGTH = 150;
-  const canProceed =
-    bio.trim() !== '' && selectedInterests.length > 0 && agreedToTerms;
+  const canProceed = bio.trim() !== '' && selectedInterests.length > 0 && agreedToTerms;
 
   const toggleInterest = (interest: string) => {
     if (selectedInterests.includes(interest)) {
-      setSelectedInterests(selectedInterests.filter((i) => i !== interest));
+      setSelectedInterests(selectedInterests.filter(i => i !== interest));
     } else {
       if (selectedInterests.length < 8) {
         setSelectedInterests([...selectedInterests, interest]);
@@ -68,9 +67,7 @@ export const SignupStep4: React.FC<SignupStep4Props> = ({ onNext, onBack }) => {
 
   const handleAvatarClick = () => {
     // In real app, would open file picker
-    setAvatar(
-      'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop'
-    );
+    setAvatar('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop');
   };
 
   const handleSubmit = () => {
@@ -143,9 +140,7 @@ export const SignupStep4: React.FC<SignupStep4Props> = ({ onNext, onBack }) => {
 
           {/* Interests */}
           <View style={styles.interestsSection}>
-            <Text style={styles.label}>
-              Interests ({selectedInterests.length}/8)
-            </Text>
+            <Text style={styles.label}>Interests ({selectedInterests.length}/8)</Text>
             <View style={styles.interestsGrid}>
               {INTERESTS.map((interest, index) => {
                 const isSelected = selectedInterests.includes(interest);
@@ -153,10 +148,7 @@ export const SignupStep4: React.FC<SignupStep4Props> = ({ onNext, onBack }) => {
                   <TouchableOpacity
                     key={index}
                     onPress={() => toggleInterest(interest)}
-                    style={[
-                      styles.interestChip,
-                      isSelected && styles.interestChipSelected,
-                    ]}
+                    style={[styles.interestChip, isSelected && styles.interestChipSelected]}
                   >
                     {isSelected && (
                       <Ionicons
@@ -166,12 +158,7 @@ export const SignupStep4: React.FC<SignupStep4Props> = ({ onNext, onBack }) => {
                         style={styles.interestCheck}
                       />
                     )}
-                    <Text
-                      style={[
-                        styles.interestText,
-                        isSelected && styles.interestTextSelected,
-                      ]}
-                    >
+                    <Text style={[styles.interestText, isSelected && styles.interestTextSelected]}>
                       {interest}
                     </Text>
                   </TouchableOpacity>
@@ -189,8 +176,7 @@ export const SignupStep4: React.FC<SignupStep4Props> = ({ onNext, onBack }) => {
               thumbColor="#FFFFFF"
             />
             <Text style={styles.termsText}>
-              I agree to the{' '}
-              <Text style={styles.termsLink}>Terms of Service</Text> and{' '}
+              I agree to the <Text style={styles.termsLink}>Terms of Service</Text> and{' '}
               <Text style={styles.termsLink}>Privacy Policy</Text>
             </Text>
           </View>
@@ -373,4 +359,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignupStep4;
-

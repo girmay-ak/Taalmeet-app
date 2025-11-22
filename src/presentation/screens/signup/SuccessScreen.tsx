@@ -1,8 +1,8 @@
 /**
  * Success screen component
- * 
+ *
  * Shown after successful signup.
- * 
+ *
  * @module presentation/screens/signup/SuccessScreen
  */
 
@@ -34,16 +34,8 @@ export const SuccessScreen: React.FC<SuccessScreenProps> = ({ onComplete }) => {
   useEffect(() => {
     scale.value = withSpring(1, { damping: 12, stiffness: 100 });
     opacity.value = withTiming(1, { duration: 500 });
-    ringScale.value = withRepeat(
-      withTiming(1.3, { duration: 1000 }),
-      -1,
-      true
-    );
-    ringOpacity.value = withRepeat(
-      withTiming(0, { duration: 1000 }),
-      -1,
-      true
-    );
+    ringScale.value = withRepeat(withTiming(1.3, { duration: 1000 }), -1, true);
+    ringOpacity.value = withRepeat(withTiming(0, { duration: 1000 }), -1, true);
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -224,4 +216,3 @@ const styles = StyleSheet.create({
 });
 
 export default SuccessScreen;
-

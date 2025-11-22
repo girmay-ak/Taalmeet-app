@@ -1,8 +1,8 @@
 /**
  * Logo component
- * 
+ *
  * Displays the TaalMeet logo. Uses a placeholder if the image file is not available.
- * 
+ *
  * @module presentation/components/Logo
  */
 
@@ -19,17 +19,13 @@ interface LogoProps {
 
 /**
  * Logo component
- * 
+ *
  * Displays the TaalMeet logo with fallback to a gradient placeholder.
- * 
+ *
  * @param props - Logo component props
  * @returns Logo component
  */
-export const Logo: React.FC<LogoProps> = ({ 
-  size = 80, 
-  showText = false,
-  style 
-}) => {
+export const Logo: React.FC<LogoProps> = ({ size = 80, showText = false, style }) => {
   // Use gradient placeholder for now (logo.png is base64 encoded, not a valid image)
   // TODO: Replace with actual logo image file when available
   return (
@@ -40,9 +36,7 @@ export const Logo: React.FC<LogoProps> = ({
         end={{ x: 1, y: 1 }}
         style={[styles.placeholder, { width: size, height: size, borderRadius: size * 0.25 }]}
       >
-        {showText && (
-          <Text style={[styles.logoText, { fontSize: size * 0.3 }]}>TM</Text>
-        )}
+        {showText && <Text style={[styles.logoText, { fontSize: size * 0.3 }]}>TM</Text>}
       </LinearGradient>
     </View>
   );
@@ -70,4 +64,3 @@ const styles = StyleSheet.create({
 });
 
 export default Logo;
-

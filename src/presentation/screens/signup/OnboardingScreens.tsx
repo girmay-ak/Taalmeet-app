@@ -1,8 +1,8 @@
 /**
  * Onboarding screens component
- * 
+ *
  * Welcome screens shown before signup.
- * 
+ *
  * @module presentation/screens/signup/OnboardingScreens
  */
 
@@ -10,7 +10,12 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSpring } from 'react-native-reanimated';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSpring,
+} from 'react-native-reanimated';
 import { COLORS, TYPOGRAPHY, FONT_WEIGHT, SPACING, RADIUS } from '@shared/constants/theme';
 
 interface OnboardingScreensProps {
@@ -39,10 +44,7 @@ const slides = [
   },
 ];
 
-export const OnboardingScreens: React.FC<OnboardingScreensProps> = ({
-  onComplete,
-  onSkip,
-}) => {
+export const OnboardingScreens: React.FC<OnboardingScreensProps> = ({ onComplete, onSkip }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideOpacity = useSharedValue(1);
   const slideTranslateX = useSharedValue(0);
@@ -51,7 +53,7 @@ export const OnboardingScreens: React.FC<OnboardingScreensProps> = ({
     if (currentSlide < slides.length - 1) {
       slideOpacity.value = withTiming(0, { duration: 200 });
       slideTranslateX.value = withTiming(-100, { duration: 200 });
-      
+
       setTimeout(() => {
         setCurrentSlide(currentSlide + 1);
         slideOpacity.value = 0;
@@ -83,10 +85,7 @@ export const OnboardingScreens: React.FC<OnboardingScreensProps> = ({
         <Animated.View style={[styles.slide, animatedStyle]}>
           {/* Illustration */}
           <View style={styles.illustrationContainer}>
-            <LinearGradient
-              colors={currentSlideData.gradient}
-              style={styles.illustration}
-            >
+            <LinearGradient colors={currentSlideData.gradient} style={styles.illustration}>
               <Text style={styles.emoji}>{currentSlideData.emoji}</Text>
             </LinearGradient>
           </View>
@@ -105,10 +104,7 @@ export const OnboardingScreens: React.FC<OnboardingScreensProps> = ({
           <TouchableOpacity
             key={index}
             onPress={() => setCurrentSlide(index)}
-            style={[
-              styles.dot,
-              index === currentSlide && styles.dotActive,
-            ]}
+            style={[styles.dot, index === currentSlide && styles.dotActive]}
           />
         ))}
       </View>
@@ -221,4 +217,3 @@ const styles = StyleSheet.create({
 });
 
 export default OnboardingScreens;
-

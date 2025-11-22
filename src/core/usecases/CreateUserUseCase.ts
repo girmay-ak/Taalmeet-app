@@ -1,10 +1,10 @@
 /**
  * Create user use case
- * 
+ *
  * Implements the business logic for creating a new user account.
  * This use case orchestrates the creation process, validates business rules,
  * and coordinates with repositories.
- * 
+ *
  * @module core/usecases/CreateUserUseCase
  */
 
@@ -37,16 +37,16 @@ export interface CreateUserResult {
 
 /**
  * Create user use case
- * 
+ *
  * Handles the business logic for user registration. This includes:
  * - Validating input data
  * - Checking if user already exists
  * - Creating the user entity
  * - Persisting to repository
- * 
+ *
  * This use case follows the Single Responsibility Principle by focusing
  * solely on user creation logic.
- * 
+ *
  * @example
  * const useCase = new CreateUserUseCase(userRepository);
  * const result = await useCase.execute({
@@ -55,7 +55,7 @@ export interface CreateUserResult {
  *   nativeLanguages: ['en'],
  *   learningLanguages: [{ code: 'es', proficiency: 'beginner' }],
  * });
- * 
+ *
  * if (result.success) {
  *   console.log('User created:', result.user.id);
  * }
@@ -63,20 +63,20 @@ export interface CreateUserResult {
 export class CreateUserUseCase {
   /**
    * Creates a new instance of CreateUserUseCase
-   * 
+   *
    * @param userRepository - Repository for user data operations
    */
   constructor(private readonly userRepository: IUserRepository) {}
 
   /**
    * Executes the user creation use case
-   * 
+   *
    * This method orchestrates the entire user creation process:
    * 1. Validates that user doesn't already exist
    * 2. Creates user entity with business rules validation
    * 3. Persists user to repository
    * 4. Returns result with created user
-   * 
+   *
    * @param input - User creation input data
    * @returns Result containing created user or error information
    * @throws {Error} If repository operation fails unexpectedly
@@ -129,16 +129,18 @@ export class CreateUserUseCase {
       };
     } catch (error) {
       // Re-throw with context
-      throw new Error(`Failed to create user: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(
+        `Failed to create user: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   }
 
   /**
    * Generates a unique user ID
-   * 
+   *
    * In a real implementation, this might use UUID or come from
    * an authentication system. This is a placeholder implementation.
-   * 
+   *
    * @returns Generated user ID
    * @private
    */
@@ -147,4 +149,3 @@ export class CreateUserUseCase {
     return `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   }
 }
-

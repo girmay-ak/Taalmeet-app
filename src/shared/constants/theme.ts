@@ -1,9 +1,9 @@
 /**
  * Theme constants
- * 
+ *
  * Color palette and design tokens from Figma design.
  * These match the design system exactly.
- * 
+ *
  * @module shared/constants/theme
  */
 
@@ -16,30 +16,30 @@ export const COLORS = {
   primaryLight: '#1ED760',
   secondary: '#5FB3B3',
   accent: '#4FD1C5',
-  
+
   // Dark Mode Backgrounds
   background: '#0F0F0F',
   card: '#1A1A1A',
   cardHover: '#222222',
   border: '#2A2A2A',
   borderLight: '#3A3A3A',
-  
+
   // Text Colors
   textPrimary: '#FFFFFF',
   textSecondary: '#E5E5E5',
   textMuted: '#9CA3AF',
   textDark: '#6B7280',
-  
+
   // Semantic Colors
   success: '#10B981',
   warning: '#F59E0B',
   error: '#EF4444',
   info: '#3B82F6',
-  
+
   // Social Colors
   google: '#DB4437',
   apple: '#000000',
-  
+
   // Status Colors
   online: '#10B981',
   away: '#F59E0B',
@@ -99,4 +99,3 @@ export const FONT_WEIGHT = {
   semibold: '600' as const,
   bold: '700' as const,
 } as const;
-

@@ -1,8 +1,8 @@
 /**
  * Profile Verification Screen component
- * 
+ *
  * Multi-step verification flow for profile verification.
- * 
+ *
  * @module presentation/screens/ProfileVerificationScreen
  */
 
@@ -59,7 +59,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
     const placeholderImage =
       'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=400&fit=crop';
     setUploadedFiles([
-      ...uploadedFiles.filter((f) => f.type !== type),
+      ...uploadedFiles.filter(f => f.type !== type),
       {
         type,
         preview: placeholderImage,
@@ -70,7 +70,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
   };
 
   const removeFile = (type: 'document' | 'selfie') => {
-    setUploadedFiles(uploadedFiles.filter((f) => f.type !== type));
+    setUploadedFiles(uploadedFiles.filter(f => f.type !== type));
   };
 
   const handleSubmitVerification = () => {
@@ -144,9 +144,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
             </View>
             <View style={styles.requirementItem}>
               <Ionicons name="camera" size={16} color={COLORS.primary} />
-              <Text style={styles.requirementText}>
-                A clear selfie holding your ID
-              </Text>
+              <Text style={styles.requirementText}>A clear selfie holding your ID</Text>
             </View>
           </View>
         </View>
@@ -198,7 +196,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
             { value: 'passport', label: 'Passport', icon: 'card-outline' },
             { value: 'id-card', label: 'National ID', icon: 'id-card-outline' },
             { value: 'drivers-license', label: "Driver's License", icon: 'card-outline' },
-          ].map((doc) => (
+          ].map(doc => (
             <TouchableOpacity
               key={doc.value}
               onPress={() => setDocumentType(doc.value as DocumentType)}
@@ -226,18 +224,15 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
 
         {/* Upload Area */}
         <View style={styles.uploadArea}>
-          {uploadedFiles.find((f) => f.type === 'document') ? (
+          {uploadedFiles.find(f => f.type === 'document') ? (
             <View style={styles.uploadedImageContainer}>
               <Image
                 source={{
-                  uri: uploadedFiles.find((f) => f.type === 'document')?.preview,
+                  uri: uploadedFiles.find(f => f.type === 'document')?.preview,
                 }}
                 style={styles.uploadedImage}
               />
-              <TouchableOpacity
-                onPress={() => removeFile('document')}
-                style={styles.removeButton}
-              >
+              <TouchableOpacity onPress={() => removeFile('document')} style={styles.removeButton}>
                 <Ionicons name="close" size={20} color="#FFFFFF" />
               </TouchableOpacity>
             </View>
@@ -248,9 +243,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
             >
               <Ionicons name="cloud-upload-outline" size={48} color={COLORS.textMuted} />
               <Text style={styles.uploadPlaceholderText}>Tap to upload photo</Text>
-              <Text style={styles.uploadPlaceholderSubtext}>
-                or take a photo with your camera
-              </Text>
+              <Text style={styles.uploadPlaceholderSubtext}>or take a photo with your camera</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -284,7 +277,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
             variant="gradient"
             size="large"
             style={styles.continueButton}
-            disabled={!uploadedFiles.find((f) => f.type === 'document')}
+            disabled={!uploadedFiles.find(f => f.type === 'document')}
           />
         </View>
       </View>
@@ -313,18 +306,15 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
 
         {/* Upload Area */}
         <View style={styles.uploadArea}>
-          {uploadedFiles.find((f) => f.type === 'selfie') ? (
+          {uploadedFiles.find(f => f.type === 'selfie') ? (
             <View style={styles.uploadedImageContainer}>
               <Image
                 source={{
-                  uri: uploadedFiles.find((f) => f.type === 'selfie')?.preview,
+                  uri: uploadedFiles.find(f => f.type === 'selfie')?.preview,
                 }}
                 style={styles.uploadedImage}
               />
-              <TouchableOpacity
-                onPress={() => removeFile('selfie')}
-                style={styles.removeButton}
-              >
+              <TouchableOpacity onPress={() => removeFile('selfie')} style={styles.removeButton}>
                 <Ionicons name="close" size={20} color="#FFFFFF" />
               </TouchableOpacity>
             </View>
@@ -335,9 +325,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
             >
               <Ionicons name="camera-outline" size={48} color={COLORS.textMuted} />
               <Text style={styles.uploadPlaceholderText}>Tap to take selfie</Text>
-              <Text style={styles.uploadPlaceholderSubtext}>
-                Hold your ID next to your face
-              </Text>
+              <Text style={styles.uploadPlaceholderSubtext}>Hold your ID next to your face</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -357,22 +345,13 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
         </View>
 
         {/* Terms Agreement */}
-        <TouchableOpacity
-          onPress={() => setAgreedToTerms(!agreedToTerms)}
-          style={styles.termsRow}
-        >
-          <View
-            style={[
-              styles.checkbox,
-              agreedToTerms && styles.checkboxActive,
-            ]}
-          >
+        <TouchableOpacity onPress={() => setAgreedToTerms(!agreedToTerms)} style={styles.termsRow}>
+          <View style={[styles.checkbox, agreedToTerms && styles.checkboxActive]}>
             {agreedToTerms && <Ionicons name="checkmark" size={16} color="#FFFFFF" />}
           </View>
           <Text style={styles.termsText}>
             I agree that my information will be used for verification purposes only and will be
-            handled according to the{' '}
-            <Text style={styles.termsLink}>Privacy Policy</Text>
+            handled according to the <Text style={styles.termsLink}>Privacy Policy</Text>
           </Text>
         </TouchableOpacity>
 
@@ -391,9 +370,7 @@ export const ProfileVerificationScreen: React.FC<ProfileVerificationScreenProps>
             variant="gradient"
             size="large"
             style={styles.continueButton}
-            disabled={
-              !uploadedFiles.find((f) => f.type === 'selfie') || !agreedToTerms
-            }
+            disabled={!uploadedFiles.find(f => f.type === 'selfie') || !agreedToTerms}
           />
         </View>
       </View>
@@ -862,4 +839,3 @@ const styles = StyleSheet.create({
 });
 
 export default ProfileVerificationScreen;
-

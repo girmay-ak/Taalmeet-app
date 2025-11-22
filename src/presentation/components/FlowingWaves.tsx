@@ -1,9 +1,9 @@
 /**
  * Flowing Waves animated background
- * 
+ *
  * React Native implementation of the animated background from Figma design.
  * Creates flowing wave patterns and animated gradients.
- * 
+ *
  * @module presentation/components/FlowingWaves
  */
 
@@ -16,10 +16,10 @@ const { width, height } = Dimensions.get('window');
 
 /**
  * Flowing Waves background component
- * 
+ *
  * Creates an animated background with flowing wave patterns
  * matching the Figma design.
- * 
+ *
  * @returns Flowing waves background component
  */
 export const FlowingWaves: React.FC = () => {
@@ -215,4 +215,3 @@ const styles = StyleSheet.create({
     top: '20%',
   },
 });
-

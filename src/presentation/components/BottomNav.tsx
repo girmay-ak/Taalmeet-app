@@ -1,9 +1,9 @@
 /**
  * Bottom navigation component
- * 
+ *
  * Main navigation bar at the bottom of the app.
  * Matches the Figma design with animated icons and badges.
- * 
+ *
  * @module presentation/components/BottomNav
  */
 
@@ -29,9 +29,9 @@ interface BottomNavProps {
 
 /**
  * Bottom navigation component
- * 
+ *
  * Displays the main navigation tabs at the bottom of the screen.
- * 
+ *
  * @param props - Bottom navigation props
  * @returns Bottom navigation component
  */
@@ -51,7 +51,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.tabsContainer}>
-        {tabs.map((tab) => {
+        {tabs.map(tab => {
           const isActive = currentTab === tab.id;
           const activeIcon = tab.icon.replace('-outline', '') as keyof typeof Ionicons.glyphMap;
 
@@ -63,9 +63,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
               activeOpacity={0.7}
             >
               <View style={styles.tabContent}>
-                {isActive && (
-                  <View style={styles.activeIndicator} />
-                )}
+                {isActive && <View style={styles.activeIndicator} />}
                 <View style={styles.iconContainer}>
                   <Ionicons
                     name={isActive ? activeIcon : tab.icon}
@@ -80,14 +78,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
                     </View>
                   )}
                 </View>
-                <Text
-                  style={[
-                    styles.label,
-                    isActive && styles.labelActive,
-                  ]}
-                >
-                  {tab.label}
-                </Text>
+                <Text style={[styles.label, isActive && styles.labelActive]}>{tab.label}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -159,4 +150,3 @@ const styles = StyleSheet.create({
 });
 
 export default BottomNav;
-

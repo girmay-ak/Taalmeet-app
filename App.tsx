@@ -1,9 +1,9 @@
 /**
  * Main application component
- * 
+ *
  * Root component of the TaalMeet application.
  * This component sets up the app structure and initializes core services.
- * 
+ *
  * @module App
  */
 
@@ -15,10 +15,10 @@ import { AppNavigator } from './src/presentation/navigation/AppNavigator';
 
 /**
  * Main App component
- * 
+ *
  * This is the entry point of the application. It renders the navigation
  * structure and sets up the overall app layout.
- * 
+ *
  * @returns Root app component
  */
 const App: React.FC = () => {
@@ -39,4 +39,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-

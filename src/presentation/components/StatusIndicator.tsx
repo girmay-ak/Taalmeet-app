@@ -1,8 +1,8 @@
 /**
  * Status indicator component
- * 
+ *
  * Displays user availability status with color coding.
- * 
+ *
  * @module presentation/components/StatusIndicator
  */
 
@@ -67,11 +67,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({
           },
         ]}
       />
-      {showLabel && (
-        <Text style={[styles.label, { color: config.color }]}>
-          {config.label}
-        </Text>
-      )}
+      {showLabel && <Text style={[styles.label, { color: config.color }]}>{config.label}</Text>}
     </View>
   );
 };
@@ -92,4 +88,3 @@ const styles = StyleSheet.create({
 });
 
 export default StatusIndicator;
-

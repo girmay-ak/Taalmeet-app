@@ -1,8 +1,8 @@
 /**
  * Profile screen component
- * 
+ *
  * User's own profile with stats, settings, and gamification.
- * 
+ *
  * @module presentation/screens/ProfileScreen
  */
 
@@ -142,10 +142,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {/* Profile Header */}
-        <LinearGradient
-          colors={[COLORS.card, COLORS.background]}
-          style={styles.profileHeader}
-        >
+        <LinearGradient colors={[COLORS.card, COLORS.background]} style={styles.profileHeader}>
           <View style={styles.profileContent}>
             {/* Avatar */}
             <View style={styles.avatarContainer}>
@@ -250,9 +247,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
               <View style={styles.viewMoreCard}>
                 <View>
                   <Text style={styles.viewMoreTitle}>View Full Stats</Text>
-                  <Text style={styles.viewMoreSubtitle}>
-                    Achievements, Challenges & More
-                  </Text>
+                  <Text style={styles.viewMoreSubtitle}>Achievements, Challenges & More</Text>
                 </View>
                 <View style={styles.viewMoreIcon}>
                   <Text style={styles.viewMoreArrow}>›</Text>
@@ -292,10 +287,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         {/* Premium Banner */}
         {!user.premium && (
           <View style={styles.premiumBanner}>
-            <LinearGradient
-              colors={['#E91E8C', '#C71976']}
-              style={styles.premiumGradient}
-            >
+            <LinearGradient colors={['#E91E8C', '#C71976']} style={styles.premiumGradient}>
               <View style={styles.premiumContent}>
                 <View style={styles.premiumIcon}>
                   <Ionicons name="diamond" size={24} color="#FFFFFF" />
@@ -306,12 +298,12 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
                     Unlock exclusive features and stand out
                   </Text>
                 </View>
-              <TouchableOpacity
-                style={styles.upgradeButton}
-                onPress={() => setShowPremiumModal(true)}
-              >
-                <Text style={styles.upgradeButtonText}>Upgrade</Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.upgradeButton}
+                  onPress={() => setShowPremiumModal(true)}
+                >
+                  <Text style={styles.upgradeButtonText}>Upgrade</Text>
+                </TouchableOpacity>
               </View>
             </LinearGradient>
           </View>
@@ -435,10 +427,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         {/* Menu Items */}
         <View style={styles.section}>
           <View style={styles.sectionCard}>
-            <TouchableOpacity
-              onPress={onNavigateToSettings}
-              style={styles.menuItem}
-            >
+            <TouchableOpacity onPress={onNavigateToSettings} style={styles.menuItem}>
               <Ionicons name="settings-outline" size={20} color={COLORS.textPrimary} />
               <Text style={styles.menuItemText}>Settings</Text>
               <Ionicons name="chevron-forward" size={20} color={COLORS.textMuted} />
@@ -446,10 +435,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
 
             <View style={styles.menuDivider} />
 
-            <TouchableOpacity
-              onPress={onNavigateToLanguagePreferences}
-              style={styles.menuItem}
-            >
+            <TouchableOpacity onPress={onNavigateToLanguagePreferences} style={styles.menuItem}>
               <Ionicons name="language-outline" size={20} color={COLORS.textPrimary} />
               <Text style={styles.menuItemText}>Language Preferences</Text>
               <Ionicons name="chevron-forward" size={20} color={COLORS.textMuted} />
@@ -473,10 +459,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
 
             <View style={styles.menuDivider} />
 
-            <TouchableOpacity
-              onPress={() => setShowLogoutModal(true)}
-              style={styles.menuItem}
-            >
+            <TouchableOpacity onPress={() => setShowLogoutModal(true)} style={styles.menuItem}>
               <Ionicons name="log-out-outline" size={20} color={COLORS.error} />
               <Text style={[styles.menuItemText, styles.logoutText]}>Logout</Text>
             </TouchableOpacity>
@@ -495,9 +478,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
         isOpen={showLanguageEditor}
         onClose={() => setShowLanguageEditor(false)}
         type={languageEditType}
-        currentLanguage={
-          languageEditType === 'teaching' ? user.teaching : user.learning
-        }
+        currentLanguage={languageEditType === 'teaching' ? user.teaching : user.learning}
         onSave={handleSaveLanguage}
       />
       <InterestsEditorModal
@@ -980,4 +961,3 @@ const styles = StyleSheet.create({
 });
 
 export default ProfileScreen;
-

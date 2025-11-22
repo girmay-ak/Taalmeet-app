@@ -1,20 +1,13 @@
 /**
  * Help & Support Screen component
- * 
+ *
  * Help center with FAQs, contact options, and resources.
- * 
+ *
  * @module presentation/screens/HelpSupportScreen
  */
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, TYPOGRAPHY, FONT_WEIGHT, SPACING, RADIUS } from '@shared/constants/theme';
@@ -34,18 +27,15 @@ export const HelpSupportScreen: React.FC<HelpSupportScreenProps> = ({ onBack }) 
   const faqs: FAQ[] = [
     {
       question: 'How do I find language partners?',
-      answer:
-        'Use the Discover tab to browse sessions and the Map to find partners nearby.',
+      answer: 'Use the Discover tab to browse sessions and the Map to find partners nearby.',
     },
     {
       question: 'How does matching work?',
-      answer:
-        'We match you based on language compatibility, location, and shared interests.',
+      answer: 'We match you based on language compatibility, location, and shared interests.',
     },
     {
       question: 'Is TaalMeet free?',
-      answer:
-        'Yes! TaalMeet is free with optional Premium features for enhanced experience.',
+      answer: 'Yes! TaalMeet is free with optional Premium features for enhanced experience.',
     },
     {
       question: 'How do I report inappropriate behavior?',
@@ -112,17 +102,9 @@ export const HelpSupportScreen: React.FC<HelpSupportScreenProps> = ({ onBack }) 
           <View style={styles.faqsList}>
             {faqs.map((faq, index) => (
               <View key={index} style={styles.faqCard}>
-                <TouchableOpacity
-                  onPress={() => toggleFAQ(index)}
-                  style={styles.faqHeader}
-                >
+                <TouchableOpacity onPress={() => toggleFAQ(index)} style={styles.faqHeader}>
                   <View style={styles.faqHeaderLeft}>
-                    <View
-                      style={[
-                        styles.faqIcon,
-                        { backgroundColor: `${COLORS.tertiary}20` },
-                      ]}
-                    >
+                    <View style={[styles.faqIcon, { backgroundColor: `${COLORS.tertiary}20` }]}>
                       <Ionicons name="help-circle-outline" size={16} color={COLORS.tertiary} />
                     </View>
                     <Text style={styles.faqQuestion}>{faq.question}</Text>
@@ -192,9 +174,7 @@ export const HelpSupportScreen: React.FC<HelpSupportScreenProps> = ({ onBack }) 
         <View style={styles.section}>
           <View style={styles.appInfoCard}>
             <Text style={styles.appInfoText}>TaalMeet Version 1.0.0</Text>
-            <Text style={styles.appInfoCopyright}>
-              © 2025 TaalMeet. All rights reserved.
-            </Text>
+            <Text style={styles.appInfoCopyright}>© 2025 TaalMeet. All rights reserved.</Text>
           </View>
         </View>
       </ScrollView>
@@ -386,4 +366,3 @@ const styles = StyleSheet.create({
 });
 
 export default HelpSupportScreen;
-

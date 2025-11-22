@@ -1,9 +1,9 @@
 /**
  * Environment configuration
- * 
+ *
  * Type-safe environment variable access with validation.
  * Reads from process.env and validates required variables.
- * 
+ *
  * @module config/env
  */
 
@@ -89,10 +89,7 @@ function getNumberEnvVar(key: string, defaultValue: number): number {
  * Validate required environment variables
  */
 function validateEnv(): void {
-  const required = [
-    'SUPABASE_URL',
-    'SUPABASE_ANON_KEY',
-  ];
+  const required = ['SUPABASE_URL', 'SUPABASE_ANON_KEY'];
 
   const missing: string[] = [];
 
@@ -107,7 +104,7 @@ function validateEnv(): void {
   if (missing.length > 0) {
     throw new Error(
       `Missing required environment variables: ${missing.join(', ')}\n` +
-      'Please check your .env file or app.config.js'
+        'Please check your .env file or app.config.js'
     );
   }
 }
@@ -117,7 +114,7 @@ function validateEnv(): void {
  */
 export const env: EnvConfig = {
   // Environment
-  NODE_ENV: (getEnvVar('NODE_ENV', 'development') as Environment),
+  NODE_ENV: getEnvVar('NODE_ENV', 'development') as Environment,
   APP_NAME: getEnvVar('APP_NAME', 'TaalMeet'),
   APP_BUNDLE_ID: getEnvVar('APP_BUNDLE_ID', 'com.taalmeet.app'),
 

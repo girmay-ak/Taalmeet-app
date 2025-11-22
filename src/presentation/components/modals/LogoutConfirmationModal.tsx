@@ -1,19 +1,13 @@
 /**
  * Logout Confirmation Modal component
- * 
+ *
  * Modal for confirming user logout.
- * 
+ *
  * @module presentation/components/modals/LogoutConfirmationModal
  */
 
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Modal,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, TYPOGRAPHY, FONT_WEIGHT, SPACING, RADIUS } from '@shared/constants/theme';
 import { Button } from '../Button';
@@ -30,18 +24,9 @@ export const LogoutConfirmationModal: React.FC<LogoutConfirmationModalProps> = (
   onConfirm,
 }) => {
   return (
-    <Modal
-      visible={isOpen}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
-    >
+    <Modal visible={isOpen} transparent animationType="fade" onRequestClose={onClose}>
       <View style={styles.overlay}>
-        <TouchableOpacity
-          style={styles.backdrop}
-          activeOpacity={1}
-          onPress={onClose}
-        />
+        <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
         <View style={styles.container}>
           <View style={styles.iconContainer}>
             <Ionicons name="log-out-outline" size={48} color={COLORS.error} />
@@ -51,10 +36,7 @@ export const LogoutConfirmationModal: React.FC<LogoutConfirmationModalProps> = (
             Are you sure you want to log out? You'll need to sign in again to access your account.
           </Text>
           <View style={styles.buttons}>
-            <TouchableOpacity
-              onPress={onClose}
-              style={styles.cancelButton}
-            >
+            <TouchableOpacity onPress={onClose} style={styles.cancelButton}>
               <Text style={styles.cancelText}>Cancel</Text>
             </TouchableOpacity>
             <Button
@@ -136,4 +118,3 @@ const styles = StyleSheet.create({
 });
 
 export default LogoutConfirmationModal;
-

@@ -1,9 +1,9 @@
 /**
  * Login screen component
- * 
+ *
  * User authentication screen matching the Figma design.
  * Includes email/password login and social login options.
- * 
+ *
  * @module presentation/screens/LoginScreen
  */
 
@@ -33,9 +33,9 @@ interface LoginScreenProps {
 
 /**
  * Login screen component
- * 
+ *
  * Provides email/password login and social login options.
- * 
+ *
  * @param props - Login screen props
  * @returns Login screen component
  */
@@ -140,7 +140,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
               colors={[COLORS.primary, COLORS.primaryLight]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
-              style={[styles.loginButton, (isLoading || !email || !password) && styles.loginButtonDisabled]}
+              style={[
+                styles.loginButton,
+                (isLoading || !email || !password) && styles.loginButtonDisabled,
+              ]}
             >
               {isLoading ? (
                 <View style={styles.loadingContainer}>
@@ -164,11 +167,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         {/* Social Login */}
         <View style={styles.socialContainer}>
           {/* Google Login */}
-          <TouchableOpacity
-            style={styles.socialButton}
-            onPress={onLogin}
-            activeOpacity={0.8}
-          >
+          <TouchableOpacity style={styles.socialButton} onPress={onLogin} activeOpacity={0.8}>
             <Ionicons name="logo-google" size={20} color={COLORS.background} />
             <Text style={styles.socialButtonText}>Continue with Google</Text>
           </TouchableOpacity>
@@ -317,4 +316,3 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
-
