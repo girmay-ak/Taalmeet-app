@@ -1,0 +1,12 @@
+node_modules
+coverage
+build
+dist
+.gradle
+.idea
+.vscode
+*.log
+*.lock
+package-lock.json
+yarn.lock
+

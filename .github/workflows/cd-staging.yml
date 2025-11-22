@@ -1,0 +1,57 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+jobs:
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://staging.taalmeet.app
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Set environment variables
+        run: |
+          echo "NODE_ENV=staging" >> $GITHUB_ENV
+
+      - name: Run tests
+        run: npm test -- --watchAll=false
+
+      - name: Build for staging
+        run: |
+          eas build --platform all \
+            --profile staging \
+            --non-interactive \
+            --no-wait
+
+      - name: Update staging environment
+        run: |
+          echo "Staging deployment initiated"
+          # Add additional deployment steps here
+
+      - name: Notify deployment
+        if: always()
+        run: |
+          echo "Deployment to staging completed"
+

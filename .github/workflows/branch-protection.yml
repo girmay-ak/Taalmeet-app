@@ -1,0 +1,35 @@
+name: Branch Protection Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-branch-protection:
+    name: Check Branch Protection Rules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate PR target
+        run: |
+          BASE_BRANCH="${{ github.base_ref }}"
+          HEAD_BRANCH="${{ github.head_ref }}"
+          
+          echo "PR from $HEAD_BRANCH to $BASE_BRANCH"
+          
+          # Prevent direct PRs to main
+          if [ "$BASE_BRANCH" = "main" ] && [[ ! "$HEAD_BRANCH" =~ ^release/ ]]; then
+            echo "❌ Error: Direct PRs to main are not allowed. Use a release branch."
+            exit 1
+          fi
+          
+          # Prevent feature branches merging to staging
+          if [ "$BASE_BRANCH" = "staging" ] && [[ "$HEAD_BRANCH" =~ ^feature/ ]]; then
+            echo "❌ Error: Feature branches should merge to develop first."
+            exit 1
+          fi
+          
+          echo "✅ Branch protection check passed"
+

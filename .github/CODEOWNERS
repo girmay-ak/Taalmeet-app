@@ -1,0 +1,42 @@
+# Code Owners
+# This file defines code ownership for automatic PR review requests
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owners (all files)
+* @your-github-username
+
+# Core architecture and business logic
+/src/core/ @your-github-username
+/src/shared/ @your-github-username
+
+# Configuration and environment
+/src/config/ @your-github-username
+app.config.js @your-github-username
+.env.example @your-github-username
+
+# Infrastructure (database, storage, etc.)
+/src/infrastructure/ @your-github-username
+
+# Data layer
+/src/data/ @your-github-username
+
+# Presentation layer (UI)
+/src/presentation/ @your-github-username
+
+# CI/CD and workflows
+/.github/ @your-github-username
+
+# Documentation
+/docs/ @your-github-username
+*.md @your-github-username
+
+# Configuration files
+package.json @your-github-username
+tsconfig.json @your-github-username
+babel.config.js @your-github-username
+metro.config.js @your-github-username
+
+# Build and deployment
+Makefile @your-github-username
+eas.json @your-github-username
+
