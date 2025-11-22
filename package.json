@@ -24,6 +24,7 @@
     "test:integration": "jest __tests__/integration",
     "test:e2e": "jest __tests__/e2e",
     "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "test:connection": "jest src/infrastructure/database/__tests__/connection.test.ts",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
